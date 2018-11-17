@@ -1,0 +1,5 @@
+# Compiled Files
+out/
+
+# IDE Files
+.idea/
