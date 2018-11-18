@@ -23,4 +23,25 @@ public class EDoeFacade {
 
     }
 
+    // US2
+    public void adicionaDescritor (String descricao) {
+
+    }
+
+    public String adicionaItemParaDoacao (String idDoador, String descricaoItem, int quantidade, String tags) {
+        return "";
+    }
+
+    public String exibeItem (String id, String idDoador) {
+        return "";
+    }
+
+    public String atualizaItemParaDoacao (String id, String idDoador, int quantidade, String tags) {
+        return "";
+    }
+
+    public void removeItemParaDoacao (String id, String idDoador) {
+
+    }
+    
 }
