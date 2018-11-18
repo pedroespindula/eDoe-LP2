@@ -43,5 +43,18 @@ public class EDoeFacade {
     public void removeItemParaDoacao (String id, String idDoador) {
 
     }
-    
+
+    // US3
+    public String listaDescritorDeItensParaDoacao () {
+        return "";
+    }
+
+    public  String listaItensParaDoacao () {
+        return "";
+    }
+
+    public String pesquisaItemParaDoacaoPorDescricao (String desc) {
+        return "";
+    }
+
 }
