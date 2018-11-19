@@ -2,4 +2,9 @@
 out/
 
 # IDE Files
+# IntelliJ
 .idea/
+
+# Eclipse
+.classpath
+.project
