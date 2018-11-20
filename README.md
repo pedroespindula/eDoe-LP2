@@ -11,6 +11,6 @@ Repositório referente ao projeto da cadeira de Laboratório de Programação 2 
 ## Alunos
 
 - Anderson Clemente
-- Bruno Síqueira
+- Bruno Siqueira
 - Pedro Espíndula
-- Vitor Diniz
+- Vítor Diniz

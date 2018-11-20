@@ -2,4 +2,10 @@
 out/
 
 # IDE Files
+# IntelliJ
 .idea/
+*.iml
+
+# Eclipse
+.classpath
+.project
