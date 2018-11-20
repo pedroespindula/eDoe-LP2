@@ -23,6 +23,10 @@ public class EDoeFacade {
 
     }
 
+    public void lerReceptores(String caminho) {
+
+    }
+
     // US2
     public void adicionaDescritor (String descricao) {
 
