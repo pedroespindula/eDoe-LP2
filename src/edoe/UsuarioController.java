@@ -6,7 +6,7 @@ public class UsuarioController {
 
   private Map<String, Usuario> usuarios;
 
-  public String cadastraDoador(String id, String email, String celular, String classe) {
+  public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
     return "";
   }
 
@@ -14,7 +14,11 @@ public class UsuarioController {
     return "";
   }
 
-  public String atualizaUsuario (String id, String nome, String email) {
+  public String pesquisaPorNome (String nome) {
+    return "";
+  }
+
+  public String atualizaUsuario (String id, String nome, String email, String celular) {
     return "";
   }
 

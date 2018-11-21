@@ -12,7 +12,7 @@ public class DoadosController {
 
   }
 
-  public String cadastraItemDoacao (Usuario doador, String descricao, int quantidade, String tags) {
+  public String adicionaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
     return "";
   }
 
@@ -20,19 +20,19 @@ public class DoadosController {
     return "";
   }
 
-  public String atualizaItemDoacao (Usuario doador, String descricao, int quantidade, String tags) {
+  public String atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
     return "";
   }
 
-  public void removeItemDoacao (Usuario doador, String id) {
+  public void removeItemParaDoacao(Usuario doador, String id) {
 
   }
 
-  public String listaDescritorItemDoacao() {
+  public String listaDescritorDeItensParaDoacao() {
     return "";
   }
 
-  public String listaItemDoacao() {
+  public String listaItensParaDoacao() {
     return "";
   }
 
