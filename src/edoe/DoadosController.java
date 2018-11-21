@@ -8,7 +8,7 @@ public class DoadosController {
   private Map<Usuario, List<Item>> itemsPorDoador;
   private Map<String, List<Item>> itemsPorDescritor;
 
-  public void adiconaDescritor (String descritor) {
+  public void adicionaDescritor (String descritor) {
 
   }
 
