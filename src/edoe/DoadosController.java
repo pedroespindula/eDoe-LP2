@@ -52,13 +52,25 @@ public class DoadosController {
   
   public String exibeItem (Usuario doador, String id) {
 	Integer ID = Integer.valueOf(id);
-	if (this.itemsPorDoador.containsKey(doador))
+	if (this.itemsPorDoador.containsKey(doador)) {
+	  try {
       return this.itemsPorDoador.get(doador).get(ID).toString();
+	  } catch (IllegalArgumentException e) {	  }
+    }
 	return "Item nao encontrado.";
   }
 
-  public String atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
-    return "";
+  public String atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags, String id) {
+	Integer ID = Integer.valueOf(id);
+	if (this.itemsPorDoador.containsKey(doador)) {
+		try {
+		this.itemsPorDoador.get(doador).get(ID).setQuantidade(quantidade);
+		this.itemsPorDoador.get(doador).get(ID).setTags(tags);
+		this.itemsPorDescritor.get(descricao).get(ID).setQuantidade(quantidade);
+		this.itemsPorDescritor.get(descricao).get(ID).setTags(tags);
+		} catch(IllegalArgumentException e) {   	}
+	}
+    return "Item nao encontrado.";
   }
 
   public void removeItemParaDoacao(Usuario doador, String id) {
