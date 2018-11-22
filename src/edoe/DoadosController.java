@@ -21,8 +21,7 @@ public class DoadosController {
     if (!this.itemsPorDescritor.containsKey(descritor)) {
       List <Item> lista = new ArrayList <Item>();
       this.itemsPorDescritor.put(descritor, lista);		
-	}
-    else {
+	} else {
       throw new IllegalArgumentException();
     }
   }
@@ -36,8 +35,7 @@ public class DoadosController {
     if (this.itemsPorDoador.containsKey(doador)) {
       Item item = new Item (id,descricao, quantidade, tags, doador);
       this.itemsPorDoador.get(doador).add(item);
-    }
-    else {
+    } else {
    	  List <Item> lista = new ArrayList <Item>();
       Item item = new Item (id,descricao, quantidade, tags, doador);
       lista.add(item);
@@ -48,8 +46,7 @@ public class DoadosController {
     if (this.itemsPorDescritor.containsKey(descricao)) {
       Item item = new Item (id,descricao, quantidade, tags, doador);
       this.itemsPorDescritor.get(descricao).add(item);
-    }
-    else {
+    } else {
       List <Item> lista = new ArrayList <Item>();
       Item item = new Item (id,descricao, quantidade, tags, doador);
       lista.add(item);
