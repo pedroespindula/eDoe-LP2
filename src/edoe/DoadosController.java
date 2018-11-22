@@ -74,9 +74,10 @@ public class DoadosController {
   }
 
   public void removeItemParaDoacao(Usuario doador, String id, String descritor) {
+	int ID = Integer.valueOf(id);
     if (this.itemsPorDescritor.containsKey(descritor)) {
-    	this.itemsPorDescritor.remove(descritor);
-    	this.itemsPorDoador.remove(doador);
+    	this.itemsPorDescritor.get(descritor).remove(ID);
+    	this.itemsPorDoador.get(doador).remove(ID);
     }
   }
 
