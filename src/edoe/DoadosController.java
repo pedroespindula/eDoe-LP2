@@ -63,18 +63,21 @@ public class DoadosController {
   public String atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags, String id) {
 	Integer ID = Integer.valueOf(id);
 	if (this.itemsPorDoador.containsKey(doador)) {
-		try {
-		this.itemsPorDoador.get(doador).get(ID).setQuantidade(quantidade);
-		this.itemsPorDoador.get(doador).get(ID).setTags(tags);
-		this.itemsPorDescritor.get(descricao).get(ID).setQuantidade(quantidade);
-		this.itemsPorDescritor.get(descricao).get(ID).setTags(tags);
-		} catch(IllegalArgumentException e) {   	}
+	  try {
+	  this.itemsPorDoador.get(doador).get(ID).setQuantidade(quantidade);
+	  this.itemsPorDoador.get(doador).get(ID).setTags(tags);
+	  this.itemsPorDescritor.get(descricao).get(ID).setQuantidade(quantidade);
+	  this.itemsPorDescritor.get(descricao).get(ID).setTags(tags);
+	  } catch(IllegalArgumentException e) {   	}
 	}
     return "Item nao encontrado.";
   }
 
-  public void removeItemParaDoacao(Usuario doador, String id) {
-
+  public void removeItemParaDoacao(Usuario doador, String id, String descritor) {
+    if (this.itemsPorDescritor.containsKey(descritor)) {
+    	this.itemsPorDescritor.remove(descritor);
+    	this.itemsPorDoador.remove(doador);
+    }
   }
 
   public String listaDescritorDeItensParaDoacao() {
