@@ -7,6 +7,10 @@ public class NecessitadoController {
 
   private Map<Usuario, List<Item>> itemsPorReceptor;
 
+  public NecessitadoController() {
+
+  }
+
   public String cadastraItemPedido(Usuario receptor, String descritor, int quantidade, String tags) {
     return "";
   }

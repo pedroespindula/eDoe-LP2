@@ -6,6 +6,10 @@ public class Mediator {
   private DoadosController doadosController;
   private NecessitadoController necessitadoController;
 
+  public Mediator() {
+
+  }
+
   public String adicionaDoador (String id, String nome, String email, String celular, String classe) {
     return "";
   }

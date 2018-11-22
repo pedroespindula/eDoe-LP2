@@ -6,6 +6,10 @@ public class UsuarioController {
 
   private Map<String, Usuario> usuarios;
 
+  public UsuarioController() {
+
+  }
+
   public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
     return "";
   }

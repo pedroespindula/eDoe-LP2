@@ -10,6 +10,10 @@ public class Item {
   private Usuario usuario;
   private String data;
 
+  public Item(String descricao, int quantidade, List<String> tags, Usuario usuario, String data) {
+
+  }
+
   public String getDescricao() {
     return "";
   }

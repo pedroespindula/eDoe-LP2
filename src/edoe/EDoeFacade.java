@@ -4,6 +4,10 @@ public class EDoeFacade {
 
     private Mediator mediator;
 
+    public EDoeFacade() {
+
+    }
+
     // US1
     public String adicionaDoador (String id, String nome, String email, String celular, String classe) {
         return "";
