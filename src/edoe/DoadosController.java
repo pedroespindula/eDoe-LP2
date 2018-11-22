@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 /**
- * 
+ * controlador dos itens doados 
  * @author vitor
  * @author anderson
  */
@@ -12,10 +12,6 @@ public class DoadosController {
 
   private Map<Usuario, List<Item>> itemsPorDoador;
   private Map<String, List<Item>> itemsPorDescritor;
-
-  public DoadosController() {
-
-  }
 
   public void adicionaDescritor (String descritor) {
     if (!this.itemsPorDescritor.containsKey(descritor)) {
@@ -54,27 +50,32 @@ public class DoadosController {
     }  
   }
   
-  public String exibeItem (Usuario doador, String id) {
-    Integer ID = Integer.valueOf(id);
+  public String exibeItem (Usuario doador, int id) {
     if (this.itemsPorDoador.containsKey(doador)) {
-     try {
-     return this.itemsPorDoador.get(doador).get(ID).toString();
-     } catch (IllegalArgumentException e) {	  }
+      List<Item> list = this.itemsPorDoador.get(doador);
+        for (Item i: list) 
+          if (id == i.getId())
+            return i.toString();
+       
+     return this.itemsPorDoador.get(doador).get(id).toString();
+    
     }
     return "Item nao encontrado.";
  }
 
-  public int atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags, int id) {
+  public String atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
     if (this.itemsPorDoador.containsKey(doador)) {
-      try {
-      this.itemsPorDoador.get(doador).get(id).setQuantidade(quantidade);
-      this.itemsPorDoador.get(doador).get(id).setTags(tags);
-      this.itemsPorDescritor.get(descricao).get(id).setQuantidade(quantidade);
-      this.itemsPorDescritor.get(descricao).get(id).setTags(tags);
-      return id;
-      } catch(IllegalArgumentException e) {   	}
+        for (int i = 0; i < this.itemsPorDoador.get(doador).size(); i++)
+          for (int j = 0; j < this.itemsPorDescritor.get(descricao).size(); j++) 
+            if(this.itemsPorDoador.get(doador).get(i).equals(this.itemsPorDescritor.get(descricao).get(j))) {
+              this.itemsPorDoador.get(doador).get(i).setTags(tags);
+              this.itemsPorDoador.get(doador).get(i).setQuantidade(quantidade);
+              this.itemsPorDescritor.get(descricao).get(i).setTags(tags);
+              this.itemsPorDescritor.get(descricao).get(i).setQuantidade(quantidade);
+            }
+      return "Item atualizado.";
     }
-    return -1;
+    return "Item nao encontrado.";
   }
 
   public void removeItemParaDoacao(Usuario doador, int id, String descritor) {
