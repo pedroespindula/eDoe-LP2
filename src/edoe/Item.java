@@ -1,47 +1,61 @@
 package edoe;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Item {
 
+  private int id;
   private String descricao;
   private int quantidade;
   private List<String> tags;
   private Usuario usuario;
-  private String data;
 
-  public Item(String descricao, int quantidade, List<String> tags, Usuario usuario, String data) {
-
+  public Item(int id, String descricao, int quantidade, String tags, Usuario usuario) {
+    this.id = id;
+    setDescricao(descricao);
+    this.quantidade = quantidade;
+    setTags (tags);
+    this.usuario = usuario;
   }
-
+  public String getId() {
+    return Integer.toString(this.id);
+  }
   public String getDescricao() {
-    return "";
+    return this.descricao;
   }
-
   public Usuario getUsuario() {
-    return null;
+    return this.usuario;
   }
-
+  public int getQuantidade (){
+    return this.quantidade;
+  }
+  public void setDescricao(String descricao){
+    this.descricao = descricao.toLowerCase();
+  }
   public void setQuantidade(int quantidade) {
-
+    this.quantidade = quantidade;
   }
-
-  public void setTags(List<String> tags) {
-
+  public void setTags(String tags) {
+    this.tags = Arrays.asList(tags.split(", "));
   }
 
   @Override
   public String toString() {
-    return "";
+    return this.descricao + ", tags: " + this.tags + ", " + this.quantidade;
   }
 
   @Override
-  public boolean equals(Object obj) {
-    return false;
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Item item = (Item) o;
+    return id == item.id;
   }
 
   @Override
   public int hashCode() {
-    return 0;
+    return Objects.hash(id);
   }
 }
