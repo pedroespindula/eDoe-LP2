@@ -3,7 +3,11 @@ package edoe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 
+ * @author vitor
+ * @author anderson
+ */
 public class DoadosController {
 
   private Map<Usuario, List<Item>> itemsPorDoador;
