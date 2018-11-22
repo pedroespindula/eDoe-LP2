@@ -27,11 +27,10 @@ public class DoadosController {
     }
   }
 
-  public String adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
+  public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
     adicionaItemPorDoador(id, doador, descricao, quantidade, tags);
     adicionaItemPorDescritor(id, doador, descricao, quantidade, tags);
-    String ID = String.valueOf(id);
-    return ID;
+    return id;
   }
   private void adicionaItemPorDoador(int id, Usuario doador, String descricao, int quantidade, String tags) {
     if (this.itemsPorDoador.containsKey(doador)) {
@@ -68,25 +67,23 @@ public class DoadosController {
     return "Item nao encontrado.";
  }
 
-  public String atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags, String id) {
-    Integer ID = Integer.valueOf(id);
+  public int atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags, int id) {
     if (this.itemsPorDoador.containsKey(doador)) {
       try {
-      this.itemsPorDoador.get(doador).get(ID).setQuantidade(quantidade);
-      this.itemsPorDoador.get(doador).get(ID).setTags(tags);
-      this.itemsPorDescritor.get(descricao).get(ID).setQuantidade(quantidade);
-      this.itemsPorDescritor.get(descricao).get(ID).setTags(tags);
+      this.itemsPorDoador.get(doador).get(id).setQuantidade(quantidade);
+      this.itemsPorDoador.get(doador).get(id).setTags(tags);
+      this.itemsPorDescritor.get(descricao).get(id).setQuantidade(quantidade);
+      this.itemsPorDescritor.get(descricao).get(id).setTags(tags);
       return id;
       } catch(IllegalArgumentException e) {   	}
     }
-    return "Item nao encontrado.";
+    return -1;
   }
 
-  public void removeItemParaDoacao(Usuario doador, String id, String descritor) {
-    int ID = Integer.valueOf(id);
+  public void removeItemParaDoacao(Usuario doador, int id, String descritor) {
     if (this.itemsPorDescritor.containsKey(descritor)) {
-      this.itemsPorDescritor.get(descritor).remove(ID);
-      this.itemsPorDoador.get(doador).remove(ID);
+      this.itemsPorDescritor.get(descritor).remove(id);
+      this.itemsPorDoador.get(doador).remove(id);
     }
   }
 
