@@ -51,7 +51,10 @@ public class DoadosController {
   }
   
   public String exibeItem (Usuario doador, String id) {
-    return "";
+	Integer ID = Integer.valueOf(id);
+	if (this.itemsPorDoador.containsKey(doador))
+      return this.itemsPorDoador.get(doador).get(ID).toString();
+	return "Item nao encontrado.";
   }
 
   public String atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
