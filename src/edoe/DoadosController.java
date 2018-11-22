@@ -1,5 +1,6 @@
 package edoe;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,11 +14,18 @@ public class DoadosController {
   }
 
   public void adicionaDescritor (String descritor) {
+	if (!this.itemsPorDescritor.containsKey(descritor)) {
+	  List <Item> lista = new ArrayList <Item>();
+	  this.itemsPorDescritor.put(descritor, lista);		
+	}
 
   }
 
   public String adicionaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
-    return "";
+    
+	
+	  
+	return "";
   }
 
   public String exibeItem (Usuario doador, String id) {
