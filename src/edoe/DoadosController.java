@@ -18,16 +18,38 @@ public class DoadosController {
 	  List <Item> lista = new ArrayList <Item>();
 	  this.itemsPorDescritor.put(descritor, lista);		
 	}
-
   }
 
-  public String adicionaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
-    
-	
-	  
-	return "";
+  public String adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
+    adicionaItemPorDoador(id, doador, descricao, quantidade, tags);
+    adicionaItemPorDescritor(id, doador, descricao, quantidade, tags);
+	return "Item cadastrado com sucesso.";
   }
-
+  private void adicionaItemPorDoador(int id, Usuario doador, String descricao, int quantidade, String tags) {
+	if (this.itemsPorDoador.containsKey(doador)) {
+      Item item = new Item (id,descricao, quantidade, tags, doador);
+      this.itemsPorDoador.get(doador).add(item);
+    }
+    else {
+   	  List <Item> lista = new ArrayList <Item>();
+      Item item = new Item (id,descricao, quantidade, tags, doador);
+      lista.add(item);
+      this.itemsPorDoador.put(doador, lista);
+    }
+  }
+  private void adicionaItemPorDescritor(int id, Usuario doador, String descricao, int quantidade, String tags) {
+	if (this.itemsPorDescritor.containsKey(descricao)) {
+	  Item item = new Item (id,descricao, quantidade, tags, doador);
+	  this.itemsPorDescritor.get(descricao).add(item);
+	}
+	else {
+	  List <Item> lista = new ArrayList <Item>();
+	  Item item = new Item (id,descricao, quantidade, tags, doador);
+	  lista.add(item);
+	  this.itemsPorDescritor.put(descricao, lista);
+	}  
+  }
+  
   public String exibeItem (Usuario doador, String id) {
     return "";
   }
