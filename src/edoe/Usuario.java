@@ -1,4 +1,4 @@
-it adpackage edoe;
+package edoe;
 
 public class Usuario {
 
