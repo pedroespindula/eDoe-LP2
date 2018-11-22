@@ -1,5 +1,6 @@
 package edoe;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,15 +12,15 @@ public class Item {
   private List<String> tags;
   private Usuario usuario;
 
-  public Item(int id, String descricao, int quantidade, List<String> tags, Usuario usuario) {
+  public Item(int id, String descricao, int quantidade, String tags, Usuario usuario) {
     this.id = id;
     setDescricao(descricao);
     this.quantidade = quantidade;
-    this.tags = tags;
+    setTags (tags);
     this.usuario = usuario;
   }
-  public int getId() {
-    return this.id;
+  public String getId() {
+    return Integer.toString(this.id);
   }
   public String getDescricao() {
     return this.descricao;
@@ -27,15 +28,17 @@ public class Item {
   public Usuario getUsuario() {
     return this.usuario;
   }
+  public int getQuantidade (){
+    return this.quantidade;
+  }
   public void setDescricao(String descricao){
     this.descricao = descricao.toLowerCase();
   }
   public void setQuantidade(int quantidade) {
     this.quantidade = quantidade;
   }
-  public void setTags(List<String> tags) {
-    for (String tag: tags)
-      this.tags.add(tag);
+  public void setTags(String tags) {
+    this.tags = Arrays.asList(tags.split(", "));
   }
 
   @Override
