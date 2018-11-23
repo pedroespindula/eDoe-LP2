@@ -40,7 +40,8 @@ public class Item {
 
   @Override
   public String toString() {
-    return this.descricao + ", tags: " + this.tags + ", " + this.quantidade;
+    return this.getId() + " - " + this.descricao + ", tags: " + this.tagsEmString() +
+      ", quantidade: " + this.quantidade;
   }
 
   @Override
@@ -55,5 +56,9 @@ public class Item {
   @Override
   public int hashCode() {
     return Objects.hash(descricao, tags);
+  }
+
+  private String tagsEmString() {
+    return "[" + String.join(", ", this.tags) + "]";
   }
 }
