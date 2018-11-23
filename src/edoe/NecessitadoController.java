@@ -16,12 +16,11 @@ public class NecessitadoController {
   public String cadastraItemPedido(Usuario receptor, String descritor, int quantidade, String tags) {
     var items = this.itemsPorReceptor.getOrDefault(receptor, new HashMap<>());
     var itemTemp = new Item(descritor, quantidade, tags, receptor);
-    Item item = items.getOrDefault(itemTemp.getId(), itemTemp);
+    items.putIfAbsent(itemTemp.getId(), itemTemp);
 
-    items.put(item.getId(), item);
     this.itemsPorReceptor.put(receptor, items);
 
-    return item.getId();
+    return itemTemp.getId();
   }
 
   public String listaTodos() {
@@ -33,9 +32,17 @@ public class NecessitadoController {
       .collect(Collectors.joining(" | "));
   }
 
-  public void atualizaItem(Usuario receptor, String idItem, int quantidade, String tags) {
-    this.itemsPorReceptor.get(receptor).get(idItem).setQuantidade(quantidade);
-    this.itemsPorReceptor.get(receptor).get(idItem).setTags(tags);
+  public String atualizaItem(Usuario receptor, String idItem, int quantidade, String tags) {
+    var item = this.itemsPorReceptor.get(receptor).get(idItem);
+
+    if (quantidade > 0) {
+      item.setQuantidade(quantidade);
+    }
+    if (!tags.isEmpty()) {
+      item.setTags(tags);
+    }
+
+    return item.toString();
   }
 
   public void removeItem(Usuario receptor, String idItem) {
