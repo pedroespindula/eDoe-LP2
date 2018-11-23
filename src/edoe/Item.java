@@ -5,22 +5,19 @@ import java.util.List;
 import java.util.Objects;
 
 public class Item {
-
-  private int id;
   private String descricao;
   private int quantidade;
   private List<String> tags;
   private Usuario usuario;
 
-  public Item(int id, String descricao, int quantidade, String tags, Usuario usuario) {
-    this.id = id;
+  public Item(String descricao, int quantidade, String tags, Usuario usuario) {
     setDescricao(descricao);
     this.quantidade = quantidade;
     setTags (tags);
     this.usuario = usuario;
   }
   public String getId() {
-    return Integer.toString(this.id);
+    return String.valueOf(this.hashCode());
   }
   public String getDescricao() {
     return this.descricao;
@@ -51,11 +48,12 @@ public class Item {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Item item = (Item) o;
-    return id == item.id;
+    return Objects.equals(descricao, item.descricao) &&
+      Objects.equals(tags, item.tags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(descricao, tags);
   }
 }
