@@ -34,12 +34,12 @@ public class NecessitadoController {
   }
 
   public void atualizaItem(Usuario receptor, String idItem, int quantidade, String tags) {
-
-
+    this.itemsPorReceptor.get(receptor).get(idItem).setQuantidade(quantidade);
+    this.itemsPorReceptor.get(receptor).get(idItem).setTags(tags);
   }
 
   public void removeItem(Usuario receptor, String idItem) {
-
+      this.itemsPorReceptor.get(receptor).remove(idItem);
   }
 
 }
