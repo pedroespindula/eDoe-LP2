@@ -1,15 +1,10 @@
 package edoe;
 
+import edoe.testUtil.UsuarioTeste;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-class UsuarioTeste extends Usuario {
-  UsuarioTeste() {
-    super("12345", "Teste", "teste@teste.com", "999", "PESSOA", false);
-  }
-}
 
 class NecessitadoControllerTest {
   private NecessitadoController controller;
