@@ -3,6 +3,8 @@ package edoe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import util.Validador;
 /**
  * controlador dos itens doados 
  * @author vitor
@@ -18,7 +20,8 @@ public class DoadosController {
       List <Item> lista = new ArrayList <Item>();
       this.itemsPorDescritor.put(descritor, lista);		
 	} else {
-      throw new IllegalArgumentException();
+      Validador valida = new Validador ("Erro");
+      valida.verificaNulo(this.itemsPorDescritor.get(descritor), "Item inexistente");
     }
   }
 
@@ -67,8 +70,6 @@ public class DoadosController {
             if(this.itemsPorDoador.get(doador).get(i).equals(this.itemsPorDescritor.get(descricao).get(j))) {
               this.itemsPorDoador.get(doador).get(i).setTags(tags);
               this.itemsPorDoador.get(doador).get(i).setQuantidade(quantidade);
-              this.itemsPorDescritor.get(descricao).get(i).setTags(tags);
-              this.itemsPorDescritor.get(descricao).get(i).setQuantidade(quantidade);
             }
       return "Item atualizado.";
     }
