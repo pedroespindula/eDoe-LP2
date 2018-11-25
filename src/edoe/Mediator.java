@@ -1,5 +1,7 @@
 package edoe;
 
+import java.io.FileNotFoundException;
+
 public class Mediator {
 
   private UsuarioController usuarioController;
@@ -7,31 +9,33 @@ public class Mediator {
   private NecessitadoController necessitadoController;
 
   public Mediator() {
-
+    this.usuarioController = new UsuarioController();
+    this.doadosController = new DoadosController();
+    this.necessitadoController = new NecessitadoController();
   }
 
   public String adicionaDoador (String id, String nome, String email, String celular, String classe) {
-    return "";
+    return this.usuarioController.adicionaDoador(id, nome, email, celular, classe);
   }
 
   public String pesquisaUsuarioPorId (String id) {
-    return "";
+    return this.usuarioController.pesquisaPorId(id);
   }
 
   public String pesquisaUsuarioPorNome (String nome) {
-    return "";
+    return this.usuarioController.pesquisaPorNome(nome);
   }
 
   public String atualizaUsuario (String id, String nome, String email, String celular) {
-    return "";
+    return this.usuarioController.atualizaUsuario(id, nome, email, celular);
   }
 
   public void removeUsuario (String id) {
-
+    this.usuarioController.removeUsuario(id);
   }
 
-  public void lerReceptores(String caminho) {
-
+  public void lerReceptores(String caminho) throws FileNotFoundException {
+    this.usuarioController.lerReceptores(caminho);
   }
 
   public void adicionaDescritor (String descricao) {
