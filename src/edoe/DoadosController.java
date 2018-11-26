@@ -12,7 +12,7 @@ public class DoadosController {
 
   }
 
-  public void adicionaDescritor (String descritor) {
+  public void adicionaDescritor(String descritor) {
 
   }
 
@@ -20,7 +20,7 @@ public class DoadosController {
     return "";
   }
 
-  public String exibeItem (Usuario doador, String id) {
+  public String exibeItem(Usuario doador, String id) {
     return "";
   }
 
@@ -40,7 +40,7 @@ public class DoadosController {
     return "";
   }
 
-  public String pesquisaItemParaDoacaoPorDescricao (String desc) {
+  public String pesquisaItemParaDoacaoPorDescricao(String desc) {
     return "";
   }
 
