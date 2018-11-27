@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ *
+ * @author vitor
+ */
 public class Item {
   private String descricao;
   private int quantidade;
