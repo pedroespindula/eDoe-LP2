@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Item {
-
-  private int id;
   private String descricao;
   private int quantidade;
   private List<String> tags;
@@ -20,7 +18,7 @@ public class Item {
     this.usuario = usuario;
   }
   public String getId() {
-    return Integer.toString(this.id);
+    return String.valueOf(this.hashCode());
   }
   public String getDescricao() {
     return this.descricao;
@@ -41,7 +39,8 @@ public class Item {
 
   @Override
   public String toString() {
-    return this.descricao + ", tags: " + this.tags + ", " + this.quantidade;
+    return this.getId() + " - " + this.descricao + ", tags: " + this.tagsEmString() +
+      ", quantidade: " + this.quantidade;
   }
 
   @Override
@@ -49,11 +48,16 @@ public class Item {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Item item = (Item) o;
-    return id == item.id;
+    return Objects.equals(descricao, item.descricao) &&
+      Objects.equals(tags, item.tags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(descricao, tags);
+  }
+
+  private String tagsEmString() {
+    return "[" + String.join(", ", this.tags) + "]";
   }
 }
