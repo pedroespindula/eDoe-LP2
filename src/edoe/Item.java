@@ -9,9 +9,9 @@ public class Item {
   private int quantidade;
   private List<String> tags;
   private Usuario usuario;
-  private String id;
+  private int id;
 
-  public Item(String id, String descricao, int quantidade, String tags, Usuario usuario) {
+  public Item(int id, String descricao, int quantidade, String tags, Usuario usuario) {
     this.id = id;
     this.descricao = descricao.toLowerCase();
     this.quantidade = quantidade;
@@ -19,7 +19,7 @@ public class Item {
     this.usuario = usuario;
   }
 
-  public String getId() {
+  public int getId() {
     return this.id;
   }
 
