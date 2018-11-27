@@ -13,24 +13,24 @@ public class Mediator {
     this.doadosController = new DoadosController();
     this.necessitadoController = new NecessitadoController();
   }
-
-  public String adicionaDoador (String id, String nome, String email, String celular, String classe) {
+  
+  public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
     return this.usuarioController.adicionaDoador(id, nome, email, celular, classe);
   }
 
-  public String pesquisaUsuarioPorId (String id) {
+  public String pesquisaUsuarioPorId(String id) {
     return this.usuarioController.pesquisaPorId(id);
   }
 
-  public String pesquisaUsuarioPorNome (String nome) {
+  public String pesquisaUsuarioPorNome(String nome) {
     return this.usuarioController.pesquisaPorNome(nome);
   }
 
-  public String atualizaUsuario (String id, String nome, String email, String celular) {
+  public String atualizaUsuario(String id, String nome, String email, String celular) {
     return this.usuarioController.atualizaUsuario(id, nome, email, celular);
   }
 
-  public void removeUsuario (String id) {
+  public void removeUsuario(String id) {
     this.usuarioController.removeUsuario(id);
   }
 
@@ -38,35 +38,35 @@ public class Mediator {
     this.usuarioController.lerReceptores(caminho);
   }
 
-  public void adicionaDescritor (String descricao) {
+  public void adicionaDescritor(String descricao) {
 
   }
 
-  public String adicionaItemParaDoacao (String idDoador, String descricaoItem, int quantidade, String tags) {
+  public String adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
     return "";
   }
 
-  public String exibeItem (String id, String idDoador) {
+  public String exibeItem(String id, String idDoador) {
     return "";
   }
 
-  public String atualizaItemParaDoacao (String id, String idDoador, int quantidade, String tags) {
+  public String atualizaItemParaDoacao(String id, String idDoador, int quantidade, String tags) {
     return "";
   }
 
-  public void removeItemParaDoacao (String id, String idDoador) {
+  public void removeItemParaDoacao(String id, String idDoador) {
 
   }
 
-  public String listaDescritorDeItensParaDoacao () {
+  public String listaDescritorDeItensParaDoacao() {
     return "";
   }
 
-  public  String listaItensParaDoacao () {
+  public String listaItensParaDoacao() {
     return "";
   }
 
-  public String pesquisaItemParaDoacaoPorDescricao (String desc) {
+  public String pesquisaItemParaDoacaoPorDescricao(String desc) {
     return "";
   }
 

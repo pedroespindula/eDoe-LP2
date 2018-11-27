@@ -4,69 +4,86 @@ import java.io.FileNotFoundException;
 
 public class EDoeFacade {
 
-    private Mediator mediator;
+  private Mediator mediator;
+  
+  public EDoeFacade() {
+    this.mediator = new Mediator();
+  }
 
-    public EDoeFacade() {
-        this.mediator = new Mediator();
-    }
+  // US1
+  public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
+    return this.mediator.adicionaDoador(id, nome, email, celular, classe);
+  }
 
-    // US1
-    public String adicionaDoador (String id, String nome, String email, String celular, String classe) {
-        return this.mediator.adicionaDoador(id, nome, email, celular, classe);
-    }
+  public String pesquisaUsuarioPorId(String id) {
+    return this.mediator.pesquisaUsuarioPorId(id);
+  }
 
-    public String pesquisaUsuarioPorId (String id) {
-        return this.mediator.pesquisaUsuarioPorId(id);
-    }
+  public String pesquisaUsuarioPorNome(String nome) {
+    return this.mediator.pesquisaUsuarioPorNome(nome);
+  }
 
-    public String pesquisaUsuarioPorNome (String nome) {
-        return this.mediator.pesquisaUsuarioPorNome(nome);
-    }
+  public String atualizaUsuario(String id, String nome, String email, String celular) {
+    return this.mediator.atualizaUsuario(id, nome, email, celular);
+  }
 
-    public String atualizaUsuario (String id, String nome, String email, String celular) {
-        return this.mediator.atualizaUsuario(id, nome, email, celular);
-    }
+  public void removeUsuario(String id) {
+    this.mediator.removeUsuario(id);
+  }
 
-    public void removeUsuario (String id) {
-        this.mediator.removeUsuario(id);
-    }
+  public void lerReceptores(String caminho) {
+    this.mediator.lerReceptores(caminho);
+  }
 
-    public void lerReceptores(String caminho) throws FileNotFoundException {
-        this.mediator.lerReceptores(caminho);
-    }
+  // US2
+  public void adicionaDescritor(String descricao) {
 
-    // US2
-    public void adicionaDescritor (String descricao) {
+  }
 
-    }
+  public String adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
+    return "";
+  }
 
-    public String adicionaItemParaDoacao (String idDoador, String descricaoItem, int quantidade, String tags) {
-        return "";
-    }
+  public String exibeItem(String id, String idDoador) {
+    return "";
+  }
 
-    public String exibeItem (String id, String idDoador) {
-        return "";
-    }
+  public String atualizaItemParaDoacao(String id, String idDoador, int quantidade, String tags) {
+    return "";
+  }
 
-    public String atualizaItemParaDoacao (String id, String idDoador, int quantidade, String tags) {
-        return "";
-    }
+  public void removeItemParaDoacao(String id, String idDoador) {
 
-    public void removeItemParaDoacao (String id, String idDoador) {
+  }
 
-    }
+  // US3
+  public String listaDescritorDeItensParaDoacao() {
+    return "";
+  }
 
-    // US3
-    public String listaDescritorDeItensParaDoacao () {
-        return "";
-    }
+  public String listaItensParaDoacao() {
+    return "";
+  }
 
-    public  String listaItensParaDoacao () {
-        return "";
-    }
+  public String pesquisaItemParaDoacaoPorDescricao(String desc) {
+    return "";
+  }
 
-    public String pesquisaItemParaDoacaoPorDescricao (String desc) {
-        return "";
-    }
+  //US4
+  public String adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
+    return "";
+  }
+
+  public String listaItensNecessarios() {
+    return "";
+  }
+
+  public String atualizaItemNecessario(String idReceptor, String idItem, int novaQuantidade, String novasTags) {
+    return "";
+  }
+
+  public void removeItemNecessario(String idReceptor, String idItem) {
+
+  }
 
 }
