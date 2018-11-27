@@ -10,23 +10,23 @@ public class Mediator {
 
   }
 
-  public String adicionaDoador (String id, String nome, String email, String celular, String classe) {
+  public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
     return "";
   }
 
-  public String pesquisaUsuarioPorId (String id) {
+  public String pesquisaUsuarioPorId(String id) {
     return "";
   }
 
-  public String pesquisaUsuarioPorNome (String nome) {
+  public String pesquisaUsuarioPorNome(String nome) {
     return "";
   }
 
-  public String atualizaUsuario (String id, String nome, String email, String celular) {
+  public String atualizaUsuario(String id, String nome, String email, String celular) {
     return "";
   }
 
-  public void removeUsuario (String id) {
+  public void removeUsuario(String id) {
 
   }
 
@@ -34,35 +34,35 @@ public class Mediator {
 
   }
 
-  public void adicionaDescritor (String descricao) {
+  public void adicionaDescritor(String descricao) {
 
   }
 
-  public String adicionaItemParaDoacao (String idDoador, String descricaoItem, int quantidade, String tags) {
+  public String adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
     return "";
   }
 
-  public String exibeItem (String id, String idDoador) {
+  public String exibeItem(String id, String idDoador) {
     return "";
   }
 
-  public String atualizaItemParaDoacao (String id, String idDoador, int quantidade, String tags) {
+  public String atualizaItemParaDoacao(String id, String idDoador, int quantidade, String tags) {
     return "";
   }
 
-  public void removeItemParaDoacao (String id, String idDoador) {
+  public void removeItemParaDoacao(String id, String idDoador) {
 
   }
 
-  public String listaDescritorDeItensParaDoacao () {
+  public String listaDescritorDeItensParaDoacao() {
     return "";
   }
 
-  public  String listaItensParaDoacao () {
+  public String listaItensParaDoacao() {
     return "";
   }
 
-  public String pesquisaItemParaDoacaoPorDescricao (String desc) {
+  public String pesquisaItemParaDoacaoPorDescricao(String desc) {
     return "";
   }
 
