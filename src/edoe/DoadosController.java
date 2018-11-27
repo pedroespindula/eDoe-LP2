@@ -69,7 +69,7 @@ public class DoadosController {
 
   public String atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
     if (this.itemsPorDoador.containsKey(doador)) {
-      for (int i = 0; i < this.itemsPorDoador.get(doador).size(); i++){
+      for (int i = 0; i < this.itemsPorDoador.get(doador).size(); i++) {
         for (int j = 0; j < this.itemsPorDescritor.get(descricao).size(); j++) {
           if (this.itemsPorDoador.get(doador).get(i).equals(this.itemsPorDescritor.get(descricao).get(j))) {
             this.itemsPorDoador.get(doador).get(i).setTags(tags);
