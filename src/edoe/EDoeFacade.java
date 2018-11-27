@@ -67,4 +67,21 @@ public class EDoeFacade {
     return "";
   }
 
+  //US4
+  public String adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
+    return "";
+  }
+
+  public String listaItensNecessarios() {
+    return "";
+  }
+
+  public String atualizaItemNecessario(String idReceptor, String idItem, int novaQuantidade, String novasTags) {
+    return "";
+  }
+
+  public void removeItemNecessario(String idReceptor, String idItem) {
+
+  }
+
 }
