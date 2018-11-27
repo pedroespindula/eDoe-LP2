@@ -18,11 +18,11 @@ public class UsuarioController {
     return "";
   }
 
-  public String pesquisaPorNome (String nome) {
+  public String pesquisaPorNome(String nome) {
     return "";
   }
 
-  public String atualizaUsuario (String id, String nome, String email, String celular) {
+  public String atualizaUsuario(String id, String nome, String email, String celular) {
     return "";
   }
 
