@@ -27,7 +27,7 @@ public class DoadosController {
     }
   }
 
-  public int  adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
+  public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
     Item item = new Item(id, descricao, quantidade, tags, doador);
     adicionaItemPorDoador(id, doador, descricao, quantidade, tags, item);
     adicionaItemPorDescritor(id, doador, descricao, quantidade, tags, item);
