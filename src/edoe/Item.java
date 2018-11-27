@@ -10,8 +10,9 @@ public class Item {
   private List<String> tags;
   private Usuario usuario;
 
-  public Item(String descricao, int quantidade, String tags, Usuario usuario) {
-    setDescricao(descricao);
+  public Item(int id, String descricao, int quantidade, String tags, Usuario usuario) {
+    this.id = id;
+    this.descricao = descricao.toLowerCase();
     this.quantidade = quantidade;
     setTags (tags);
     this.usuario = usuario;
@@ -28,9 +29,7 @@ public class Item {
   public int getQuantidade (){
     return this.quantidade;
   }
-  public void setDescricao(String descricao){
-    this.descricao = descricao.toLowerCase();
-  }
+
   public void setQuantidade(int quantidade) {
     this.quantidade = quantidade;
   }
