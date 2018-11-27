@@ -27,14 +27,14 @@ public class DoadosController {
     }
   }
 
-  public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
+  public String adicionaItemParaDoacao(String id, Usuario doador, String descricao, int quantidade, String tags) {
     Item item = new Item(id, descricao, quantidade, tags, doador);
     adicionaItemPorDoador(id, doador, descricao, quantidade, tags, item);
     adicionaItemPorDescritor(id, doador, descricao, quantidade, tags, item);
     return id;
   }
 
-  private void adicionaItemPorDoador(int id, Usuario doador, String descricao, int quantidade, String tags, Item item) {
+  private void adicionaItemPorDoador(String id, Usuario doador, String descricao, int quantidade, String tags, Item item) {
     if (this.itemsPorDoador.containsKey(doador)) {
       this.itemsPorDoador.get(doador).add(item);
     } else {
@@ -44,7 +44,7 @@ public class DoadosController {
     }
   }
 
-  private void adicionaItemPorDescritor(int id, Usuario doador, String descricao, int quantidade, String tags, Item item) {
+  private void adicionaItemPorDescritor(String id, Usuario doador, String descricao, int quantidade, String tags, Item item) {
     if (this.itemsPorDescritor.containsKey(descricao)) {
       this.itemsPorDescritor.get(descricao).add(item);
     } else {
@@ -54,15 +54,14 @@ public class DoadosController {
     }
   }
 
-  public String exibeItem(Usuario doador, int id) {
+  public String exibeItem(Usuario doador, String id) {
     if (this.itemsPorDoador.containsKey(doador)) {
       List<Item> list = this.itemsPorDoador.get(doador);
       for (Item i : list) {
-        if (id == i.getId()) {
+        if (i.getId().equals(id)) {
           return i.toString();
         }
       }
-      return this.itemsPorDoador.get(doador).get(id).toString();
     }
     return "Item nao encontrado.";
   }
@@ -82,7 +81,7 @@ public class DoadosController {
     return "Item nao encontrado.";
   }
 
-  public void removeItemParaDoacao(Usuario doador, int id, String descritor) {
+  public void removeItemParaDoacao(Usuario doador, String id, String descritor) {
     if (this.itemsPorDescritor.containsKey(descritor)) {
       this.itemsPorDescritor.get(descritor).remove(id);
       this.itemsPorDoador.get(doador).remove(id);

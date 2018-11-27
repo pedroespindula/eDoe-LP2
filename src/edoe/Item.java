@@ -9,8 +9,9 @@ public class Item {
   private int quantidade;
   private List<String> tags;
   private Usuario usuario;
+  private String id;
 
-  public Item(int id, String descricao, int quantidade, String tags, Usuario usuario) {
+  public Item(String id, String descricao, int quantidade, String tags, Usuario usuario) {
     this.id = id;
     this.descricao = descricao.toLowerCase();
     this.quantidade = quantidade;
@@ -19,7 +20,7 @@ public class Item {
   }
 
   public String getId() {
-    return String.valueOf(this.hashCode());
+    return this.id;
   }
 
   public String getDescricao() {
