@@ -1,5 +1,6 @@
 package edoe;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -38,26 +39,26 @@ public class DoadosController {
 
 	public String listaDescritorDeItensParaDoacao() {
 
-		return descricoes.stream()
-				.sorted()
-				.map(descricao -> itens.values().stream()
-						.flatMap(mapa -> mapa.values().stream())
-						.filter(item -> item.getDescricao().equals(descricao))
-						.map(Item::getQuantidade)
-						.reduce(0, Integer::sum)	+ " - " + descricao)
+		return descricoes.stream().sorted()
+				.map(descricao -> itens.values().stream().flatMap(mapa -> mapa.values().stream())
+						.filter(item -> item.getDescricao().equals(descricao)).map(Item::getQuantidade).reduce(0, Integer::sum)
+						+ " - " + descricao)
 				.collect(Collectors.joining(" | "));
 
 	}
 
 	public String listaItensParaDoacao() {
-		return null;
+		return itens.values().stream().flatMap(mapa -> mapa.values().stream())
+				.sorted(new ItemComparatorQuantidadeDescricao())
+				.map(item -> item.toString() + ", doador: " + item.getUsuarioIdentificacao())
+				.collect(Collectors.joining(" | "));
+
 	}
 
 	public String pesquisaItemParaDoacaoPorDescricao(String desc) {
-		return this.itens.values().stream()
-				.flatMap(mapa -> mapa.values().stream())
+		return this.itens.values().stream().flatMap(mapa -> mapa.values().stream())
 				.filter(item -> item.getDescricao().toLowerCase().trim().contains(desc.toLowerCase().trim()))
-				.map(item -> item.toString())
+				.sorted(Comparator.comparing(Item::getDescricao)).map(item -> item.toString())
 				.collect(Collectors.joining(" | "));
 	}
 
