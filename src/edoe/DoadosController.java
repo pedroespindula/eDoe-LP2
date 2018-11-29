@@ -30,9 +30,10 @@ public class DoadosController {
    * @param descritor
    */
   public void adicionaDescritor(String descritor) {
-    Validador validador = new Validador("Erro");
-    validador.verificaStringVazia(descritor, "Entrada invalida: descricao nao pode ser vazia ou nula.");
-    validador.verificaContem(descritor, this.itens, "Descritor de Item ja existente: " + descritor + ".");
+    Validador validador = new Validador("Entrada invalida");
+    validador.verificaStringVazia(descritor, "descricao nao pode ser vazia ou nula.");
+    Validador validador2 = new Validador("Descritor de Item ja existente");
+    validador2.verificaContem(descritor, this.itens,  descritor + ".");
     this.descricoes.add(descritor);
   }
 
@@ -48,15 +49,14 @@ public class DoadosController {
    */
   @SuppressWarnings("null")
 public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
-	if (this.descricoes.contains(descricao)) {
+    Validador valida = new Validador("Erro");
+    valida.verificaNulo(descricao, "Descritor inexistente");
+
 	  Item item = new Item(id, descricao, quantidade, tags, doador);
 	  Map<Integer, Item> items = null;
 	  items.put(id, item);
 	  this.itens.put(doador, items);
-	} else {
-	  Validador valida = new Validador("Erro");
-	  valida.verificaNulo(descricao, "Descritor inexistente");
-	} 
+
     return id;
   }
 
