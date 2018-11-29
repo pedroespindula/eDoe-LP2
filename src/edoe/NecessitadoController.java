@@ -7,20 +7,22 @@ import java.util.stream.Collectors;
 
 public class NecessitadoController {
 
-  private Map<Usuario, Map<String, Item>> itemsPorReceptor;
+  private Map<Usuario, Map<Integer, Item>> itemsPorReceptor;
+  private int contador;
 
   public NecessitadoController() {
     this.itemsPorReceptor = new HashMap<>();
+    this.contador = 0;
   }
 
   public String cadastraItemPedido(Usuario receptor, String descritor, int quantidade, String tags) {
     var items = this.itemsPorReceptor.getOrDefault(receptor, new HashMap<>());
-    var itemTemp = new Item(descritor, quantidade, tags, receptor);
+    var itemTemp = new Item(contador, descritor, quantidade, tags, receptor);
     items.putIfAbsent(itemTemp.getId(), itemTemp);
 
     this.itemsPorReceptor.put(receptor, items);
 
-    return itemTemp.getId();
+    return String.valueOf(itemTemp.getId());
   }
 
   public String listaTodos() {
@@ -33,7 +35,7 @@ public class NecessitadoController {
   }
 
   public String atualizaItem(Usuario receptor, String idItem, int quantidade, String tags) {
-    var item = this.itemsPorReceptor.get(receptor).get(idItem);
+    var item = this.itemsPorReceptor.get(receptor).get(Integer.parseInt(idItem));
 
     if (quantidade > 0) {
       item.setQuantidade(quantidade);
@@ -46,7 +48,7 @@ public class NecessitadoController {
   }
 
   public void removeItem(Usuario receptor, String idItem) {
-      this.itemsPorReceptor.get(receptor).remove(idItem);
+      this.itemsPorReceptor.get(receptor).remove(Integer.parseInt(idItem));
   }
 
 }
