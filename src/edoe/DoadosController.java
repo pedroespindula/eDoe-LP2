@@ -19,10 +19,12 @@ public class DoadosController {
 
 	private Set<String> descricoes;
 	private Map<Usuario, Map<Integer, Item>> itens;
+	private int id;
 
 	public DoadosController() {
 		this.itens = new HashMap<>();
 		this.descricoes = new HashSet<>();
+		this.id = 0;
 	}
 
   /**
@@ -38,22 +40,21 @@ public class DoadosController {
 
   /**
    * Cadastra um novo item para doacao, se a sua descricao ja estiver cadastrada no sistema
-   * 
-   * @param id 
+   *
    * @param doador
    * @param descricao
    * @param quantidade
    * @param tags
    * @return id
    */
-public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
+public int adicionaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
     Validador validador = new Validador();
     validador.verificaStringVazia(descricao, "Entrada invalida: descricao nao pode ser vazia ou nula.");
     validador.verificaInteiroMaiorQueZero(quantidade, "Entrada invalida: quantidade deve ser maior que zero.");
-
-    Item item = new Item(id, descricao, quantidade, tags, doador);
+    this.id++;
+    Item item = new Item(this.id, descricao, quantidade, tags, doador);
 	  Map<Integer, Item> items = new HashMap<Integer, Item>();
-	  items.put(id, item);
+	  items.put(this.id, item);
 	  this.itens.put(doador, items);
 
     return id;
