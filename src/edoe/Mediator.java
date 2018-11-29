@@ -57,15 +57,15 @@ public class Mediator {
   }
 
   public String listaDescritorDeItensParaDoacao() {
-    return "";
+    return this.doadosController.listaDescritorDeItensParaDoacao();
   }
 
   public String listaItensParaDoacao() {
-    return "";
+    return this.doadosController.listaItensParaDoacao();
   }
 
   public String pesquisaItemParaDoacaoPorDescricao(String desc) {
-    return "";
+    return this.doadosController.pesquisaItemParaDoacaoPorDescricao(desc);
   }
 
   public String adicionaItemNecessario(String idReceptor, String descricao, int quantidade, String tags) {
