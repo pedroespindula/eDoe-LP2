@@ -46,13 +46,15 @@ public class DoadosController {
    * @param tags
    * @return id
    */
-  @SuppressWarnings("null")
 public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
-    Validador valida = new Validador("Erro");
-    valida.verificaNulo(descricao, "Descritor inexistente");
+    Validador validador = new Validador();
+    validador.verificaStringVazia(descricao, "Entrada invalida: descricao nao pode ser vazia ou nula.");
+    validador.verificaInteiroMaiorQueZero(quantidade, "Entrada invalida: quantidade deve ser maior que zero.");
+    validador.verificaNulo(id, "Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+    validador.verificaContem(doador, this.itens, "Usuario nao encontrado: " + doador + ".");
 
-	  Item item = new Item(id, descricao, quantidade, tags, doador);
-	  Map<Integer, Item> items = null;
+    Item item = new Item(id, descricao, quantidade, tags, doador);
+	  Map<Integer, Item> items = new HashMap<Integer, Item>();
 	  items.put(id, item);
 	  this.itens.put(doador, items);
 
