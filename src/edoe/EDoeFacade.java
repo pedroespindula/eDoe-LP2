@@ -38,19 +38,19 @@ public class EDoeFacade {
   	this.mediator.adicionaDescritor(descricao);
   }
 
-  public String adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
+  public String adicionaItemParaDoacao(int idDoador, String descricaoItem, int quantidade, String tags) {
     return this.mediator.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
   }
 
-  public String exibeItem(String id, String idDoador) {
+  public String exibeItem(int id, String idDoador) {
     return this.mediator.exibeItem(id, idDoador);
   }
 
-  public String atualizaItemParaDoacao(String id, String idDoador, int quantidade, String tags) {
+  public String atualizaItemParaDoacao(int id, String idDoador, int quantidade, String tags) {
     return this.mediator.atualizaItemParaDoacao(id, idDoador, quantidade, tags);
   }
 
-  public void removeItemParaDoacao(String id, String idDoador) {
+  public void removeItemParaDoacao(int id, String idDoador) {
   	this.mediator.removeItemParaDoacao(id, idDoador);
   }
 
