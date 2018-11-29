@@ -1,7 +1,5 @@
 package edoe;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,7 +39,8 @@ public class DoadosController {
    * @param tags
    * @return id
    */
-  public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
+  @SuppressWarnings("null")
+public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
 	if (this.descritores.contains(descricao)) {
 	  Item item = new Item(id, descricao, quantidade, tags, doador);
 	  Map<Integer, Item> items = null;
