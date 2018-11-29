@@ -134,6 +134,16 @@ public class DoadosController {
 
 	}
 
+	/**
+	 * Lista todos os itens que possuam na sua descricao a String passada por
+	 * parametro. Tanto as descricoes pegas pelo item quanto a String do parametro
+	 * serao comparadas ignorando os espacos laterais e o sensitive case.
+	 * 
+	 * 
+	 * @param desc O pedaco de descricao que se quer encontrar nos itens.
+	 * @return uma String com uma lista de itens cadastrados que possuam na sua
+	 *         descricao a String passada por parametro.
+	 */
 	public String pesquisaItemParaDoacaoPorDescricao(String desc) {
 		Validador validador = new Validador("Entrada invalida");
 		validador.verificaStringNulaOuVazia(desc, "texto da pesquisa nao pode ser vazio ou nulo.");
