@@ -19,10 +19,12 @@ public class DoadosController {
 
 	private Set<String> descricoes;
 	private Map<Usuario, Map<Integer, Item>> itens;
+	private int id;
 
 	public DoadosController() {
 		this.itens = new HashMap<>();
 		this.descricoes = new HashSet<>();
+		this.id = 0;
 	}
 
   /**
@@ -38,22 +40,21 @@ public class DoadosController {
 
   /**
    * Cadastra um novo item para doacao, se a sua descricao ja estiver cadastrada no sistema
-   * 
-   * @param id 
+   *
    * @param doador
    * @param descricao
    * @param quantidade
    * @param tags
    * @return id
    */
-public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
+public int adicionaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
     Validador validador = new Validador();
     validador.verificaStringVazia(descricao, "Entrada invalida: descricao nao pode ser vazia ou nula.");
     validador.verificaInteiroMaiorQueZero(quantidade, "Entrada invalida: quantidade deve ser maior que zero.");
-
-    Item item = new Item(id, descricao, quantidade, tags, doador);
+    this.id++;
+    Item item = new Item(this.id, descricao, quantidade, tags, doador);
 	  Map<Integer, Item> items = new HashMap<Integer, Item>();
-	  items.put(id, item);
+	  items.put(this.id, item);
 	  this.itens.put(doador, items);
 
     return id;
@@ -62,45 +63,42 @@ public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int 
   /**
    * Mostra um determinado item de um doador especifico
    * @param doador
-   * @param id
    * @return representacao textual do item
    */
-  public String exibeItem(Usuario doador, int id) {
+  public String exibeItem(Usuario doador) {
     Validador validador = new Validador();
-    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id +  ".");
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + this.id +  ".");
 
-    return this.itens.get(doador).get(id).toString();
+    return this.itens.get(doador).get(this.id).toString();
   }
   /**
    * Atualiza quantidade de unidades de um item de um doador e altera suas tags
    * 
    * @param doador
-   * @param id
    * @param quantidade
    * @param tags
    * @return confirmacao ou negacao da atualizacao
    */
-  public String atualizaItemParaDoacao(Usuario doador, int id, int quantidade, String tags) {
+  public String atualizaItemParaDoacao(Usuario doador, int quantidade, String tags) {
     Validador validador = new Validador();
-    validador.verificaInteiroMaiorQueZero(id, "Entrada invalida: id do item nao pode ser negativo.");
-    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id + ".");
-    this.itens.get(doador).get(id).setQuantidade(quantidade);
-    this.itens.get(doador).get(id).setTags(tags);
-    return this.itens.get(doador).get(id).toString();
+    validador.verificaInteiroMaiorQueZero(this.id, "Entrada invalida: id do item nao pode ser negativo.");
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + this.id + ".");
+    this.itens.get(doador).get(this.id).setQuantidade(quantidade);
+    this.itens.get(doador).get(this.id).setTags(tags);
+    return this.itens.get(doador).get(this.id).toString();
   }
   
   /**
    * Remove um item de um doador especifico
    * @param doador
-   * @param id
    */
-  public void removeItemParaDoacao(Usuario doador, int id) {
+  public void removeItemParaDoacao(Usuario doador) {
     Validador validador = new Validador();
-    validador.verificaInteiroMaiorQueZero(id, "Entrada invalida: id do item nao pode ser negativo.");
-    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id + ".");
+    validador.verificaInteiroMaiorQueZero(this.id, "Entrada invalida: id do item nao pode ser negativo.");
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + this.id + ".");
     validador.verificaContem(doador, this.itens, "O Usuario nao possui itens cadastrados.");
 
-    this.itens.get(doador).remove(id);
+    this.itens.get(doador).remove(this.id);
   }
   
 	public String listaDescritorDeItensParaDoacao() {

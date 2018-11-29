@@ -25,7 +25,7 @@ public class Mediator {
   }
 
   public String atualizaUsuario(String id, String nome, String email, String celular) {
-    return this.usuarioController.atualizaUsuario(id, nome, email, celular);
+
   }
 
   public void removeUsuario(String id) {
@@ -41,7 +41,8 @@ public class Mediator {
   }
 
   public String adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-    return "";
+    Usuario usuario = this.usuarioController.getUsuario(idDoador);
+    return this.doadosController.adicionaItemParaDoacao( );
   }
 
   public String exibeItem(String id, String idDoador) {
