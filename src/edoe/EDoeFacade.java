@@ -69,19 +69,19 @@ public class EDoeFacade {
 
   //US4
   public String adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
-    return "";
+    return this.mediator.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags);
   }
 
   public String listaItensNecessarios() {
-    return "";
+    return this.mediator.listaItensNecessarios();
   }
 
   public String atualizaItemNecessario(String idReceptor, String idItem, int novaQuantidade, String novasTags) {
-    return "";
+    return this.mediator.atualizaItemNecessario(idReceptor, idItem, novaQuantidade, novasTags);
   }
 
   public void removeItemNecessario(String idReceptor, String idItem) {
-
+    this.mediator.removeItemNecessario(idReceptor, idItem);
   }
 
 }

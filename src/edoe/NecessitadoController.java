@@ -37,7 +37,7 @@ public class NecessitadoController {
     return itemsPorReceptor.values().stream()
       .map(Map::values)
       .flatMap(Collection::stream)
-      .sorted((i1, i2) -> i2.getQuantidade() - i1.getQuantidade())
+      .sorted((i1, i2) -> String.valueOf(i1.getId()).compareTo(String.valueOf(i2.getId())))
       .map(i -> i.toString() + ", Receptor: " + i.getUsuarioIdentificacao())
       .collect(Collectors.joining(" | "));
   }
@@ -49,7 +49,7 @@ public class NecessitadoController {
     if (quantidade > 0) {
       item.setQuantidade(quantidade);
     }
-    if (!tags.isEmpty()) {
+    if (tags != null && !tags.isEmpty()) {
       item.setTags(tags);
     }
 
@@ -57,7 +57,10 @@ public class NecessitadoController {
   }
 
   public void removeItem(Usuario receptor, String idItem) {
-      this.itemsPorReceptor.get(receptor).remove(Integer.parseInt(idItem));
+    var id = Integer.parseInt(idItem);
+    getItem(receptor, id);
+
+    this.itemsPorReceptor.get(receptor).remove(id);
   }
 
   private Item getItem(Usuario receptor, int id) {
@@ -67,7 +70,7 @@ public class NecessitadoController {
     validador.verificaNaoContem(receptor, this.itemsPorReceptor, "O Usuario nao possui itens cadastrados.");
 
     var itemsUsuario = this.itemsPorReceptor.get(receptor);
-    validador.verificaNaoContem(id, itemsUsuario, "Item nao encontrado: " + id);
+    validador.verificaNaoContem(id, itemsUsuario, "Item nao encontrado: " + id + ".");
 
     return itemsUsuario.get(id);
   }
