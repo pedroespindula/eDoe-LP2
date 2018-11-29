@@ -1,5 +1,7 @@
 package edoe;
 
+import util.Validador;
+
 import java.util.Objects;
 
 public class Usuario {
@@ -12,6 +14,14 @@ public class Usuario {
   private boolean ehDoador;
 
   public Usuario(String id, String nome, String email, String telefone, String classe, boolean ehDoador) {
+    Validador validador = new Validador();
+
+    validador.verificaStringNulaOuVazia(id, "Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+    validador.verificaStringNulaOuVazia(nome, "Entrada invalida: nome nao pode ser vazio ou nulo.");
+    validador.verificaStringNulaOuVazia(email, "Entrada invalida: email nao pode ser vazio ou nulo.");
+    validador.verificaStringNulaOuVazia(telefone, "Entrada invalida: telefone nao pode ser vazio ou nulo.");
+    validador.verificaStringNulaOuVazia(classe, "Entrada invalida: classe nao pode ser vazio ou nulo.");
+
     this.id = id;
     this.nome = nome;
     this.email = email;
@@ -21,14 +31,26 @@ public class Usuario {
   }
 
   public void setNome(String nome) {
+    Validador validador = new Validador();
+
+    validador.verificaStringNulaOuVazia(nome, "Entrada invalida: nome nao pode ser vazio ou nulo.");
+
     this.nome = nome;
   }
 
   public void setEmail(String email) {
+    Validador validador = new Validador();
+
+    validador.verificaStringNulaOuVazia(email, "Entrada invalida: email nao pode ser vazio ou nulo.");
+
     this.email = email;
   }
 
   public void setTelefone(String telefone) {
+    Validador validador = new Validador();
+
+    validador.verificaStringNulaOuVazia(nome, "Entrada invalida: telefone nao pode ser vazio ou nulo.");
+
     this.telefone = telefone;
   }
 

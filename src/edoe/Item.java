@@ -40,7 +40,7 @@ public class Item {
   }
 
   public void setTags(String tags) {
-    this.tags = Arrays.asList(tags.split(", "));
+    this.tags = Arrays.asList(tags.split(","));
   }
 
   @Override
