@@ -22,17 +22,18 @@ class DoadosControllerTest {
     this.doados.adicionaDescritor("bola de tenis");
     this.doados.adicionaDescritor("camisa");
     this.doados.adicionaDescritor("sapato");
+
+    assertThrows(IllegalArgumentException.class, () -> this.doados.adicionaDescritor("camisa"));
+    assertThrows(IllegalArgumentException.class, () -> this.doados.adicionaDescritor(""));
   }
 
   @Test
   public void adicionaItemParaDoacaoTest () {
-    int id = this.doados.adicionaItemParaDoacao(new UsuarioTeste(), "camisa", 10, "M, BL");
-    assertEquals(1, id);
-    id = this.doados.adicionaItemParaDoacao(new UsuarioTeste(), "sapato", 50, "42");
-    assertEquals(2, id);
-    id = this.doados.adicionaItemParaDoacao(new UsuarioTeste(), "bola de tenis", 500, "padrao");
-    assertEquals(3, id);
-
+    assertEquals(1, this.doados.adicionaItemParaDoacao(new UsuarioTeste(), "camisa", 10, "M, BL"));
+    assertEquals(2, this.doados.adicionaItemParaDoacao(new UsuarioTeste(), "sapato", 50, "42"));
+    assertEquals(3, this.doados.adicionaItemParaDoacao(new UsuarioTeste(), "bola de tenis", 500, "padrao"));
+    assertThrows(IllegalArgumentException.class, () -> this.doados.adicionaItemParaDoacao(new UsuarioTeste(), "", 500, "padrao"));
+    assertThrows(IllegalArgumentException.class, () -> this.doados.adicionaItemParaDoacao(new UsuarioTeste(), "camisa", -10, "M, N"));
   }
 
   @Test
