@@ -63,6 +63,7 @@ public int adicionaItemParaDoacao(Usuario doador, String descricao, int quantida
   /**
    * Mostra um determinado item de um doador especifico
    * @param doador
+   * @param id
    * @return representacao textual do item
    */
   public String exibeItem(Usuario doador, int id) {
@@ -75,13 +76,14 @@ public int adicionaItemParaDoacao(Usuario doador, String descricao, int quantida
    * Atualiza quantidade de unidades de um item de um doador e altera suas tags
    * 
    * @param doador
+   * @param id
    * @param quantidade
    * @param tags
    * @return confirmacao ou negacao da atualizacao
    */
   public String atualizaItemParaDoacao(Usuario doador, int id, int quantidade, String tags) {
     Validador validador = new Validador();
-    validador.verificaInteiroMaiorQueZero(this.id, "Entrada invalida: id do item nao pode ser negativo.");
+    validador.verificaInteiroMaiorQueZero(id, "Entrada invalida: id do item nao pode ser negativo.");
     validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id + ".");
     this.itens.get(doador).get(id).setQuantidade(quantidade);
     this.itens.get(doador).get(id).setTags(tags);
@@ -91,6 +93,7 @@ public int adicionaItemParaDoacao(Usuario doador, String descricao, int quantida
   /**
    * Remove um item de um doador especifico
    * @param doador
+   * @param id
    */
   public void removeItemParaDoacao(Usuario doador, int id) {
     Validador validador = new Validador();
@@ -98,7 +101,7 @@ public int adicionaItemParaDoacao(Usuario doador, String descricao, int quantida
     validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id + ".");
     validador.verificaContem(doador, this.itens, "O Usuario nao possui itens cadastrados.");
 
-    this.itens.get(doador).remove(this.id);
+    this.itens.get(doador).remove(id);
   }
   
 	public String listaDescritorDeItensParaDoacao() {
