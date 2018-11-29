@@ -30,7 +30,7 @@ public class NecessitadoController {
       .map(Map::values)
       .flatMap(Collection::stream)
       .sorted((i1, i2) -> i2.getQuantidade() - i1.getQuantidade())
-      .map(i -> i.toString() + ", Receptor: " + i.getUsuario().getNome() + "/" + i.getUsuario().getId())
+      .map(i -> i.toString() + ", Receptor: " + i.getUsuarioIdentificacao())
       .collect(Collectors.joining(" | "));
   }
 
