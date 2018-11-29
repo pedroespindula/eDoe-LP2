@@ -3,7 +3,7 @@ package edoe;
 public class EDoeFacade {
 
   private Mediator mediator;
-  
+
   public EDoeFacade() {
     this.mediator = new Mediator();
   }
@@ -35,7 +35,7 @@ public class EDoeFacade {
 
   // US2
   public void adicionaDescritor(String descricao) {
-  	this.mediator.adicionaDescritor(descricao);
+    this.mediator.adicionaDescritor(descricao);
   }
 
   public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
@@ -51,7 +51,7 @@ public class EDoeFacade {
   }
 
   public void removeItemParaDoacao(int id, String idDoador) {
-  	this.mediator.removeItemParaDoacao(id, idDoador);
+    this.mediator.removeItemParaDoacao(id, idDoador);
   }
 
   // US3
@@ -69,7 +69,7 @@ public class EDoeFacade {
 
   //US4
   public String adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
-  	return this.mediator.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags);
+    return this.mediator.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags);
   }
 
   public String listaItensNecessarios() {
@@ -81,7 +81,7 @@ public class EDoeFacade {
   }
 
   public void removeItemNecessario(String idReceptor, String idItem) {
-  	this.mediator.removeItemNecessario(idReceptor, idItem);
+    this.mediator.removeItemNecessario(idReceptor, idItem);
   }
 
 }
