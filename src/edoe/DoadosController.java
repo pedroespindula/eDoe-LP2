@@ -54,16 +54,15 @@ public class DoadosController {
     return id;
   }
 
-
+  /**
+   * Mostra um determinado item de um doador especifico
+   * @param doador
+   * @param id
+   * @return
+   */
   public String exibeItem(Usuario doador, int id) {
-    if (this.itemsPorDoador.containsKey(doador)) {
-      List<Item> list = this.itemsPorDoador.get(doador);
-      for (Item i : list) {
-        if (id == i.getId()) {
-          return i.toString();
-        }
-      }
-      return this.itemsPorDoador.get(doador).get(id).toString();
+    if (this.items.containsKey(doador)) {
+      return this.items.get(doador).get(id).toString();
     }
     return "Item nao encontrado.";
   }
