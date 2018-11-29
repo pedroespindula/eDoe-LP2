@@ -118,6 +118,14 @@ public class DoadosController {
 
 	}
 
+	/**
+	 * Lista todos os itens cadastrados ordenando prioritariamente pela quantidade
+	 * de forma decrescente, mas caso possuam a mesma quantidade a ordenacao sera de
+	 * forma crescente pela descricao.
+	 * 
+	 * @return uma String com todos os itens cadastrados ordenados pela quantidade e
+	 *         pela descricao.
+	 */
 	public String listaItensParaDoacao() {
 		return itens.values().stream().flatMap(mapa -> mapa.values().stream())
 				.sorted(new ItemComparatorQuantidadeDescricao())
