@@ -68,4 +68,25 @@ public class Mediator {
     return "";
   }
 
+  public String adicionaItemNecessario(String idReceptor, String descricao, int quantidade, String tags) {
+    var usuario = this.usuarioController.getUsuario(idReceptor);
+
+    return this.necessitadoController.cadastraItemPedido(usuario, descricao, quantidade, tags);
+  }
+
+  public String listaItensNecessarios() {
+    return this.necessitadoController.listaTodos();
+  }
+
+  public String atualizaItemNecessario(String idReceptor, String idItem, int quantidade, String tags) {
+    var usuario = this.usuarioController.getUsuario(idReceptor);
+
+    return this.necessitadoController.atualizaItem(usuario, idItem, quantidade, tags);
+  }
+
+  public void removeItemNecessario(String idReceptor, String idItem) {
+    var usuario = this.usuarioController.getUsuario(idReceptor);
+
+    this.necessitadoController.removeItem(usuario, idItem);
+  }
 }
