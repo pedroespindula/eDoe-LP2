@@ -35,41 +35,41 @@ public class EDoeFacade {
 
   // US2
   public void adicionaDescritor(String descricao) {
-
+  	this.mediator.adicionaDescritor(descricao);
   }
 
-  public String adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-    return "";
+  public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
+    return this.mediator.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
   }
 
-  public String exibeItem(String id, String idDoador) {
-    return "";
+  public String exibeItem(int id, String idDoador) {
+    return this.mediator.exibeItem(id, idDoador);
   }
 
-  public String atualizaItemParaDoacao(String id, String idDoador, int quantidade, String tags) {
-    return "";
+  public String atualizaItemParaDoacao(int id, String idDoador, int quantidade, String tags) {
+    return this.mediator.atualizaItemParaDoacao(id, idDoador, quantidade, tags);
   }
 
-  public void removeItemParaDoacao(String id, String idDoador) {
-
+  public void removeItemParaDoacao(int id, String idDoador) {
+  	this.mediator.removeItemParaDoacao(id, idDoador);
   }
 
   // US3
   public String listaDescritorDeItensParaDoacao() {
-    return "";
+    return this.mediator.listaDescritorDeItensParaDoacao();
   }
 
   public String listaItensParaDoacao() {
-    return "";
+    return this.mediator.listaItensParaDoacao();
   }
 
   public String pesquisaItemParaDoacaoPorDescricao(String desc) {
-    return "";
+    return this.mediator.pesquisaItemParaDoacaoPorDescricao(desc);
   }
 
   //US4
   public String adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
-    return this.mediator.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags);
+  	return this.mediator.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags);
   }
 
   public String listaItensNecessarios() {
@@ -81,7 +81,7 @@ public class EDoeFacade {
   }
 
   public void removeItemNecessario(String idReceptor, String idItem) {
-    this.mediator.removeItemNecessario(idReceptor, idItem);
+  	this.mediator.removeItemNecessario(idReceptor, idItem);
   }
 
 }

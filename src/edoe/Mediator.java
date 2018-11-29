@@ -40,32 +40,36 @@ public class Mediator {
 
   }
 
-  public String adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-    return "";
+  public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
+    Usuario user = this.usuarioController.getUsuario(idDoador);
+    return this.doadosController.adicionaItemParaDoacao(user, descricaoItem, quantidade, tags);
   }
 
-  public String exibeItem(String id, String idDoador) {
-    return "";
+  public String exibeItem(int id, String idDoador) {
+    Usuario user = this.usuarioController.getUsuario(idDoador);
+    return this.doadosController.exibeItem(user, id);
   }
 
-  public String atualizaItemParaDoacao(String id, String idDoador, int quantidade, String tags) {
-    return "";
+  public String atualizaItemParaDoacao(int id, String idDoador, int quantidade, String tags) {
+    Usuario user = this.usuarioController.getUsuario(idDoador);
+    return this.doadosController.atualizaItemParaDoacao(user, id, quantidade, tags);
   }
 
-  public void removeItemParaDoacao(String id, String idDoador) {
-
+  public void removeItemParaDoacao(int id, String idDoador) {
+    Usuario user = this.usuarioController.getUsuario(idDoador);
+    this.doadosController.removeItemParaDoacao(user, id);
   }
 
   public String listaDescritorDeItensParaDoacao() {
-    return "";
+    return this.doadosController.listaDescritorDeItensParaDoacao();
   }
 
   public String listaItensParaDoacao() {
-    return "";
+    return this.doadosController.listaItensParaDoacao();
   }
 
   public String pesquisaItemParaDoacaoPorDescricao(String desc) {
-    return "";
+    return this.doadosController.pesquisaItemParaDoacaoPorDescricao(desc);
   }
 
   public String adicionaItemNecessario(String idReceptor, String descricao, int quantidade, String tags) {
