@@ -5,35 +5,40 @@ import java.util.List;
 import java.util.Objects;
 
 public class Item {
+  private int id;
   private String descricao;
   private int quantidade;
   private List<String> tags;
   private Usuario usuario;
 
-  public Item(String descricao, int quantidade, String tags, Usuario usuario) {
-    setDescricao(descricao);
+  public Item(int id, String descricao, int quantidade, String tags, Usuario usuario) {
+    this.id = id;
+    this.descricao = descricao.toLowerCase();
     this.quantidade = quantidade;
-    setTags (tags);
+    setTags(tags);
     this.usuario = usuario;
   }
-  public String getId() {
-    return String.valueOf(this.hashCode());
+
+  public int getId() {
+    return this.id;
   }
+
   public String getDescricao() {
     return this.descricao;
   }
+
   public Usuario getUsuario() {
     return this.usuario;
   }
-  public int getQuantidade (){
+
+  public int getQuantidade() {
     return this.quantidade;
   }
-  public void setDescricao(String descricao){
-    this.descricao = descricao.toLowerCase();
-  }
+
   public void setQuantidade(int quantidade) {
     this.quantidade = quantidade;
   }
+
   public void setTags(String tags) {
     this.tags = Arrays.asList(tags.split(", "));
   }
