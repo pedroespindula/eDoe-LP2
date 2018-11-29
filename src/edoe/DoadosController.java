@@ -101,7 +101,8 @@ public class DoadosController {
   
 	public String listaDescritorDeItensParaDoacao() {
 		return descricoes.stream().sorted()
-				.map(descricao -> itens.values().stream().flatMap(mapa -> mapa.values().stream())
+				.map(descricao -> itens.values().stream()
+						.flatMap(mapa -> mapa.values().stream())
 						.filter(item -> item.getDescricao().equals(descricao)).map(Item::getQuantidade).reduce(0, Integer::sum)
 						+ " - " + descricao)
 				.collect(Collectors.joining(" | "));
@@ -117,6 +118,9 @@ public class DoadosController {
 	}
 
 	public String pesquisaItemParaDoacaoPorDescricao(String desc) {
+		Validador validador = new Validador("Entrada invalida");
+		validador.verificaStringNulaOuVazia(desc, "texto da pesquisa nao pode ser vazio ou nulo.");
+		
 		return this.itens.values().stream().flatMap(mapa -> mapa.values().stream())
 				.filter(item -> item.getDescricao().toLowerCase().trim().contains(desc.toLowerCase().trim()))
 				.sorted(Comparator.comparing(Item::getDescricao)).map(item -> item.toString())
