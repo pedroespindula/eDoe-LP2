@@ -23,6 +23,17 @@ class NecessitadoControllerTest {
   }
 
   @Test
+  void atualizaQuantidadeItemCriadoIgual() {
+    var id = this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
+      10, "grande,adulta");
+    this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
+      5, "grande,adulta");
+    var esperado = id + " - cadeira de rodas, tags: [grande, adulta], quantidade: 5, Receptor: Teste/12345";
+
+    assertEquals(esperado, this.controller.listaTodos());
+  }
+
+  @Test
   void falhaCriarComDescInvalida() {
     assertThrows(NullPointerException.class,
       () -> this.controller.cadastraItemPedido(new UsuarioTeste(), null,
