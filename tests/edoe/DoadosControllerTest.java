@@ -40,10 +40,10 @@ class DoadosControllerTest {
   void exibeItemTest() {
     UsuarioTeste user = new UsuarioTeste();
     int id = this.doados.adicionaItemParaDoacao(user,"camisa", 50, "M, BL");
-    String esperado = id + " - camisa, tags: M, BL, quantidade: 50";
+    String esperado = id + " - camisa, tags: [M,  BL], quantidade: 50";
     assertEquals( esperado, this.doados.exibeItem(user, id));
     id = this.doados.adicionaItemParaDoacao(user,"sapato", 50, "42");
-    esperado = id + " - sapato, tags: 42, quantidade: 50";
+    esperado = id + " - sapato, tags: [42], quantidade: 50";
     assertEquals( esperado, this.doados.exibeItem(user, id));
   }
 
