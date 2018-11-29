@@ -70,7 +70,7 @@ public class DoadosController {
    * Atualiza quantidade de unidades de um item de um doador e altera suas tags
    * 
    * @param doador
-   * @param descricao
+   * @param id
    * @param quantidade
    * @param tags
    * @return confirmacao ou negacao da atualizacao
@@ -85,14 +85,17 @@ public class DoadosController {
     }
     return "Item nao encontrado.";
   }
-  private boolean checkDescricao(Usuario doador, String descricao) {
-	  
-  }
-
-  public void removeItemParaDoacao(Usuario doador, int id, String descritor) {
-    if (this.itemsPorDescritor.containsKey(descritor)) {
-      this.itemsPorDescritor.get(descritor).remove(id);
-      this.itemsPorDoador.get(doador).remove(id);
+  
+  /**
+   * Remove um item de um doador especifico
+   * @param doador
+   * @param id
+   */
+  public void removeItemParaDoacao(Usuario doador, int id) {
+    if (this.items.containsKey(doador)) {
+      if (this.items.get(doador).containsKey(id)) {
+        this.items.get(doador).remove(id);
+      }
     }
   }
 
