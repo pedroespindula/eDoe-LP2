@@ -65,11 +65,11 @@ public int adicionaItemParaDoacao(Usuario doador, String descricao, int quantida
    * @param doador
    * @return representacao textual do item
    */
-  public String exibeItem(Usuario doador) {
+  public String exibeItem(Usuario doador, int id) {
     Validador validador = new Validador();
-    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + this.id +  ".");
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id +  ".");
 
-    return this.itens.get(doador).get(this.id).toString();
+    return this.itens.get(doador).get(id).toString();
   }
   /**
    * Atualiza quantidade de unidades de um item de um doador e altera suas tags
@@ -79,23 +79,23 @@ public int adicionaItemParaDoacao(Usuario doador, String descricao, int quantida
    * @param tags
    * @return confirmacao ou negacao da atualizacao
    */
-  public String atualizaItemParaDoacao(Usuario doador, int quantidade, String tags) {
+  public String atualizaItemParaDoacao(Usuario doador, int id, int quantidade, String tags) {
     Validador validador = new Validador();
     validador.verificaInteiroMaiorQueZero(this.id, "Entrada invalida: id do item nao pode ser negativo.");
-    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + this.id + ".");
-    this.itens.get(doador).get(this.id).setQuantidade(quantidade);
-    this.itens.get(doador).get(this.id).setTags(tags);
-    return this.itens.get(doador).get(this.id).toString();
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id + ".");
+    this.itens.get(doador).get(id).setQuantidade(quantidade);
+    this.itens.get(doador).get(id).setTags(tags);
+    return this.itens.get(doador).get(id).toString();
   }
   
   /**
    * Remove um item de um doador especifico
    * @param doador
    */
-  public void removeItemParaDoacao(Usuario doador) {
+  public void removeItemParaDoacao(Usuario doador, int id) {
     Validador validador = new Validador();
-    validador.verificaInteiroMaiorQueZero(this.id, "Entrada invalida: id do item nao pode ser negativo.");
-    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + this.id + ".");
+    validador.verificaInteiroMaiorQueZero(id, "Entrada invalida: id do item nao pode ser negativo.");
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id + ".");
     validador.verificaContem(doador, this.itens, "O Usuario nao possui itens cadastrados.");
 
     this.itens.get(doador).remove(this.id);
