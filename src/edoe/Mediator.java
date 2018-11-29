@@ -37,7 +37,7 @@ public class Mediator {
   }
 
   public void adicionaDescritor(String descricao) {
-
+    this.doadosController.adicionaDescritor(descricao);
   }
 
   public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
