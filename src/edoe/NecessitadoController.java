@@ -3,6 +3,7 @@ package edoe;
 import util.Validador;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,8 +26,20 @@ public class NecessitadoController {
 
     var items = this.itemsPorReceptor.getOrDefault(receptor, new HashMap<>());
     var itemTemp = new Item(this.contador, descritor, quantidade, tags, receptor);
-    items.putIfAbsent(itemTemp.getId(), itemTemp);
 
+    // Checa item existente para apenas alterar quantidade -> nao especificado
+    var itemExistente = items.values().stream()
+      .filter(i -> i.equals(itemTemp))
+      .findFirst()
+      .orElse(null);
+
+    if (itemExistente != null) {
+      itemExistente.setQuantidade(quantidade);
+      return String.valueOf(itemExistente.getId());
+    }
+    //
+
+    items.putIfAbsent(itemTemp.getId(), itemTemp);
     this.itemsPorReceptor.put(receptor, items);
 
     this.contador += 1;
@@ -37,7 +50,7 @@ public class NecessitadoController {
     return itemsPorReceptor.values().stream()
       .map(Map::values)
       .flatMap(Collection::stream)
-      .sorted((i1, i2) -> String.valueOf(i1.getId()).compareTo(String.valueOf(i2.getId())))
+      .sorted(Comparator.comparingInt(Item::getId))
       .map(i -> i.toString() + ", Receptor: " + i.getUsuarioIdentificacao())
       .collect(Collectors.joining(" | "));
   }
