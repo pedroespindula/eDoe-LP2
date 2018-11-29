@@ -39,17 +39,39 @@ class DoadosControllerTest {
   @Test
   void exibeItemTest() {
     UsuarioTeste user = new UsuarioTeste();
+
     int id = this.doados.adicionaItemParaDoacao(user,"camisa", 50, "M, BL");
     String esperado = id + " - camisa, tags: [M,  BL], quantidade: 50";
     assertEquals( esperado, this.doados.exibeItem(user, id));
+
     id = this.doados.adicionaItemParaDoacao(user,"sapato", 50, "42");
     esperado = id + " - sapato, tags: [42], quantidade: 50";
     assertEquals( esperado, this.doados.exibeItem(user, id));
   }
 
   @Test
-  void testaPesquisaItemParaDoacaoVazio() {
-    assertEquals(doados.pesquisaItemParaDoacaoPorDescricao("a"), "");
+  void atualizaItemParaDoacaoTest() {
+    UsuarioTeste user = new UsuarioTeste();
+
+    int id = this.doados.adicionaItemParaDoacao(user,"camisa", 50, "M, BL");
+    String esperado = id + " - camisa, tags: [P,  N], quantidade: 100";
+    assertEquals(esperado, this.doados.atualizaItemParaDoacao(user, id, 100, "P, N"));
+
+    user = new UsuarioTeste();
+    id = this.doados.adicionaItemParaDoacao(user,"camisa", 100, "GG, BL");
+    esperado = id + " - camisa, tags: [P,  N], quantidade: 100";
+    assertEquals(esperado, this.doados.atualizaItemParaDoacao(user, id, -10, "P, N"));
+
+    user = new UsuarioTeste();
+    id = this.doados.adicionaItemParaDoacao(user,"camisa", 100, "GG, BL");
+    esperado = id + " - camisa, tags: [GG,  BL], quantidade: 100";
+    assertEquals(esperado, this.doados.atualizaItemParaDoacao(user, id, -10, ""));
+
+    user = new UsuarioTeste();
+    id = this.doados.adicionaItemParaDoacao(user,"camisa", 100, "GG, BL");
+    esperado = id + " - camisa, tags: [GG,  BL], quantidade: 110";
+    assertEquals(esperado, this.doados.atualizaItemParaDoacao(user, id, 110, ""));
+
   }
 
 
