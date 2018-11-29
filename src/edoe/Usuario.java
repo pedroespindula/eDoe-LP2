@@ -43,7 +43,7 @@ public class Usuario {
   @Override
   public String toString() {
     String status = this.getStringStatus();
-    return this.nome + "/" + this.id + ", " + this.email + ", " + this.telefone + ", status: " + status;
+    return this.getIdentificacao() + ", " + this.email + ", " + this.telefone + ", status: " + status;
   }
 
   private String getStringStatus() {
@@ -63,4 +63,7 @@ public class Usuario {
     return Objects.hash(id);
   }
 
+  public String getIdentificacao() {
+    return this.nome + "/" + this.id;
+  }
 }

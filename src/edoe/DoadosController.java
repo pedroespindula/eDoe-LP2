@@ -1,8 +1,13 @@
 package edoe;
 
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.Set;
 
 import util.Validador;
 
@@ -14,8 +19,13 @@ import util.Validador;
  */
 public class DoadosController {
 
-  private Map<Usuario, List<Item>> itemsPorDoador;
-  private Map<String, List<Item>> itemsPorDescritor;
+	private Set<String> descricoes;
+	private Map<Usuario, Map<Integer, Item>> itens;
+
+	public DoadosController() {
+		this.itens = new HashMap<>();
+		this.descricoes = new HashSet<>();
+	}
 
   public void adicionaDescritor(String descritor) {
     if (!this.itemsPorDescritor.containsKey(descritor)) {
@@ -88,17 +98,29 @@ public class DoadosController {
       this.itemsPorDoador.get(doador).remove(id);
     }
   }
+  
+	public String listaDescritorDeItensParaDoacao() {
+		return descricoes.stream().sorted()
+				.map(descricao -> itens.values().stream().flatMap(mapa -> mapa.values().stream())
+						.filter(item -> item.getDescricao().equals(descricao)).map(Item::getQuantidade).reduce(0, Integer::sum)
+						+ " - " + descricao)
+				.collect(Collectors.joining(" | "));
 
-  public String listaDescritorDeItensParaDoacao() {
-    return "";
-  }
+	}
 
-  public String listaItensParaDoacao() {
-    return "";
-  }
+	public String listaItensParaDoacao() {
+		return itens.values().stream().flatMap(mapa -> mapa.values().stream())
+				.sorted(new ItemComparatorQuantidadeDescricao())
+				.map(item -> item.toString() + ", doador: " + item.getUsuarioIdentificacao())
+				.collect(Collectors.joining(" | "));
 
-  public String pesquisaItemParaDoacaoPorDescricao(String desc) {
-    return "";
-  }
+	}
+
+	public String pesquisaItemParaDoacaoPorDescricao(String desc) {
+		return this.itens.values().stream().flatMap(mapa -> mapa.values().stream())
+				.filter(item -> item.getDescricao().toLowerCase().trim().contains(desc.toLowerCase().trim()))
+				.sorted(Comparator.comparing(Item::getDescricao)).map(item -> item.toString())
+				.collect(Collectors.joining(" | "));
+	}
 
 }
