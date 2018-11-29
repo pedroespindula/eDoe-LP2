@@ -30,12 +30,9 @@ public class DoadosController {
    * @param descritor
    */
   public void adicionaDescritor(String descritor) {
-    if (!this.descritores.contains(descritor)) {
-      this.descritores.add(descritor);
-    } else {
-      Validador valida = new Validador("Erro");
-      valida.verificaNulo(descritor, "Item ja existente");
-    }
+    Validador validador = new Validador("Erro");
+    validador.verificaStringVazia(descritor, "Entrada invalida: descricao nao pode ser vazia ou nula.");
+    validador.verificaContem(descritor, this.itens, "Descritor de Item ja existente: ");
   }
 
   /**
@@ -50,11 +47,11 @@ public class DoadosController {
    */
   @SuppressWarnings("null")
 public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
-	if (this.descritores.contains(descricao)) {
+	if (this.descricoes.contains(descricao)) {
 	  Item item = new Item(id, descricao, quantidade, tags, doador);
 	  Map<Integer, Item> items = null;
 	  items.put(id, item);
-	  this.items.put(doador, items);
+	  this.itens.put(doador, items);
 	} else {
 	  Validador valida = new Validador("Erro");
 	  valida.verificaNulo(descricao, "Descritor inexistente");
@@ -69,8 +66,8 @@ public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int 
    * @return representacao textual do item
    */
   public String exibeItem(Usuario doador, int id) {
-    if (this.items.containsKey(doador)) {
-      return this.items.get(doador).get(id).toString();
+    if (this.itens.containsKey(doador)) {
+      return this.itens.get(doador).get(id).toString();
     }
     return "Item nao encontrado.";
   }
@@ -84,10 +81,10 @@ public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int 
    * @return confirmacao ou negacao da atualizacao
    */
   public String atualizaItemParaDoacao(Usuario doador, int id, int quantidade, String tags) {
-    if (this.items.containsKey(doador)) {
-      if (this.items.get(doador).containsKey(id)) {
-    	this.items.get(doador).get(id).setQuantidade(quantidade);
-    	this.items.get(doador).get(id).setTags(tags);
+    if (this.itens.containsKey(doador)) {
+      if (this.itens.get(doador).containsKey(id)) {
+    	this.itens.get(doador).get(id).setQuantidade(quantidade);
+    	this.itens.get(doador).get(id).setTags(tags);
         return "Item atualizado.";	  
       }
     }
@@ -100,9 +97,9 @@ public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int 
    * @param id
    */
   public void removeItemParaDoacao(Usuario doador, int id) {
-    if (this.items.containsKey(doador)) {
-      if (this.items.get(doador).containsKey(id)) {
-        this.items.get(doador).remove(id);
+    if (this.itens.containsKey(doador)) {
+      if (this.itens.get(doador).containsKey(id)) {
+        this.itens.get(doador).remove(id);
       }
     }
   }
