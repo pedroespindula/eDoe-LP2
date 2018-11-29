@@ -34,7 +34,7 @@ public class Mediator {
     this.usuarioController.removeUsuario(id);
   }
 
-  public void lerReceptores(String caminho) throws FileNotFoundException {
+  public void lerReceptores(String caminho) {
     this.usuarioController.lerReceptores(caminho);
   }
 
