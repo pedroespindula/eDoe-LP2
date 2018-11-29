@@ -25,7 +25,7 @@ public class Mediator {
   }
 
   public String atualizaUsuario(String id, String nome, String email, String celular) {
-    
+    return this.usuarioController.atualizaUsuario(id, nome, email, celular);
   }
 
   public void removeUsuario(String id) {
