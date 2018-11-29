@@ -81,14 +81,12 @@ public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int 
    * @return confirmacao ou negacao da atualizacao
    */
   public String atualizaItemParaDoacao(Usuario doador, int id, int quantidade, String tags) {
-    if (this.itens.containsKey(doador)) {
-      if (this.itens.get(doador).containsKey(id)) {
-    	this.itens.get(doador).get(id).setQuantidade(quantidade);
-    	this.itens.get(doador).get(id).setTags(tags);
-        return "Item atualizado.";	  
-      }
-    }
-    return "Item nao encontrado.";
+    Validador validador = new Validador();
+    validador.verificaInteiroMaiorQueZero(id, "Entrada invalida: id do item nao pode ser negativo.");
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id + ".");
+    this.itens.get(doador).get(id).setQuantidade(quantidade);
+    this.itens.get(doador).get(id).setTags(tags);
+    return this.itens.get(doador).get(id).toString();
   }
   
   /**
