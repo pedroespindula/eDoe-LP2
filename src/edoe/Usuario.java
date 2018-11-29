@@ -17,6 +17,7 @@ public class Usuario {
     Validador validador = new Validador();
 
     validador.verificaStringNulaOuVazia(id, "Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+    validador.verificaStringNulaOuVazia(nome, "Entrada invalida: nome nao pode ser vazio ou nulo.");
     validador.verificaStringNulaOuVazia(email, "Entrada invalida: email nao pode ser vazio ou nulo.");
     validador.verificaStringNulaOuVazia(telefone, "Entrada invalida: telefone nao pode ser vazio ou nulo.");
     validador.verificaStringNulaOuVazia(classe, "Entrada invalida: classe nao pode ser vazio ou nulo.");
