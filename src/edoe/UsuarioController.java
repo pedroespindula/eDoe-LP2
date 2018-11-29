@@ -13,7 +13,7 @@ public class UsuarioController {
   private Set<String> classes;
 
   public UsuarioController() {
-    this.usuarios = new HashMap<>();
+    this.usuarios = new LinkedHashMap<>();
     this.classes = new HashSet<>();
 
     this.classes.add("PESSOA_FISICA");
