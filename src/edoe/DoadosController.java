@@ -58,7 +58,7 @@ public class DoadosController {
    * Mostra um determinado item de um doador especifico
    * @param doador
    * @param id
-   * @return
+   * @return representacao textual do item
    */
   public String exibeItem(Usuario doador, int id) {
     if (this.items.containsKey(doador)) {
@@ -66,20 +66,27 @@ public class DoadosController {
     }
     return "Item nao encontrado.";
   }
-
-  public String atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
-    if (this.itemsPorDoador.containsKey(doador)) {
-      for (int i = 0; i < this.itemsPorDoador.get(doador).size(); i++) {
-        for (int j = 0; j < this.itemsPorDescritor.get(descricao).size(); j++) {
-          if (this.itemsPorDoador.get(doador).get(i).equals(this.itemsPorDescritor.get(descricao).get(j))) {
-            this.itemsPorDoador.get(doador).get(i).setTags(tags);
-            this.itemsPorDoador.get(doador).get(i).setQuantidade(quantidade);
-          }
-        }
+  /**
+   * Atualiza quantidade de unidades de um item de um doador e altera suas tags
+   * 
+   * @param doador
+   * @param descricao
+   * @param quantidade
+   * @param tags
+   * @return confirmacao ou negacao da atualizacao
+   */
+  public String atualizaItemParaDoacao(Usuario doador, int id, int quantidade, String tags) {
+    if (this.items.containsKey(doador)) {
+      if (this.items.get(doador).containsKey(id)) {
+    	this.items.get(doador).get(id).setQuantidade(quantidade);
+    	this.items.get(doador).get(id).setTags(tags);
+        return "Item atualizado.";	  
       }
-      return "Item atualizado.";
     }
     return "Item nao encontrado.";
+  }
+  private boolean checkDescricao(Usuario doador, String descricao) {
+	  
   }
 
   public void removeItemParaDoacao(Usuario doador, int id, String descritor) {
