@@ -38,7 +38,7 @@ public class EDoeFacade {
   	this.mediator.adicionaDescritor(descricao);
   }
 
-  public String adicionaItemParaDoacao(int idDoador, String descricaoItem, int quantidade, String tags) {
+  public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
     return this.mediator.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
   }
 
