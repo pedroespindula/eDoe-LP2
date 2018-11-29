@@ -1,7 +1,5 @@
 package edoe;
 
-import java.io.FileNotFoundException;
-
 public class EDoeFacade {
 
   private Mediator mediator;
