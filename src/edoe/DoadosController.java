@@ -15,9 +15,13 @@ import util.Validador;
  */
 public class DoadosController {
 
-  private Map<String, Map<Integer, Item>> items;
+  private Map<Usuario, Map<Integer, Item>> items;
   private Set<String> descritores;
 
+  /**
+   * adiciona um descritor a colecao de descritores do sistema
+   * @param descritor
+   */
   public void adicionaDescritor(String descritor) {
     if (!this.descritores.contains(descritor)) {
       this.descritores.add(descritor);
@@ -27,32 +31,29 @@ public class DoadosController {
     }
   }
 
+  /**
+   * Cadastra um novo item para doacao, se a sua descricao ja estiver cadastrada no sistema
+   * 
+   * @param id 
+   * @param doador
+   * @param descricao
+   * @param quantidade
+   * @param tags
+   * @return id
+   */
   public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
-    Item item = new Item(id, descricao, quantidade, tags, doador);
-    adicionaItemPorDoador(id, doador, descricao, quantidade, tags, item);
-    adicionaItemPorDescritor(id, doador, descricao, quantidade, tags, item);
+	if (this.descritores.contains(descricao)) {
+	  Item item = new Item(id, descricao, quantidade, tags, doador);
+	  Map<Integer, Item> items = null;
+	  items.put(id, item);
+	  this.items.put(doador, items);
+	} else {
+	  Validador valida = new Validador("Erro");
+	  valida.verificaNulo(descricao, "Descritor inexistente");
+	} 
     return id;
   }
 
-  private void adicionaItemPorDoador(int id, Usuario doador, String descricao, int quantidade, String tags, Item item) {
-    if (this.itemsPorDoador.containsKey(doador)) {
-      this.itemsPorDoador.get(doador).add(item);
-    } else {
-      List<Item> lista = new ArrayList<Item>();
-      lista.add(item);
-      this.itemsPorDoador.put(doador, lista);
-    }
-  }
-
-  private void adicionaItemPorDescritor(int id, Usuario doador, String descricao, int quantidade, String tags, Item item) {
-    if (this.itemsPorDescritor.containsKey(descricao)) {
-      this.itemsPorDescritor.get(descricao).add(item);
-    } else {
-      List<Item> lista = new ArrayList<Item>();
-      lista.add(item);
-      this.itemsPorDescritor.put(descricao, lista);
-    }
-  }
 
   public String exibeItem(Usuario doador, int id) {
     if (this.itemsPorDoador.containsKey(doador)) {
