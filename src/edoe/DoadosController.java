@@ -3,6 +3,7 @@ package edoe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import util.Validador;
 
@@ -14,16 +15,15 @@ import util.Validador;
  */
 public class DoadosController {
 
-  private Map<Usuario, List<Item>> itemsPorDoador;
-  private Map<String, List<Item>> itemsPorDescritor;
+  private Map<String, Map<Integer, Item>> items;
+  private Set<String> descritores;
 
   public void adicionaDescritor(String descritor) {
-    if (!this.itemsPorDescritor.containsKey(descritor)) {
-      List<Item> lista = new ArrayList<Item>();
-      this.itemsPorDescritor.put(descritor, lista);
+    if (!this.descritores.contains(descritor)) {
+      this.descritores.add(descritor);
     } else {
       Validador valida = new Validador("Erro");
-      valida.verificaNulo(this.itemsPorDescritor.get(descritor), "Item inexistente");
+      valida.verificaNulo(descritor, "Item ja existente");
     }
   }
 
