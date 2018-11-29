@@ -31,8 +31,8 @@ public class DoadosController {
    */
   public void adicionaDescritor(String descritor) {
     Validador validador = new Validador();
-    validador.verificaStringVazia(descritor, "Entrada invalida: descricao nao pode ser vazia ou nula.");
-    validador.verificaContem(descritor, this.itens,  "Descritor de Item ja existente: "descritor + ".");
+    validador.verificaStringNulaOuVazia(descritor, "Entrada invalida: descricao nao pode ser vazia ou nula.");
+    validador.verificaContem(descritor, this.itens,  "Descritor de Item ja existente: " + descritor + ".");
     this.descricoes.add(descritor);
   }
 
@@ -95,11 +95,12 @@ public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int 
    * @param id
    */
   public void removeItemParaDoacao(Usuario doador, int id) {
-    if (this.itens.containsKey(doador)) {
-      if (this.itens.get(doador).containsKey(id)) {
-        this.itens.get(doador).remove(id);
-      }
-    }
+    Validador validador = new Validador();
+    validador.verificaInteiroMaiorQueZero(id, "Entrada invalida: id do item nao pode ser negativo.");
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id + ".");
+    validador.verificaContem(doador, this.itens, "O Usuario nao possui itens cadastrados.");
+
+    this.itens.get(doador).remove(id);
   }
   
 	public String listaDescritorDeItensParaDoacao() {
