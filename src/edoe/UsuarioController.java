@@ -40,7 +40,7 @@ public class UsuarioController {
     validador.verificaContem(id, this.usuarios, "Usuario ja existente: " + id + ".");
 
     Usuario usuario = new Usuario(id, nome, email, celular, classe, true);
-    this.usuarios.putIfAbsent(id, usuario);
+    this.usuarios.put(id, usuario);
     return usuario.getId();
   }
 
@@ -63,13 +63,8 @@ public class UsuarioController {
   }
 
   public String atualizaUsuario(String id, String nome, String email, String celular) {
-    Validador validador = new Validador();
 
-    validador.verificaStringNulaOuVazia(id, "Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
-
-    validador.verificaNaoContem(id, this.usuarios, "Usuario nao encontrado: " + id + ".");
-
-    Usuario usuario = this.usuarios.get(id);
+    Usuario usuario = this.getUsuario(id);
 
     if (nome != null && !nome.trim().isEmpty()) {
       usuario.setNome(nome);
