@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Item {
+  private int id;
   private String descricao;
   private int quantidade;
   private List<String> tags;
@@ -18,8 +19,8 @@ public class Item {
     this.usuario = usuario;
   }
 
-  public String getId() {
-    return String.valueOf(this.hashCode());
+  public int getId() {
+    return this.id;
   }
 
   public String getDescricao() {
@@ -64,5 +65,9 @@ public class Item {
 
   private String tagsEmString() {
     return "[" + String.join(", ", this.tags) + "]";
+  }
+  
+  public String getUsuarioIdentificacao() {
+	return this.usuario.getIdentificacao();
   }
 }
