@@ -68,10 +68,10 @@ public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int 
    * @return representacao textual do item
    */
   public String exibeItem(Usuario doador, int id) {
-    if (this.itens.containsKey(doador)) {
-      return this.itens.get(doador).get(id).toString();
-    }
-    return "Item nao encontrado.";
+    Validador validador = new Validador();
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id +  ".");
+
+    return this.itens.get(doador).get(id).toString();
   }
   /**
    * Atualiza quantidade de unidades de um item de um doador e altera suas tags
