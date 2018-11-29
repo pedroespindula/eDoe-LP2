@@ -23,7 +23,7 @@ public class Usuario {
     validador.verificaStringNulaOuVazia(classe, "Entrada invalida: classe nao pode ser vazio ou nulo.");
 
     this.id = id;
-    this.nome = nome;
+    this.nome = nome.trim();
     this.email = email;
     this.telefone = telefone;
     this.classe = classe;
