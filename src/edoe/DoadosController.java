@@ -1,11 +1,9 @@
 package edoe;
 
+import java.util.Map;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.Set;
 
@@ -27,76 +25,82 @@ public class DoadosController {
 		this.descricoes = new HashSet<>();
 	}
 
+  /**
+   * adiciona um descritor a colecao de descritores do sistema
+   * @param descritor
+   */
   public void adicionaDescritor(String descritor) {
-    if (!this.itemsPorDescritor.containsKey(descritor)) {
-      List<Item> lista = new ArrayList<Item>();
-      this.itemsPorDescritor.put(descritor, lista);
-    } else {
-      Validador valida = new Validador("Erro");
-      valida.verificaNulo(this.itemsPorDescritor.get(descritor), "Item inexistente");
-    }
+    Validador validador = new Validador();
+    validador.verificaStringNulaOuVazia(descritor, "Entrada invalida: descricao nao pode ser vazia ou nula.");
+    validador.verificaContem(descritor, this.itens,  "Descritor de Item ja existente: " + descritor + ".");
+    this.descricoes.add(descritor);
   }
 
-  public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
+  /**
+   * Cadastra um novo item para doacao, se a sua descricao ja estiver cadastrada no sistema
+   * 
+   * @param id 
+   * @param doador
+   * @param descricao
+   * @param quantidade
+   * @param tags
+   * @return id
+   */
+public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int quantidade, String tags) {
+    Validador validador = new Validador();
+    validador.verificaStringVazia(descricao, "Entrada invalida: descricao nao pode ser vazia ou nula.");
+    validador.verificaInteiroMaiorQueZero(quantidade, "Entrada invalida: quantidade deve ser maior que zero.");
+
     Item item = new Item(id, descricao, quantidade, tags, doador);
-    adicionaItemPorDoador(id, doador, descricao, quantidade, tags, item);
-    adicionaItemPorDescritor(id, doador, descricao, quantidade, tags, item);
+	  Map<Integer, Item> items = new HashMap<Integer, Item>();
+	  items.put(id, item);
+	  this.itens.put(doador, items);
+
     return id;
   }
 
-  private void adicionaItemPorDoador(int id, Usuario doador, String descricao, int quantidade, String tags, Item item) {
-    if (this.itemsPorDoador.containsKey(doador)) {
-      this.itemsPorDoador.get(doador).add(item);
-    } else {
-      List<Item> lista = new ArrayList<Item>();
-      lista.add(item);
-      this.itemsPorDoador.put(doador, lista);
-    }
-  }
-
-  private void adicionaItemPorDescritor(int id, Usuario doador, String descricao, int quantidade, String tags, Item item) {
-    if (this.itemsPorDescritor.containsKey(descricao)) {
-      this.itemsPorDescritor.get(descricao).add(item);
-    } else {
-      List<Item> lista = new ArrayList<Item>();
-      lista.add(item);
-      this.itemsPorDescritor.put(descricao, lista);
-    }
-  }
-
+  /**
+   * Mostra um determinado item de um doador especifico
+   * @param doador
+   * @param id
+   * @return representacao textual do item
+   */
   public String exibeItem(Usuario doador, int id) {
-    if (this.itemsPorDoador.containsKey(doador)) {
-      List<Item> list = this.itemsPorDoador.get(doador);
-      for (Item i : list) {
-        if (id == i.getId()) {
-          return i.toString();
-        }
-      }
-      return this.itemsPorDoador.get(doador).get(id).toString();
-    }
-    return "Item nao encontrado.";
-  }
+    Validador validador = new Validador();
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id +  ".");
 
-  public String atualizaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
-    if (this.itemsPorDoador.containsKey(doador)) {
-      for (int i = 0; i < this.itemsPorDoador.get(doador).size(); i++) {
-        for (int j = 0; j < this.itemsPorDescritor.get(descricao).size(); j++) {
-          if (this.itemsPorDoador.get(doador).get(i).equals(this.itemsPorDescritor.get(descricao).get(j))) {
-            this.itemsPorDoador.get(doador).get(i).setTags(tags);
-            this.itemsPorDoador.get(doador).get(i).setQuantidade(quantidade);
-          }
-        }
-      }
-      return "Item atualizado.";
-    }
-    return "Item nao encontrado.";
+    return this.itens.get(doador).get(id).toString();
   }
+  /**
+   * Atualiza quantidade de unidades de um item de um doador e altera suas tags
+   * 
+   * @param doador
+   * @param id
+   * @param quantidade
+   * @param tags
+   * @return confirmacao ou negacao da atualizacao
+   */
+  public String atualizaItemParaDoacao(Usuario doador, int id, int quantidade, String tags) {
+    Validador validador = new Validador();
+    validador.verificaInteiroMaiorQueZero(id, "Entrada invalida: id do item nao pode ser negativo.");
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id + ".");
+    this.itens.get(doador).get(id).setQuantidade(quantidade);
+    this.itens.get(doador).get(id).setTags(tags);
+    return this.itens.get(doador).get(id).toString();
+  }
+  
+  /**
+   * Remove um item de um doador especifico
+   * @param doador
+   * @param id
+   */
+  public void removeItemParaDoacao(Usuario doador, int id) {
+    Validador validador = new Validador();
+    validador.verificaInteiroMaiorQueZero(id, "Entrada invalida: id do item nao pode ser negativo.");
+    validador.verificaContem(doador, this.itens, "Item nao encontrado: " + id + ".");
+    validador.verificaContem(doador, this.itens, "O Usuario nao possui itens cadastrados.");
 
-  public void removeItemParaDoacao(Usuario doador, int id, String descritor) {
-    if (this.itemsPorDescritor.containsKey(descritor)) {
-      this.itemsPorDescritor.get(descritor).remove(id);
-      this.itemsPorDoador.get(doador).remove(id);
-    }
+    this.itens.get(doador).remove(id);
   }
   
 	public String listaDescritorDeItensParaDoacao() {
