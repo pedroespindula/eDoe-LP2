@@ -33,6 +33,7 @@ public class DoadosController {
     Validador validador = new Validador("Erro");
     validador.verificaStringVazia(descritor, "Entrada invalida: descricao nao pode ser vazia ou nula.");
     validador.verificaContem(descritor, this.itens, "Descritor de Item ja existente: ");
+    this.descricoes.add(descritor);
   }
 
   /**
