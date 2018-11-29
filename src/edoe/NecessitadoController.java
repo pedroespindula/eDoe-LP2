@@ -62,10 +62,10 @@ public class NecessitadoController {
     // Validacao
     var validador = new Validador();
     validador.verificaInteiroNegativo(id, "Entrada invalida: id do item nao pode ser negativo.");
-    validador.verificaContem(receptor, this.itemsPorReceptor, "O Usuario nao possui itens cadastrados.");
+    validador.verificaNaoContem(receptor, this.itemsPorReceptor, "O Usuario nao possui itens cadastrados.");
 
     var itemsUsuario = this.itemsPorReceptor.get(receptor);
-    validador.verificaContem(id, itemsUsuario, "Item nao encontrado: " + id);
+    validador.verificaNaoContem(id, itemsUsuario, "Item nao encontrado: " + id);
 
     return itemsUsuario.get(id);
   }
