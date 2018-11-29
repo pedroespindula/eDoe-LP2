@@ -113,6 +113,15 @@ public class DoadosController {
     this.itens.get(doador).remove(id);
   }
 
+  /**
+   * Lista todos os descritores cadastrados e a quantidade de itens com aquela
+   * descricao no formato "quantidade - descricao" separadas por " | " caso
+   * contenha mais de uma descricao cadastrada. Caso nao exista nenhuma descricao
+   * cadastrada, o metodo retorna uma String vazia.
+   * 
+   * @return uma String com os descritores e a quantidade de itens cadastrados de
+   *         cada.
+   */
   public String listaDescritorDeItensParaDoacao() {
     return descricoes.stream().sorted()
       .map(descricao -> itens.values().stream()
@@ -122,6 +131,14 @@ public class DoadosController {
       .collect(Collectors.joining(" | "));
   }
 
+  /**
+   * Lista todos os itens cadastrados ordenando prioritariamente pela quantidade
+   * de forma decrescente, mas caso possuam a mesma quantidade a ordenacao sera de
+   * forma crescente pela descricao.
+   * 
+   * @return uma String com todos os itens cadastrados ordenados pela quantidade e
+   *         pela descricao.
+   */
   public String listaItensParaDoacao() {
     return itens.values().stream().flatMap(mapa -> mapa.values().stream())
       .sorted(new ItemComparatorQuantidadeDescricao())
@@ -129,7 +146,17 @@ public class DoadosController {
       .collect(Collectors.joining(" | "));
 
   }
-
+  
+  /**
+   * Lista todos os itens que possuam na sua descricao a String passada por
+   * parametro. Tanto as descricoes pegas pelo item quanto a String do parametro
+   * serao comparadas ignorando os espacos laterais e o sensitive case.
+   * 
+   * 
+   * @param desc O pedaco de descricao que se quer encontrar nos itens.
+   * @return uma String com uma lista de itens cadastrados que possuam na sua
+   *         descricao a String passada por parametro.
+   */
   public String pesquisaItemParaDoacaoPorDescricao(String desc) {
     Validador validador = new Validador("Entrada invalida");
     validador.verificaStringNulaOuVazia(desc, "texto da pesquisa nao pode ser vazio ou nulo.");
