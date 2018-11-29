@@ -3,6 +3,7 @@ package edoe;
 import util.Validador;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,8 +26,20 @@ public class NecessitadoController {
 
     var items = this.itemsPorReceptor.getOrDefault(receptor, new HashMap<>());
     var itemTemp = new Item(this.contador, descritor, quantidade, tags, receptor);
-    items.putIfAbsent(itemTemp.getId(), itemTemp);
 
+    // Checa item existente para apenas alterar quantidade -> nao especificado
+    var itemExistente = items.values().stream()
+      .filter(i -> i.equals(itemTemp))
+      .findFirst()
+      .orElse(null);
+
+    if (itemExistente != null) {
+      itemExistente.setQuantidade(quantidade);
+      return String.valueOf(itemExistente.getId());
+    }
+    //
+
+    items.putIfAbsent(itemTemp.getId(), itemTemp);
     this.itemsPorReceptor.put(receptor, items);
 
     this.contador += 1;
@@ -37,7 +50,7 @@ public class NecessitadoController {
     return itemsPorReceptor.values().stream()
       .map(Map::values)
       .flatMap(Collection::stream)
-      .sorted((i1, i2) -> i2.getQuantidade() - i1.getQuantidade())
+      .sorted(Comparator.comparingInt(Item::getId))
       .map(i -> i.toString() + ", Receptor: " + i.getUsuarioIdentificacao())
       .collect(Collectors.joining(" | "));
   }
@@ -49,7 +62,7 @@ public class NecessitadoController {
     if (quantidade > 0) {
       item.setQuantidade(quantidade);
     }
-    if (!tags.isEmpty()) {
+    if (tags != null && !tags.isEmpty()) {
       item.setTags(tags);
     }
 
@@ -57,7 +70,10 @@ public class NecessitadoController {
   }
 
   public void removeItem(Usuario receptor, String idItem) {
-      this.itemsPorReceptor.get(receptor).remove(Integer.parseInt(idItem));
+    var id = Integer.parseInt(idItem);
+    getItem(receptor, id);
+
+    this.itemsPorReceptor.get(receptor).remove(id);
   }
 
   private Item getItem(Usuario receptor, int id) {
@@ -67,7 +83,7 @@ public class NecessitadoController {
     validador.verificaNaoContem(receptor, this.itemsPorReceptor, "O Usuario nao possui itens cadastrados.");
 
     var itemsUsuario = this.itemsPorReceptor.get(receptor);
-    validador.verificaNaoContem(id, itemsUsuario, "Item nao encontrado: " + id);
+    validador.verificaNaoContem(id, itemsUsuario, "Item nao encontrado: " + id + ".");
 
     return itemsUsuario.get(id);
   }
