@@ -1,6 +1,7 @@
 package util;
 
 import java.util.Map;
+import java.util.Set;
 
 public class Validador {
   private String msgGeral;
@@ -62,6 +63,12 @@ public class Validador {
 
   public void verificaInteiroMaiorQueZero(int parametro, String mensagem) {
     if (parametro <= 0) {
+      throw new IllegalArgumentException(this.msgGeral + mensagem);
+    }
+  }
+
+  public void verificaNaoContem(Object obj, Set<?> set, String mensagem) {
+    if (!set.contains(obj)) {
       throw new IllegalArgumentException(this.msgGeral + mensagem);
     }
   }

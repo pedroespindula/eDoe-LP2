@@ -66,4 +66,8 @@ public class Item {
   private String tagsEmString() {
     return "[" + String.join(", ", this.tags) + "]";
   }
+  
+  public String getUsuarioIdentificacao() {
+	return this.usuario.getIdentificacao();
+  }
 }

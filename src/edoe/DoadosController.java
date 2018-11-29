@@ -1,6 +1,10 @@
 package edoe;
 
 import java.util.Map;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.stream.Collectors;
 import java.util.Set;
 
 import util.Validador;
@@ -13,8 +17,13 @@ import util.Validador;
  */
 public class DoadosController {
 
-  private Map<Usuario, Map<Integer, Item>> items;
-  private Set<String> descritores;
+	private Set<String> descricoes;
+	private Map<Usuario, Map<Integer, Item>> itens;
+
+	public DoadosController() {
+		this.itens = new HashMap<>();
+		this.descricoes = new HashSet<>();
+	}
 
   /**
    * adiciona um descritor a colecao de descritores do sistema
@@ -97,17 +106,29 @@ public int adicionaItemParaDoacao(int id, Usuario doador, String descricao, int 
       }
     }
   }
+  
+	public String listaDescritorDeItensParaDoacao() {
+		return descricoes.stream().sorted()
+				.map(descricao -> itens.values().stream().flatMap(mapa -> mapa.values().stream())
+						.filter(item -> item.getDescricao().equals(descricao)).map(Item::getQuantidade).reduce(0, Integer::sum)
+						+ " - " + descricao)
+				.collect(Collectors.joining(" | "));
 
-  public String listaDescritorDeItensParaDoacao() {
-    return "";
-  }
+	}
 
-  public String listaItensParaDoacao() {
-    return "";
-  }
+	public String listaItensParaDoacao() {
+		return itens.values().stream().flatMap(mapa -> mapa.values().stream())
+				.sorted(new ItemComparatorQuantidadeDescricao())
+				.map(item -> item.toString() + ", doador: " + item.getUsuarioIdentificacao())
+				.collect(Collectors.joining(" | "));
 
-  public String pesquisaItemParaDoacaoPorDescricao(String desc) {
-    return "";
-  }
+	}
+
+	public String pesquisaItemParaDoacaoPorDescricao(String desc) {
+		return this.itens.values().stream().flatMap(mapa -> mapa.values().stream())
+				.filter(item -> item.getDescricao().toLowerCase().trim().contains(desc.toLowerCase().trim()))
+				.sorted(Comparator.comparing(Item::getDescricao)).map(item -> item.toString())
+				.collect(Collectors.joining(" | "));
+	}
 
 }

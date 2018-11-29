@@ -3,34 +3,34 @@ package edoe;
 public class EDoeFacade {
 
   private Mediator mediator;
-
+  
   public EDoeFacade() {
-
+    this.mediator = new Mediator();
   }
 
   // US1
   public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
-    return "";
+    return this.mediator.adicionaDoador(id, nome, email, celular, classe);
   }
 
   public String pesquisaUsuarioPorId(String id) {
-    return "";
+    return this.mediator.pesquisaUsuarioPorId(id);
   }
 
   public String pesquisaUsuarioPorNome(String nome) {
-    return "";
+    return this.mediator.pesquisaUsuarioPorNome(nome);
   }
 
   public String atualizaUsuario(String id, String nome, String email, String celular) {
-    return "";
+    return this.mediator.atualizaUsuario(id, nome, email, celular);
   }
 
   public void removeUsuario(String id) {
-
+    this.mediator.removeUsuario(id);
   }
 
   public void lerReceptores(String caminho) {
-
+    this.mediator.lerReceptores(caminho);
   }
 
   // US2
