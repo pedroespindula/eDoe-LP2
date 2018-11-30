@@ -10,10 +10,11 @@ import java.util.Set;
 import util.Validador;
 
 /**
- * controlador dos itens doados
+ * Controlador dos itens doados por usuarios doadores.
+ * Permite armazenar e manipular esses itens.
  *
- * @author vitor
- * @author anderson
+ * @author Vitor Diniz - 118110145
+ * @author Anderson Felipe - 118111107
  */
 public class DoadosController {
 
@@ -21,14 +22,18 @@ public class DoadosController {
   private Map<Usuario, Map<Integer, Item>> itens;
   private int cont;
 
+  /**
+   * cria um mapa e uma coleção para auxiliar a manipulação dos itens. Inicializa um contador que
+   * será a identificação do item
+   */
   public DoadosController() {
     this.itens = new HashMap<>();
     this.descricoes = new HashSet<>();
-    this.cont = 0;
+    this.cont = 1;
   }
 
   /**
-   * adiciona um descritor a colecao de descritores do sistema
+   * adiciona um descritor à colecao de descritores do sistema
    *
    * @param descritor
    */
@@ -46,7 +51,7 @@ public class DoadosController {
    * @param descricao
    * @param quantidade
    * @param tags
-   * @return cont
+   * @return id do item
    */
   public int adicionaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
     Validador validador = new Validador();
@@ -86,7 +91,7 @@ public class DoadosController {
    * @param id
    * @param quantidade
    * @param tags
-   * @return confirmacao ou negacao da atualizacao
+   * @return representação textual do item
    */
   public String atualizaItemParaDoacao(Usuario doador, int id, int quantidade, String tags) {
     Item item = this.getItem(doador, id);
