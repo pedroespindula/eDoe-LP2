@@ -49,7 +49,7 @@ public class Usuario {
   public void setTelefone(String telefone) {
     Validador validador = new Validador();
 
-    validador.verificaStringNulaOuVazia(nome, "Entrada invalida: telefone nao pode ser vazio ou nulo.");
+    validador.verificaStringNulaOuVazia(telefone, "Entrada invalida: telefone nao pode ser vazio ou nulo.");
 
     this.telefone = telefone;
   }
