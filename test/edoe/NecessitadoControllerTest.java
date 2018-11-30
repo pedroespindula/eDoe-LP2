@@ -24,9 +24,9 @@ class NecessitadoControllerTest {
 
   @Test
   void atualizaQuantidadeItemCriadoIgual() {
-    var id = this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
+    var id = this.controller.cadastraItemPedido(new UsuarioTeste(1), "cadeira de rodas",
       10, "grande,adulta");
-    this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
+    this.controller.cadastraItemPedido(new UsuarioTeste(1), "cadeira de rodas",
       5, "grande,adulta");
     var esperado = id + " - cadeira de rodas, tags: [grande, adulta], quantidade: 5, Receptor: Teste/12345";
 
@@ -86,11 +86,11 @@ class NecessitadoControllerTest {
 
   @Test
   void listaTodosPorOrdemId() {
-    var id1 = this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
+    var id1 = this.controller.cadastraItemPedido(new UsuarioTeste(2), "cadeira de rodas",
       11, "grande,adulta,primeira");
-    var id2 = this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
+    var id2 = this.controller.cadastraItemPedido(new UsuarioTeste(3), "cadeira de rodas",
       9, "grande,adulta,segunda");
-    var id3 = this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
+    var id3 = this.controller.cadastraItemPedido(new UsuarioTeste(4), "cadeira de rodas",
       10, "grande,adulta,ultima");
 
     var esperado = id1 + " - cadeira de rodas, tags: [grande, adulta, primeira], quantidade: 11, Receptor: Teste/12345 | " +
