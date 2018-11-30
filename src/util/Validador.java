@@ -73,6 +73,7 @@ public class Validador {
     }
 
   }
+
   public void verificaContem(Object obj, Set<?> set, String mensagem) {
     if (set.contains(obj)) {
       throw new IllegalArgumentException(this.msgGeral + mensagem);

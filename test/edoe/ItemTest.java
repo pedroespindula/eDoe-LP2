@@ -4,6 +4,7 @@ import edoe.Item;
 import edoe.testUtil.UsuarioTeste;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -14,18 +15,18 @@ public class ItemTest {
   @BeforeEach
   public void createItem() {
     this.item = new ArrayList<Item>();
-    Item item = new Item (1, "camisa", 100, "mulambenta, feia, velha", new UsuarioTeste(1));
+    Item item = new Item(1, "camisa", 100, "mulambenta, feia, velha", new UsuarioTeste(1));
     this.item.add(item);
-    item = new Item (2, "camisa", 150, "bonita, cheirosa, arrumada", new UsuarioTeste(1));
+    item = new Item(2, "camisa", 150, "bonita, cheirosa, arrumada", new UsuarioTeste(1));
     this.item.add(item);
-    item = new Item (3, "sapato", 12, "estranho, fedido, acabado", new UsuarioTeste(1));
+    item = new Item(3, "sapato", 12, "estranho, fedido, acabado", new UsuarioTeste(1));
     this.item.add(item);
-    item = new Item (4, "sapato", 150, "elegante, bonito, engraxado", new UsuarioTeste(1));
+    item = new Item(4, "sapato", 150, "elegante, bonito, engraxado", new UsuarioTeste(1));
     this.item.add(item);
   }
 
   @Test
-  public void getIdTest(){
+  public void getIdTest() {
     assertEquals(1, this.item.get(0).getId());
     assertEquals(2, this.item.get(1).getId());
     assertEquals(3, this.item.get(2).getId());
@@ -33,7 +34,7 @@ public class ItemTest {
   }
 
   @Test
-  public void getDescricaoTest(){
+  public void getDescricaoTest() {
     assertEquals("camisa", this.item.get(0).getDescricao());
     assertEquals("camisa", this.item.get(1).getDescricao());
     assertEquals("sapato", this.item.get(2).getDescricao());
@@ -41,7 +42,7 @@ public class ItemTest {
   }
 
   @Test
-  public void getQuantidadeTest(){
+  public void getQuantidadeTest() {
     assertEquals(100, this.item.get(0).getQuantidade());
     assertEquals(150, this.item.get(1).getQuantidade());
     assertEquals(12, this.item.get(2).getQuantidade());
@@ -49,7 +50,7 @@ public class ItemTest {
   }
 
   @Test
-  public void setQuantidadeTest(){
+  public void setQuantidadeTest() {
     this.item.get(0).setQuantidade(20);
     this.item.get(1).setQuantidade(40);
     this.item.get(2).setQuantidade(100);
@@ -61,7 +62,7 @@ public class ItemTest {
   }
 
   @BeforeEach
-  public void setTags(){
+  public void setTags() {
     this.item.get(0).setTags("Esquisita, Grande");
     this.item.get(1).setTags("Arrumada, Caprichada");
     this.item.get(2).setTags("42, Feio");
@@ -69,7 +70,7 @@ public class ItemTest {
   }
 
   @Test
-  public void toStringTest(){
+  public void toStringTest() {
     String esperado = "1 - camisa, tags: [Esquisita,  Grande], quantidade: 100";
     assertEquals(esperado, this.item.get(0).toString());
 

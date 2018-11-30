@@ -123,9 +123,9 @@ public class DoadosController {
    * descricao no formato "quantidade - descricao" separadas por " | " caso
    * contenha mais de uma descricao cadastrada. Caso nao exista nenhuma descricao
    * cadastrada, o metodo retorna uma String vazia.
-   * 
+   *
    * @return uma String com os descritores e a quantidade de itens cadastrados de
-   *         cada.
+   * cada.
    */
   public String listaDescritorDeItensParaDoacao() {
     return descricoes.stream().sorted()
@@ -140,9 +140,9 @@ public class DoadosController {
    * Lista todos os itens cadastrados ordenando prioritariamente pela quantidade
    * de forma decrescente, mas caso possuam a mesma quantidade a ordenacao sera de
    * forma crescente pela descricao.
-   * 
+   *
    * @return uma String com todos os itens cadastrados ordenados pela quantidade e
-   *         pela descricao.
+   * pela descricao.
    */
   public String listaItensParaDoacao() {
     return itens.values().stream().flatMap(mapa -> mapa.values().stream())
@@ -151,16 +151,15 @@ public class DoadosController {
       .collect(Collectors.joining(" | "));
 
   }
-  
+
   /**
    * Lista todos os itens que possuam na sua descricao a String passada por
    * parametro. Tanto as descricoes pegas pelo item quanto a String do parametro
    * serao comparadas ignorando os espacos laterais e o sensitive case.
-   * 
-   * 
+   *
    * @param desc O pedaco de descricao que se quer encontrar nos itens.
    * @return uma String com uma lista de itens cadastrados que possuam na sua
-   *         descricao a String passada por parametro.
+   * descricao a String passada por parametro.
    */
   public String pesquisaItemParaDoacaoPorDescricao(String desc) {
     Validador validador = new Validador("Entrada invalida");

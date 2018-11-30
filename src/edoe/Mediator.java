@@ -11,7 +11,7 @@ public class Mediator {
     this.doadosController = new DoadosController();
     this.necessitadoController = new NecessitadoController();
   }
-  
+
   public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
     return this.usuarioController.adicionaDoador(id, nome, email, celular, classe);
   }
