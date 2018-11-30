@@ -12,6 +12,12 @@ public class UsuarioController {
   private Map<String, Usuario> usuarios;
   private Set<String> classes;
 
+  /**
+   * Construtor que cria um UsuarioController com um LinkedHashMap (Visto que a ordem de insercao
+   * importa) e um HashSet (Visto que so eh necessario saber se um elemento esta contido nele ou nao).
+   * Nesse LinkedHashMap estao contidos os usuarios onde a chave eh o seu id e o valor eh o objeto
+   * usuario. No HashSet os elementos sao as classes possiveis para um usuario.
+   */
   public UsuarioController() {
     this.usuarios = new LinkedHashMap<>();
     this.classes = new HashSet<>();
@@ -27,6 +33,19 @@ public class UsuarioController {
 
   }
 
+  /**
+   * Adiciona um doador ao sistema, adicionando-o ao mapa de usuarios. Ele so eh
+   * adicionado se todos os seus parametros nao forem nulos e nem vazios, se a
+   * classe estiver dentro das classes possiveis e se nao existir um usuario com
+   * o mesmo id.
+   *
+   * @param id      O id do usuario.
+   * @param nome    O nome do usuario.
+   * @param email   O email do usuario.
+   * @param celular O celular do usuario.
+   * @param classe  A classe do usuario.
+   * @return O id do usuario.
+   */
   public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
     Validador validador = new Validador();
 
@@ -44,10 +63,24 @@ public class UsuarioController {
     return usuario.getId();
   }
 
+  /**
+   * Chama o metodo getUsuario(id) e aplica o toString() ao retorno do metodo.
+   *
+   * @param id O id do usuario.
+   * @return O toString() do usuario.
+   */
   public String pesquisaPorId(String id) {
     return this.getUsuario(id).toString();
   }
 
+  /**
+   * Pesquisa todos os usuarios que tiverem o nome igual ao que foi passado como
+   * parametro. Esse nome nao pode ser vazio e nem nulo se nao um erro eh lancado.
+   * Alem disso, se nenhum usuario for encontrado um erro tambem eh lancado.
+   *
+   * @param nome O nome do usuario.
+   * @return A representacao de todos os usuarios com aquele nome.
+   */
   public String pesquisaPorNome(String nome) {
     Validador validador = new Validador();
     validador.verificaStringNulaOuVazia(nome, "Entrada invalida: nome nao pode ser vazio ou nulo.");
@@ -62,6 +95,17 @@ public class UsuarioController {
     return result;
   }
 
+  /**
+   * Atualiza um Usuario a partir do seu Id e dos parametros a serem alterados.
+   * Se algum dos parametros a ser atualizado for nulo ou vazio, esse parametro
+   * nao eh atualizado.
+   *
+   * @param id      O id do usuario.
+   * @param nome    O novo nome.
+   * @param email   O novo email.
+   * @param celular O novo celular.
+   * @return A representacao do usuario atualizada.
+   */
   public String atualizaUsuario(String id, String nome, String email, String celular) {
 
     Usuario usuario = this.getUsuario(id);
@@ -79,6 +123,13 @@ public class UsuarioController {
     return usuario.toString();
   }
 
+  /**
+   * Remove um Usuario do sistema a partir do seu id.
+   * Se o id for vazio ou nulo um erro eh lancado.
+   * Se o usuario nao existir um erro tambem eh lancado.
+   *
+   * @param id O id do usuario.
+   */
   public void removeUsuario(String id) {
     Validador validador = new Validador();
 
@@ -88,6 +139,13 @@ public class UsuarioController {
     this.usuarios.remove(id);
   }
 
+  /**
+   * Cadastra todos os receptores do sistema a partir do caminho de um arquivo.
+   * Esse caminho ira direcionar o metodo ao arquivo e ele ira fazer a leitura
+   * dos dados do arquivo, cadastrando os usuario receptores.
+   *
+   * @param caminho O caminho para o arquivo.
+   */
   public void lerReceptores(String caminho) {
     try (Scanner scanner = new Scanner(new File(caminho))) {
       scanner.nextLine();
@@ -109,6 +167,13 @@ public class UsuarioController {
     }
   }
 
+  /**
+   * Pesquisa um usuario pelo id. Esse id nao pode ser nulo e nem vazio se nao um erro
+   * eh lancado. Alem disso, se o usuario nao for encontrado um erro tambem eh lancado.
+   *
+   * @param id O id do usuario.
+   * @return O objeto Usuario.
+   */
   public Usuario getUsuario(String id) {
 
     Validador validador = new Validador();
