@@ -5,7 +5,8 @@ import util.Validador;
 import java.util.Objects;
 
 /**
- * Classe que representa um usuario que utiliza o eDoe
+ * Classe que representa um usuario que utiliza o eDoe.
+ * @author Pedro Espindula - 118110035
  */
 public class Usuario {
 

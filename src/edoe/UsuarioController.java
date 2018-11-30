@@ -7,6 +7,10 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Classe que controla os usuarios do sistema eDoe.
+ * @author Pedro Espindula - 118110035
+ */
 public class UsuarioController {
 
   private Map<String, Usuario> usuarios;
