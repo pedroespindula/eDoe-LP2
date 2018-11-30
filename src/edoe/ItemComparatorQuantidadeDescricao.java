@@ -2,6 +2,10 @@ package edoe;
 
 import java.util.Comparator;
 
+/**
+ * Comparator que compara um item primeiro pela sua quantidade e depois pela descricao.
+ * @author Anderson Felipe - 118111107
+ */
 public class ItemComparatorQuantidadeDescricao implements Comparator<Item> {
 
   @Override
