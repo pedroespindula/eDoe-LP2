@@ -24,7 +24,7 @@ public class DoadosController {
   public DoadosController() {
     this.itens = new HashMap<>();
     this.descricoes = new HashSet<>();
-    this.cont = 0;
+    this.cont = 1;
   }
 
   /**
