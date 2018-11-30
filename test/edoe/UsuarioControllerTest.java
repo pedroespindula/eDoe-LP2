@@ -148,7 +148,7 @@ class UsuarioControllerTest {
     testAdicionaDoador();
     usuarioControllerPadrao.adicionaDoador("12312312321", nomePadrao, emailPadrao, telefonePadrao, classePadrao);
     assertEquals("Pedro Espindula/11122233344, pedro@espindula.me, 99999-8888, status: doador" + " | " +
-                          "Pedro Espindula/12312312321, pedro@espindula.me, 99999-8888, status: doador", usuarioControllerPadrao.pesquisaPorNome(nomePadrao));
+      "Pedro Espindula/12312312321, pedro@espindula.me, 99999-8888, status: doador", usuarioControllerPadrao.pesquisaPorNome(nomePadrao));
   }
 
   @Test

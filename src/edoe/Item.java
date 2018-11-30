@@ -8,7 +8,6 @@ import java.util.Objects;
  * Abstraçao de um item no sistema.
  *
  * @author Vitor Diniz - 118110145
- *
  */
 public class Item {
   private int id;
@@ -19,6 +18,7 @@ public class Item {
 
   /**
    * cria um item com seus devidos atributos
+   *
    * @param id
    * @param descricao
    * @param quantidade
@@ -35,6 +35,7 @@ public class Item {
 
   /**
    * informa o numero identificador (id) do item
+   *
    * @return id
    */
   public int getId() {
@@ -43,6 +44,7 @@ public class Item {
 
   /**
    * informa a descrição do item
+   *
    * @return descrição
    */
   public String getDescricao() {
@@ -51,6 +53,7 @@ public class Item {
 
   /**
    * informa qual usuário está relacionado ao item
+   *
    * @return usuario
    */
   public Usuario getUsuario() {
@@ -59,6 +62,7 @@ public class Item {
 
   /**
    * informa a quantidade de itens iguais a este existem
+   *
    * @return quantidade
    */
   public int getQuantidade() {
@@ -67,6 +71,7 @@ public class Item {
 
   /**
    * altera a quantidade de itens iguais a este existem
+   *
    * @param quantidade
    */
   public void setQuantidade(int quantidade) {
@@ -75,6 +80,7 @@ public class Item {
 
   /**
    * altera as tags do item
+   *
    * @param tags
    */
   public void setTags(String tags) {
@@ -107,9 +113,10 @@ public class Item {
 
   /**
    * informa a identificação do usuario ligado ao item
+   *
    * @return identificação do usuario
    */
   public String getUsuarioIdentificacao() {
-	return this.usuario.getIdentificacao();
+    return this.usuario.getIdentificacao();
   }
 }

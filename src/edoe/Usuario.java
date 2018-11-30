@@ -5,7 +5,8 @@ import util.Validador;
 import java.util.Objects;
 
 /**
- * Classe que representa um usuario que utiliza o eDoe
+ * Classe que representa um usuario que utiliza o eDoe.
+ * @author Pedro Espindula - 118110035
  */
 public class Usuario {
 
@@ -20,11 +21,12 @@ public class Usuario {
    * Construtor que cria um usuario a partir do id, do nome, do email, do telefone
    * e de uma classe. Nenhum desses atributos pode ser nulo ou vazio se nao um erro
    * eh lancado.
-   * @param id O id do usuario.
-   * @param nome O nome do usuario.
-   * @param email O email do usuario.
+   *
+   * @param id       O id do usuario.
+   * @param nome     O nome do usuario.
+   * @param email    O email do usuario.
    * @param telefone O telefone do usuario.
-   * @param classe A classe do usuario.
+   * @param classe   A classe do usuario.
    * @param ehDoador Se o usuario eh doador ou nao.
    */
   public Usuario(String id, String nome, String email, String telefone, String classe, boolean ehDoador) {
@@ -48,6 +50,7 @@ public class Usuario {
    * Altera o nome do usuario de acordo com um parametro.
    * Esse parametro nao pode ser vazio nem nulo se nao um
    * erro eh lancado.
+   *
    * @param nome O novo nome.
    */
   public void setNome(String nome) {
@@ -62,6 +65,7 @@ public class Usuario {
    * Altera o email do usuario de acordo com um parametro.
    * Esse parametro nao pode ser vazio nem nulo se nao um
    * erro eh lancado.
+   *
    * @param email O novo email.
    */
   public void setEmail(String email) {
@@ -76,6 +80,7 @@ public class Usuario {
    * Altera o telefone do usuario de acordo com um parametro.
    * Esse parametro nao pode ser vazio nem nulo se nao um
    * erro eh lancado.
+   *
    * @param telefone O novo telefone.
    */
   public void setTelefone(String telefone) {
@@ -88,6 +93,7 @@ public class Usuario {
 
   /**
    * Retorna o id do usuario.
+   *
    * @return O id do usuario.
    */
   public String getId() {
@@ -96,6 +102,7 @@ public class Usuario {
 
   /**
    * Retorna o nome do usuario.
+   *
    * @return O nome do usuario.
    */
   public String getNome() {
@@ -110,8 +117,9 @@ public class Usuario {
 
   /**
    * A partir do atributo ehDoador, retorna a string correspondente.
+   *
    * @return se ehDoador for true: "doador";
-   *         se ehDoador for false: "receptor";
+   * se ehDoador for false: "receptor";
    */
   private String getStringStatus() {
     return ehDoador ? "doador" : "receptor";
@@ -133,6 +141,7 @@ public class Usuario {
   /**
    * Retorna a identificacao completa do usuario,
    * Ou seja, seu nome e o id.
+   *
    * @return A identificacao do usuario.
    */
   public String getIdentificacao() {

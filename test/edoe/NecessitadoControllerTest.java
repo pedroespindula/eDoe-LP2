@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NecessitadoControllerTest {
   private NecessitadoController controller;
+
   @BeforeEach
   void criarController() {
     this.controller = new NecessitadoController();
@@ -94,8 +95,8 @@ class NecessitadoControllerTest {
       10, "grande,adulta,ultima");
 
     var esperado = id1 + " - cadeira de rodas, tags: [grande, adulta, primeira], quantidade: 11, Receptor: Teste/12345 | " +
-                id2 + " - cadeira de rodas, tags: [grande, adulta, segunda], quantidade: 9, Receptor: Teste/12345 | " +
-                id3 + " - cadeira de rodas, tags: [grande, adulta, ultima], quantidade: 10, Receptor: Teste/12345";
+      id2 + " - cadeira de rodas, tags: [grande, adulta, segunda], quantidade: 9, Receptor: Teste/12345 | " +
+      id3 + " - cadeira de rodas, tags: [grande, adulta, ultima], quantidade: 10, Receptor: Teste/12345";
 
     assertEquals(esperado, this.controller.listaTodos());
   }
