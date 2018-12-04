@@ -131,6 +131,4 @@ public class NecessitadoController {
 
     return itemsUsuario.get(id);
   }
-
-
 }

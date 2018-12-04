@@ -124,10 +124,6 @@ public class Item {
       ", quantidade: " + this.quantidade;
   }
 
-  private String tagsEmString() {
-    return "[" + String.join(", ", this.tags) + "]";
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -140,6 +136,10 @@ public class Item {
   @Override
   public int hashCode() {
     return Objects.hash(descricao, tags);
+  }
+
+  private String tagsEmString() {
+    return "[" + String.join(", ", this.tags) + "]";
   }
 
   /**
