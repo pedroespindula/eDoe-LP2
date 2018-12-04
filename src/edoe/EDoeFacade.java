@@ -89,6 +89,11 @@ public class EDoeFacade {
     return this.mediator.match(idReceptor, idItemNecessario);
   }
 
+  // US6
+  public String realizaDoacao (int idItemNec, int idItemDoado, String data) {
+    return this.mediator.realizaDoacao(idItemNec, idItemNec, data);
+  }
+
 
 
 }
