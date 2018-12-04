@@ -16,7 +16,7 @@ class NecessitadoControllerTest {
 
   @Test
   void criaItemNecessitado() {
-    var id = this.controller.cadastraItemPedido(new UsuarioTeste(1), "cadeira de rodas",
+    var id = this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
       10, "grande,adulta");
     var esperado = id + " - cadeira de rodas, tags: [grande, adulta], quantidade: 10, Receptor: Teste/12345";
 
@@ -25,9 +25,9 @@ class NecessitadoControllerTest {
 
   @Test
   void atualizaQuantidadeItemCriadoIgual() {
-    var id = this.controller.cadastraItemPedido(new UsuarioTeste(1), "cadeira de rodas",
+    var id = this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
       10, "grande,adulta");
-    this.controller.cadastraItemPedido(new UsuarioTeste(1), "cadeira de rodas",
+    this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
       5, "grande,adulta");
     var esperado = id + " - cadeira de rodas, tags: [grande, adulta], quantidade: 5, Receptor: Teste/12345";
 
@@ -37,29 +37,29 @@ class NecessitadoControllerTest {
   @Test
   void falhaCriarComDescInvalida() {
     assertThrows(NullPointerException.class,
-      () -> this.controller.cadastraItemPedido(new UsuarioTeste(1), null,
+      () -> this.controller.cadastraItemPedido(new UsuarioTeste(), null,
         10, "grande,adulta"));
     assertThrows(IllegalArgumentException.class,
-      () -> this.controller.cadastraItemPedido(new UsuarioTeste(1), "",
+      () -> this.controller.cadastraItemPedido(new UsuarioTeste(), "",
         10, "grande,adulta"));
   }
 
   @Test
   void falhaCriarQtdMenorZero() {
-    this.controller.cadastraItemPedido(new UsuarioTeste(1), "cadeira de rodas",
+    this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
       1, "grande,adulta");
 
     assertThrows(IllegalArgumentException.class,
-      () -> this.controller.cadastraItemPedido(new UsuarioTeste(1), "cadeira de rodas",
+      () -> this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
         0, "grande,adulta"));
     assertThrows(IllegalArgumentException.class,
-      () -> this.controller.cadastraItemPedido(new UsuarioTeste(1), "cadeira de rodas",
+      () -> this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
         -1, "grande,adulta"));
   }
 
   @Test
   void atualizaItem() {
-    var usuarioTeste = new UsuarioTeste(1);
+    var usuarioTeste = new UsuarioTeste();
     var id = this.controller.cadastraItemPedido(usuarioTeste, "cadeira de rodas",
       1, "grande,adulta");
 
@@ -75,7 +75,7 @@ class NecessitadoControllerTest {
 
   @Test
   void falhaAtualizacaoInvalida() {
-    var usuarioTeste = new UsuarioTeste(1);
+    var usuarioTeste = new UsuarioTeste();
     var id = this.controller.cadastraItemPedido(usuarioTeste, "cadeira de rodas",
       1, "grande,adulta");
 
@@ -87,11 +87,11 @@ class NecessitadoControllerTest {
 
   @Test
   void listaTodosPorOrdemId() {
-    var id1 = this.controller.cadastraItemPedido(new UsuarioTeste(2), "cadeira de rodas",
+    var id1 = this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
       11, "grande,adulta,primeira");
-    var id2 = this.controller.cadastraItemPedido(new UsuarioTeste(3), "cadeira de rodas",
+    var id2 = this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
       9, "grande,adulta,segunda");
-    var id3 = this.controller.cadastraItemPedido(new UsuarioTeste(4), "cadeira de rodas",
+    var id3 = this.controller.cadastraItemPedido(new UsuarioTeste(), "cadeira de rodas",
       10, "grande,adulta,ultima");
 
     var esperado = id1 + " - cadeira de rodas, tags: [grande, adulta, primeira], quantidade: 11, Receptor: Teste/12345 | " +
@@ -103,7 +103,7 @@ class NecessitadoControllerTest {
 
   @Test
   void removeItem() {
-    var usuarioTeste = new UsuarioTeste(1);
+    var usuarioTeste = new UsuarioTeste();
     var id = this.controller.cadastraItemPedido(usuarioTeste, "cadeira de rodas",
       1, "grande,adulta");
 
@@ -115,7 +115,7 @@ class NecessitadoControllerTest {
 
   @Test
   void falhaRemoverItem() {
-    var usuarioTeste = new UsuarioTeste(1);
+    var usuarioTeste = new UsuarioTeste();
     var id = this.controller.cadastraItemPedido(usuarioTeste, "cadeira de rodas",
       1, "grande,adulta");
 
