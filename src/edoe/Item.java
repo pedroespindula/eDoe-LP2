@@ -151,7 +151,4 @@ public class Item {
     return this.usuario.getIdentificacao();
   }
 
-  public int match(Item outro) {
-    return 0;
-  }
 }
