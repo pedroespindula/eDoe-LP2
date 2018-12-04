@@ -84,4 +84,11 @@ public class EDoeFacade {
     this.mediator.removeItemNecessario(idReceptor, idItem);
   }
 
+  // US5
+  public String match (String idReceptor, int idItemNecessario) {
+    return this.mediator.match(idReceptor, idItemNecessario);
+  }
+
+
+
 }
