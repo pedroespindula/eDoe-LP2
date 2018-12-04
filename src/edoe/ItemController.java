@@ -2,10 +2,7 @@ package edoe;
 
 import util.Validador;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -128,5 +125,16 @@ public abstract class ItemController {
     validador.verificaNaoContem(id, itemsUsuario, "Item nao encontrado: " + id + ".");
 
     return itemsUsuario.get(id);
+  }
+
+  public List<Item> getItensUsuario(Usuario usuario) {
+    return new ArrayList<>(this.usuarioItensMap.get(usuario).values());
+  }
+
+  public List<Item> getTodosItens() {
+    return this.usuarioItensMap.values().stream()
+      .map(Map::values)
+      .flatMap(Collection::stream)
+      .collect(Collectors.toList());
   }
 }
