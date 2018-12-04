@@ -90,7 +90,11 @@ public class DoadosController extends ItemController {
    * pela descricao.
    */
   public String listaItensParaDoacao() {
-    return this.listaTodos("doador", new ItemComparatorQuantidadeDescricao());
+    return this.listaTodos("doador",
+      Comparator
+        .comparingInt(Item::getQuantidade)
+        .reversed()
+        .thenComparing(Item::getDescricao));
   }
 
   /**
