@@ -84,4 +84,29 @@ public class ItemTest {
     assertEquals(esperado, this.item.get(3).toString());
 
   }
+
+  @Test
+  public void matchTest() {
+    int MATCH = 20;
+    int MATCH_POS_IGUAL = 10;
+    int MATCH_POS_DIF = 5;
+
+    Item item1 = new Item(0, "sapato", 5, "infantil,colorido", new UsuarioTeste());
+
+    Item item2 = new Item(1, "sapato", 5, "infantil", new UsuarioTeste("54321"));
+    Item item3 = new Item(2, "sapato", 5, "colorido", new UsuarioTeste("54321"));
+    Item item4 = new Item(3, "sapato", 5, "colorido,infantil", new UsuarioTeste("54321"));
+    Item item5 = new Item(4, "sapato", 5, "infantil,colorido", new UsuarioTeste("54321"));
+    Item item6 = new Item(5, "sapato", 5, "tag1,tag2,tag3,colorido", new UsuarioTeste("54321"));
+    Item item7 = new Item(6, "sapato", 5, "couro,adulto", new UsuarioTeste("54321"));
+    Item item8 = new Item(7, "bolsa", 5, "infantil,colorido", new UsuarioTeste("54321"));
+
+    assertEquals(MATCH + MATCH_POS_IGUAL, item1.match(item2));
+    assertEquals(MATCH + MATCH_POS_DIF, item1.match(item3));
+    assertEquals(MATCH + (MATCH_POS_DIF * 2), item1.match(item4));
+    assertEquals(MATCH + (MATCH_POS_IGUAL * 2), item1.match(item5));
+    assertEquals(MATCH + (MATCH_POS_DIF), item1.match(item6));
+    assertEquals(MATCH, item1.match(item7));
+    assertEquals(0, item1.match(item8));
+  }
 }
