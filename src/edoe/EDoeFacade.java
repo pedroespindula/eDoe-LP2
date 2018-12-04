@@ -94,6 +94,13 @@ public class EDoeFacade {
     return this.mediator.realizaDoacao(idItemNec, idItemNec, data);
   }
 
+  // US7
+  public void finalizaSistema() {
+    this.mediator.finalizaSistema();
+  }
 
+  public void iniciaSistema() {
+    this.mediator.iniciaSistema();
+  }
 
 }

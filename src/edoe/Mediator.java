@@ -101,4 +101,11 @@ public class Mediator {
   public String realizaDoacao(int idItemNec, int idItemNec1, String data) {
     return "";
   }
+
+  public void finalizaSistema() {
+  }
+
+  public void iniciaSistema() {
+    
+  }
 }
