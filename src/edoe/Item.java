@@ -1,10 +1,9 @@
 package edoe;
 
-import util.Validador;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 /**
  * Abstraçao de um item no sistema.
@@ -71,10 +70,6 @@ public class Item {
     return this.quantidade;
   }
 
-  public List<String> getTags() {
-    return this.tags;
-  }
-
   /**
    * altera a quantidade de itens iguais a este existem
    *
@@ -94,44 +89,33 @@ public class Item {
   }
 
   /**
-   * informa a identificação do usuario ligado ao item
-   *
-   * @return identificação do usuario
+   * Calcula a pontuacao de match entre este item e outro.
+   * A pontuacao e calculada da seguinte maneira:
+   *  Descricao igual: + 20 pontos
+   *    Para cada tag:
+   *      Tag igual na mesma posicao: + 10 pontos
+   *      Tag igual em posicao diferente: 5 pontos
+   *  Descricao diferente: 0 pontos (sem calculo quanto as tags).
+   * @param outro o item a ser comparado para match
+   * @return a pontuacao de match entre os dois items
    */
-  public String getUsuarioIdentificacao() {
-    return this.usuario.getIdentificacao();
-  }
-  
-  public int match(Item i) {
-    if (!i.getDescricao().equals(this.descricao)) {
+  public int match(Item outro) {
+    if (!outro.getDescricao().equals(this.descricao)) {
       return 0;
     }
-    return this.matchTags(i);
-
+    return 20 + this.matchTags(outro);
   }
 
-  private int matchTags(Item i) {
-    int soma = 0;
-    String tag = "";
-    for (int c = 0; c < i.getTags().size(); c++){
-      tag = this.getTags().get(c);
-      soma += this.matchTag(c, tag, i);
-    }
-
-    return soma;
-
-  }
-
-  private int matchTag(int c, String tag, Item i) {
-    for (int j = 0; j < i.getTags().size(); j++) {
-      if (tag.equals(i.getTags().get(j))) {
-        if (c == j) {
-          return 10;
-        }
-        return 5;
-      }
-    }
-    return 0;
+  private int matchTags(Item outro) {
+    return IntStream.range(0, outro.tags.size())
+      .filter(i -> this.tags.contains(outro.tags.get(i))) // Para cada tag, filtra apenas as existentes no this.tags
+      .map(i -> {
+        // Se a index da tag for maior que o tamanho da this.tags, entao impossivel estar na mesma posicao: 5 pontos
+        if (i >= this.tags.size()) return 5;
+        // Compara se a tag esta na mesma posicao, se sim: 10 pontos, se nao: 5 pontos;
+        return this.tags.get(i).equals(outro.tags.get(i)) ? 10 : 5;
+      })
+      .reduce(0, Integer::sum);
   }
 
   @Override
@@ -158,5 +142,12 @@ public class Item {
     return Objects.hash(descricao, tags);
   }
 
-
+  /**
+   * informa a identificação do usuario ligado ao item
+   *
+   * @return identificação do usuario
+   */
+  public String getUsuarioIdentificacao() {
+    return this.usuario.getIdentificacao();
+  }
 }
