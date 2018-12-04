@@ -93,4 +93,8 @@ public class Mediator {
 
     this.necessitadoController.removeItem(usuario, idItem);
   }
+
+  public String match(String idReceptor, int idItemNecessario) {
+    return "";
+  }
 }
