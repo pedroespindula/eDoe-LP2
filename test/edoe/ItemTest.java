@@ -15,13 +15,13 @@ public class ItemTest {
   @BeforeEach
   public void createItem() {
     this.item = new ArrayList<Item>();
-    Item item = new Item(1, "camisa", 100, "mulambenta, feia, velha", new UsuarioTeste(1));
+    Item item = new Item(1, "camisa", 100, "mulambenta, feia, velha", new UsuarioTeste());
     this.item.add(item);
-    item = new Item(2, "camisa", 150, "bonita, cheirosa, arrumada", new UsuarioTeste(1));
+    item = new Item(2, "camisa", 150, "bonita, cheirosa, arrumada", new UsuarioTeste());
     this.item.add(item);
-    item = new Item(3, "sapato", 12, "estranho, fedido, acabado", new UsuarioTeste(1));
+    item = new Item(3, "sapato", 12, "estranho, fedido, acabado", new UsuarioTeste());
     this.item.add(item);
-    item = new Item(4, "sapato", 150, "elegante, bonito, engraxado", new UsuarioTeste(1));
+    item = new Item(4, "sapato", 150, "elegante, bonito, engraxado", new UsuarioTeste());
     this.item.add(item);
   }
 
