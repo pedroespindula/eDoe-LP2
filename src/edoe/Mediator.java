@@ -97,4 +97,8 @@ public class Mediator {
   public String match(String idReceptor, int idItemNecessario) {
     return "";
   }
+
+  public String realizaDoacao(int idItemNec, int idItemNec1, String data) {
+    return "";
+  }
 }
