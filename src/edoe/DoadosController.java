@@ -41,6 +41,15 @@ public class DoadosController extends ItemController {
     this.descricoes.add(descritor.toLowerCase());
   }
 
+  /**
+   * Cadastra um item no sistema,
+   * adicionando sua descricao a colecao de descritores caso nao esteja ja presente.
+   * @param usuario   usuario associado ao item a ser cadastrado
+   * @param descricao descricao do item
+   * @param quantidade quantidade do item
+   * @param tags       tags do item
+   * @return o id do item cadastrado
+   */
   @Override
   public String cadastraItem(Usuario usuario, String descricao, int quantidade, String tags) {
     if (!this.descricoes.contains(descricao)) {
@@ -53,8 +62,8 @@ public class DoadosController extends ItemController {
   /**
    * Mostra um determinado item de um doador especifico
    *
-   * @param doador
-   * @param idItem
+   * @param doador o usuario associado ao item
+   * @param idItem id do item a ser exibido
    * @return representacao textual do item
    */
   public String exibeItem(Usuario doador, String idItem) {
@@ -93,7 +102,7 @@ public class DoadosController extends ItemController {
     return this.listaTodos("doador",
       Comparator
         .comparingInt(Item::getQuantidade)
-        .reversed()
+        .reversed() // Do maior para o menor
         .thenComparing(Item::getDescricao));
   }
 

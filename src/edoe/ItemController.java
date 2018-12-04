@@ -8,10 +8,21 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Controlador de itens abstratos,
+ * onde se armazena um mapa de Usuarios para outro mapa,
+ * que por sua vez mapeia de Integer (id do item) para um item.
+ *
+ * Armazena esses itens e permite sua manipulacao (CRUD).
+ */
 public abstract class ItemController {
   protected Map<Usuario, Map<Integer, Item>> usuarioItensMap;
   protected int contador;
 
+  /**
+   * Cria um novo controlador de Itens,
+   * iniciando seu contador (de onde surgirao os id dos itens) em 1.
+   */
   public ItemController() {
     this.usuarioItensMap = new HashMap<>();
     this.contador = 1;
@@ -24,11 +35,11 @@ public abstract class ItemController {
    * entao somente a sua quantidade e alterada.
    * (Um item e identico a outro quando suas descricoes e tags sao iguais).
    *
-   * @param usuario   usuario que necessita do item a ser cadastrado
+   * @param usuario   usuario associado ao item a ser cadastrado
    * @param descritor  descricao do item a ser cadastrado
    * @param quantidade quantidade do item
    * @param tags       tags do item
-   * @return em string o id do item cadastrado (numero inteiro >= 0)
+   * @return em string o id do item cadastrado (numero inteiro > 0)
    */
   public String cadastraItem(Usuario usuario, String descritor, int quantidade, String tags) {
     // Validacao
@@ -54,16 +65,14 @@ public abstract class ItemController {
   }
 
   /**
-   * Representa todos os itens (atraves de seus toString) atualmente necessitados por todos os receptores.
-   * Os items sao ordenados de acordo com seus IDs (independente do receptor).
+   * Representa todos os itens (atraves de seus toString) com a adicao de informacao quanto ao usuario.
+   * Os items sao ordenados de acordo com o segundo parametro passado (Um Comparator).
    *
+   * @param tipoUsuario a String do tipo de usuario a ser concatenado na exibicao (doador ou Receptor)
+   * @param comparador um Comparator que ordenara a lista de exibicao
    * @return uma string contendo todos os items separados por " | ".
-   * ex.: id1 - descrição, tags: [tag1, tag2, ...], quantidade: n, Receptor: Fulano | id2... | id3...
+   * ex.: id1 - descrição, tags: [tag1, tag2, ...], quantidade: n, <doador/Receptor>: Fulano | id2... | id3...
    */
-  protected String listaTodos(String tipoUsuario) {
-    return this.listaTodos(tipoUsuario, Comparator.comparingInt(Item::getId));
-  }
-
   protected String listaTodos(String tipoUsuario, Comparator<Item> comparador) {
     return usuarioItensMap.values().stream()
       .map(Map::values)
