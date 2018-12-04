@@ -1,5 +1,8 @@
 package edoe;
 
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
 public class Mediator {
 
   private UsuarioController usuarioController;
@@ -95,7 +98,12 @@ public class Mediator {
   }
 
   public String match(String idReceptor, int idItemNecessario) {
-    return "";
+    var user = this.usuarioController.getUsuario(idReceptor);
+    var item = this.necessitadoController.getItem(user, idItemNecessario);
+    var todosItems = this.doadosController.getTodosItens();
+    var matcher = new ItemMatcher(item);
+
+    return matcher.match(todosItems);
   }
 
   public String realizaDoacao(int idItemNec, int idItemNec1, String data) {

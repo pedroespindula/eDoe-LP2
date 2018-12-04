@@ -32,4 +32,12 @@ public class NecessitadoController extends ItemController {
   public String listaTodos() {
     return this.listaTodos(Comparator.comparingInt(Item::getId));
   }
+
+  @Override
+  public Item getItem(Usuario receptor, int id) {
+    if (receptor.getEhDoador()) {
+      throw new IllegalArgumentException("O Usuario deve ser um receptor: " + receptor.getId() + ".");
+    }
+    return super.getItem(receptor, id);
+  }
 }
