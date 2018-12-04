@@ -1,5 +1,7 @@
 package edoe;
 
+import util.Validador;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -69,6 +71,10 @@ public class Item {
     return this.quantidade;
   }
 
+  public List<String> getTags() {
+    return this.tags;
+  }
+
   /**
    * altera a quantidade de itens iguais a este existem
    *
@@ -87,10 +93,55 @@ public class Item {
     this.tags = Arrays.asList(tags.split(","));
   }
 
+  /**
+   * informa a identificação do usuario ligado ao item
+   *
+   * @return identificação do usuario
+   */
+  public String getUsuarioIdentificacao() {
+    return this.usuario.getIdentificacao();
+  }
+  
+  public int match(Item i) {
+    if (!i.getDescricao().equals(this.descricao)) {
+      return 0;
+    }
+    return this.matchTags(i);
+
+  }
+
+  private int matchTags(Item i) {
+    int soma = 0;
+    String tag = "";
+    for (int c = 0; c < i.getTags().size(); c++){
+      tag = this.getTags().get(c);
+      soma += this.matchTag(c, tag, i);
+    }
+
+    return soma;
+
+  }
+
+  private int matchTag(int c, String tag, Item i) {
+    for (int j = 0; j < i.getTags().size(); j++) {
+      if (tag.equals(i.getTags().get(j))) {
+        if (c == j) {
+          return 10;
+        }
+        return 5;
+      }
+    }
+    return 0;
+  }
+
   @Override
   public String toString() {
     return this.getId() + " - " + this.descricao + ", tags: " + this.tagsEmString() +
       ", quantidade: " + this.quantidade;
+  }
+
+  private String tagsEmString() {
+    return "[" + String.join(", ", this.tags) + "]";
   }
 
   @Override
@@ -107,16 +158,5 @@ public class Item {
     return Objects.hash(descricao, tags);
   }
 
-  private String tagsEmString() {
-    return "[" + String.join(", ", this.tags) + "]";
-  }
 
-  /**
-   * informa a identificação do usuario ligado ao item
-   *
-   * @return identificação do usuario
-   */
-  public String getUsuarioIdentificacao() {
-    return this.usuario.getIdentificacao();
-  }
 }
