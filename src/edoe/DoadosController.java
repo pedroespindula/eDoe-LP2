@@ -99,8 +99,7 @@ public class DoadosController extends ItemController {
    * pela descricao.
    */
   public String listaItensParaDoacao() {
-    return this.listaTodos("doador",
-      Comparator
+    return this.listaTodos(Comparator
         .comparingInt(Item::getQuantidade)
         .reversed() // Do maior para o menor
         .thenComparing(Item::getDescricao));

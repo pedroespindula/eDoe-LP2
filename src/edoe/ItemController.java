@@ -65,17 +65,16 @@ public abstract class ItemController {
    * Representa todos os itens (atraves de seus toString) com a adicao de informacao quanto ao usuario.
    * Os items sao ordenados de acordo com o segundo parametro passado (Um Comparator).
    *
-   * @param tipoUsuario a String do tipo de usuario a ser concatenado na exibicao (doador ou Receptor)
    * @param comparador um Comparator que ordenara a lista de exibicao
    * @return uma string contendo todos os items separados por " | ".
    * ex.: id1 - descrição, tags: [tag1, tag2, ...], quantidade: n, <doador/Receptor>: Fulano | id2... | id3...
    */
-  protected String listaTodos(String tipoUsuario, Comparator<Item> comparador) {
+  protected String listaTodos(Comparator<Item> comparador) {
     return usuarioItensMap.values().stream()
       .map(Map::values)
       .flatMap(Collection::stream)
       .sorted(comparador)
-      .map(i -> i.toString() + ", " + tipoUsuario + ": " + i.getUsuarioIdentificacao())
+      .map(Item::toStringComUsuario)
       .collect(Collectors.joining(" | "));
   }
 

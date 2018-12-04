@@ -125,6 +125,10 @@ public class Usuario {
     return ehDoador ? "doador" : "receptor";
   }
 
+  public boolean getEhDoador() {
+    return ehDoador;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

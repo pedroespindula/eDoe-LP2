@@ -30,7 +30,6 @@ public class NecessitadoController extends ItemController {
    * ex.: id1 - descrição, tags: [tag1, tag2, ...], quantidade: n, Receptor: Fulano | id2... | id3...
    */
   public String listaTodos() {
-    return this.listaTodos("Receptor",
-      Comparator.comparingInt(Item::getId));
+    return this.listaTodos(Comparator.comparingInt(Item::getId));
   }
 }
