@@ -181,15 +181,32 @@ public class DoadosController {
     return itensUsuario.get(id);
   }
 
-  public boolean verificaId (int id){
+  public Item getItem (int id){
     Validador validador = new Validador();
     validador.verificaInteiroNegativo(id, "Entrada invalida: id do item nao pode ser negativo.");
+    validador.verificaNaoContemMapaDeMapa(id, this.itens, "Item nao encontrado: " + id + ".");
 
     for(Usuario user: this.itens.keySet()){
       if (this.itens.get(user).containsKey(id)){
-        return true;
+        return this.itens.get(user).get(id);
       }
     }
-    return false;
+    return null;
   }
+
+  public String realizaDoacao(int idItemDoado, Item itemNecessitado, String data) {
+    Validador validador = new Validador();
+    validador.verificaStringNulaOuVazia(data, "Entrada invalida: data nao pode ser vazia ou nula.");
+
+    Item itemDoado = this.getItem(idItemDoado);
+    validador.verificaStringsIguais(itemDoado.getDescricao(), itemNecessitado.getDescricao(), "Os itens nao tem descricoes iguais.");
+
+    String doacao = data + " - doador: " + itemDoado.getUsuario().getNome() + "/" + itemDoado.getUsuario().getId() + ", " +
+                    "item: " + itemDoado.getDescricao() + ", quantidade: " + itemDoado.getQuantidade() +  ", " +
+                    "receptor: " + itemNecessitado.getUsuario().getNome() + "/" + itemNecessitado.getId();
+    this.doacoes.add(doacao);
+    Collections.sort(this.doacoes);
+    return doacao;
+  }
+
 }
