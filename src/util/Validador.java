@@ -1,5 +1,6 @@
 package util;
 
+import edoe.Item;
 import edoe.Usuario;
 
 import java.util.Map;
@@ -119,6 +120,22 @@ public class Validador {
     }
   }
 
+  /**
+   * Verifica se nao contem a chave em um mapa de mapa.
+   * Se nao tiver, lanca um erro com a mensagem passada.
+   * @param chave
+   * @param mapa
+   * @param mensagem
+   */
+  public void verificaNaoContemMapaDeMapa(Object chave, Map<Usuario, Map<Integer, Item>> mapa, String mensagem){
+    for (Map<?,?> o: mapa.values()){
+      if (o.containsKey(chave)){
+        return;
+      }
+    }
+    throw new IllegalArgumentException(this.msgGeral + mensagem);
+
+  }
   /**
    * Verifica se um objeto nao existe num Set.
    * Se nao existir, lanca um erro com a mensagem passada.
