@@ -136,4 +136,21 @@ public abstract class ItemController {
       .flatMap(Collection::stream)
       .collect(Collectors.toList());
   }
+
+  public Item getItemPorId(int id) {
+    // Validacao
+    var validador = new Validador();
+    validador.verificaInteiroNegativo(id, "Entrada invalida: id do item nao pode ser negativo.");
+
+    var item = this.usuarioItensMap.values().stream()
+      .map(Map::values)
+      .flatMap(Collection::stream)
+      .filter(i -> i.getId() == id)
+      .findFirst()
+      .orElse(null);
+
+    validador.verificaNulo(item, "Item nao encontrado: " + id + ".");
+
+    return item;
+  }
 }
