@@ -164,6 +164,18 @@ public class Validador {
     }
   }
 
-
+  /**
+   * Veifica se duas strings sao iguais.
+   * Se nao forem, lanca um erro com a mensagem passada
+   *
+   * @param str1
+   * @param str2
+   * @param mensagem
+   */
+  public void verificaStringsIguais(String str1, String str2, String mensagem){
+    if (!str1.equals(str2)){
+      throw new IllegalArgumentException(this.msgGeral + mensagem);
+    }
+  }
 
 }
