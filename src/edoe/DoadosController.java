@@ -1,11 +1,7 @@
 package edoe;
 
-import java.util.Map;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.Set;
 
 import util.Validador;
 
@@ -20,6 +16,7 @@ public class DoadosController {
 
   private Set<String> descricoes;
   private Map<Usuario, Map<Integer, Item>> itens;
+  private List<String> doacoes;
   private int cont;
 
   /**
@@ -30,6 +27,7 @@ public class DoadosController {
     this.itens = new HashMap<>();
     this.descricoes = new HashSet<>();
     this.cont = 1;
+    this.doacoes = new ArrayList<String>();
   }
 
   /**
@@ -181,5 +179,17 @@ public class DoadosController {
     validador.verificaNaoContem(id, itensUsuario, "Item nao encontrado: " + id + ".");
 
     return itensUsuario.get(id);
+  }
+
+  public boolean verificaId (int id){
+    Validador validador = new Validador();
+    validador.verificaInteiroNegativo(id, "Entrada invalida: id do item nao pode ser negativo.");
+
+    for(Usuario user: this.itens.keySet()){
+      if (this.itens.get(user).containsKey(id)){
+        return true;
+      }
+    }
+    return false;
   }
 }
