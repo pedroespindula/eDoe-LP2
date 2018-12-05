@@ -115,7 +115,7 @@ public class Item {
         // Compara se a tag esta na mesma posicao, se sim: 10 pontos, se nao: 5 pontos;
         return this.tags.get(i).equals(outro.tags.get(i)) ? 10 : 5;
       })
-      .reduce(0, Integer::sum);
+      .sum();
   }
 
   @Override
@@ -151,4 +151,8 @@ public class Item {
     return this.usuario.getIdentificacao();
   }
 
+  public String toStringComUsuario() {
+    var tipoUsuario = this.usuario.getEhDoador() ? "doador" : "Receptor";
+    return this.toString() + ", " + tipoUsuario + ": " + this.getUsuarioIdentificacao();
+  }
 }

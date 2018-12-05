@@ -40,24 +40,24 @@ public class Mediator {
     this.doadosController.adicionaDescritor(descricao);
   }
 
-  public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
+  public String adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
     Usuario user = this.usuarioController.getUsuario(idDoador);
-    return this.doadosController.adicionaItemParaDoacao(user, descricaoItem, quantidade, tags);
+    return this.doadosController.cadastraItem(user, descricaoItem, quantidade, tags);
   }
 
-  public String exibeItem(int id, String idDoador) {
+  public String exibeItem(String id, String idDoador) {
     Usuario user = this.usuarioController.getUsuario(idDoador);
     return this.doadosController.exibeItem(user, id);
   }
 
-  public String atualizaItemParaDoacao(int id, String idDoador, int quantidade, String tags) {
+  public String atualizaItemParaDoacao(String id, String idDoador, int quantidade, String tags) {
     Usuario user = this.usuarioController.getUsuario(idDoador);
-    return this.doadosController.atualizaItemParaDoacao(user, id, quantidade, tags);
+    return this.doadosController.atualizaItem(user, id, quantidade, tags);
   }
 
-  public void removeItemParaDoacao(int id, String idDoador) {
+  public void removeItemParaDoacao(String id, String idDoador) {
     Usuario user = this.usuarioController.getUsuario(idDoador);
-    this.doadosController.removeItemParaDoacao(user, id);
+    this.doadosController.removeItem(user, id);
   }
 
   public String listaDescritorDeItensParaDoacao() {
@@ -75,7 +75,7 @@ public class Mediator {
   public String adicionaItemNecessario(String idReceptor, String descricao, int quantidade, String tags) {
     var usuario = this.usuarioController.getUsuario(idReceptor);
 
-    return this.necessitadoController.cadastraItemPedido(usuario, descricao, quantidade, tags);
+    return this.necessitadoController.cadastraItem(usuario, descricao, quantidade, tags);
   }
 
   public String listaItensNecessarios() {

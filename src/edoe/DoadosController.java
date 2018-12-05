@@ -16,20 +16,17 @@ import util.Validador;
  * @author Vitor Diniz - 118110145
  * @author Anderson Felipe - 118111107
  */
-public class DoadosController {
+public class DoadosController extends ItemController {
 
   private Set<String> descricoes;
-  private Map<Usuario, Map<Integer, Item>> itens;
-  private int cont;
 
   /**
    * cria um mapa e uma coleção para auxiliar a manipulação dos itens. Inicializa um contador que
    * será a identificação do item
    */
   public DoadosController() {
-    this.itens = new HashMap<>();
+    super();
     this.descricoes = new HashSet<>();
-    this.cont = 1;
   }
 
   /**
@@ -45,77 +42,34 @@ public class DoadosController {
   }
 
   /**
-   * Cadastra um novo item para doacao, se a sua descricao ja estiver cadastrada no sistema
-   *
-   * @param doador
-   * @param descricao
-   * @param quantidade
-   * @param tags
-   * @return id do item
+   * Cadastra um item no sistema,
+   * adicionando sua descricao a colecao de descritores caso nao esteja ja presente.
+   * @param usuario   usuario associado ao item a ser cadastrado
+   * @param descricao descricao do item
+   * @param quantidade quantidade do item
+   * @param tags       tags do item
+   * @return o id do item cadastrado
    */
-  public int adicionaItemParaDoacao(Usuario doador, String descricao, int quantidade, String tags) {
-    Validador validador = new Validador();
+  @Override
+  public String cadastraItem(Usuario usuario, String descricao, int quantidade, String tags) {
+    if (!this.descricoes.contains(descricao)) {
+      this.adicionaDescritor(descricao);
+    }
 
-    validador.verificaStringNulaOuVazia(descricao, "Entrada invalida: descricao nao pode ser vazia ou nula.");
-    validador.verificaInteiroMaiorQueZero(quantidade, "Entrada invalida: quantidade deve ser maior que zero.");
-    //validador.verificaNaoContem(descricao, descricoes, "Entrada invalida: descricao nao cadastrado.");
-    this.descricoes.add(descricao);
-
-    Map<Integer, Item> itensUsuario = this.itens.getOrDefault(doador, new HashMap<>());
-    Item item = new Item(this.cont, descricao, quantidade, tags, doador);
-    Item itemReal = itensUsuario.values().stream().filter(i -> i.equals(item)).findFirst().orElse(item);
-    itemReal.setQuantidade(quantidade);
-
-    itensUsuario.put(itemReal.getId(), itemReal);
-    this.itens.put(doador, itensUsuario);
-    this.cont += 1;
-    return itemReal.getId();
+    return super.cadastraItem(usuario, descricao, quantidade, tags);
   }
 
   /**
    * Mostra um determinado item de um doador especifico
    *
-   * @param doador
-   * @param id
+   * @param doador o usuario associado ao item
+   * @param idItem id do item a ser exibido
    * @return representacao textual do item
    */
-  public String exibeItem(Usuario doador, int id) {
+  public String exibeItem(Usuario doador, String idItem) {
+    var id = Integer.parseInt(idItem);
     Item item = this.getItem(doador, id);
     return item.toString();
-  }
-
-  /**
-   * Atualiza quantidade de unidades de um item de um doador e altera suas tags
-   *
-   * @param doador
-   * @param id
-   * @param quantidade
-   * @param tags
-   * @return representação textual do item
-   */
-  public String atualizaItemParaDoacao(Usuario doador, int id, int quantidade, String tags) {
-    Item item = this.getItem(doador, id);
-
-    if (quantidade > 0) {
-      item.setQuantidade(quantidade);
-    }
-    if (tags != null && !tags.isEmpty()) {
-      item.setTags(tags);
-    }
-
-    return item.toString();
-  }
-
-  /**
-   * Remove um item de um doador especifico
-   *
-   * @param doador
-   * @param id
-   */
-  public void removeItemParaDoacao(Usuario doador, int id) {
-    this.getItem(doador, id);
-
-    this.itens.get(doador).remove(id);
   }
 
   /**
@@ -129,7 +83,7 @@ public class DoadosController {
    */
   public String listaDescritorDeItensParaDoacao() {
     return descricoes.stream().sorted()
-      .map(descricao -> itens.values().stream()
+      .map(descricao -> usuarioItensMap.values().stream()
         .flatMap(mapa -> mapa.values().stream())
         .filter(item -> item.getDescricao().equals(descricao)).map(Item::getQuantidade).reduce(0, Integer::sum)
         + " - " + descricao)
@@ -145,11 +99,10 @@ public class DoadosController {
    * pela descricao.
    */
   public String listaItensParaDoacao() {
-    return itens.values().stream().flatMap(mapa -> mapa.values().stream())
-      .sorted(new ItemComparatorQuantidadeDescricao())
-      .map(item -> item.toString() + ", doador: " + item.getUsuarioIdentificacao())
-      .collect(Collectors.joining(" | "));
-
+    return this.listaTodos(Comparator
+        .comparingInt(Item::getQuantidade)
+        .reversed() // Do maior para o menor
+        .thenComparing(Item::getDescricao));
   }
 
   /**
@@ -165,21 +118,10 @@ public class DoadosController {
     Validador validador = new Validador("Entrada invalida");
     validador.verificaStringNulaOuVazia(desc, "texto da pesquisa nao pode ser vazio ou nulo.");
 
-    return this.itens.values().stream().flatMap(mapa -> mapa.values().stream())
+    return this.usuarioItensMap.values().stream().flatMap(mapa -> mapa.values().stream())
       .filter(item -> item.getDescricao().toLowerCase().trim().contains(desc.toLowerCase().trim()))
-      .sorted(Comparator.comparing(Item::getDescricao)).map(item -> item.toString())
+      .sorted(Comparator.comparing(Item::getDescricao))
+      .map(Item::toString)
       .collect(Collectors.joining(" | "));
-  }
-
-  private Item getItem(Usuario doador, int id) {
-    Validador validador = new Validador();
-    validador.verificaInteiroNegativo(id, "Entrada invalida: id do item nao pode ser negativo.");
-    validador.verificaNaoContem(doador, this.itens, "O Usuario nao possui itens cadastrados.");
-
-    Map<Integer, Item> itensUsuario = this.itens.get(doador);
-
-    validador.verificaNaoContem(id, itensUsuario, "Item nao encontrado: " + id + ".");
-
-    return itensUsuario.get(id);
   }
 }

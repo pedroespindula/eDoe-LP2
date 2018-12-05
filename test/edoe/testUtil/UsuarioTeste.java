@@ -10,4 +10,8 @@ public class UsuarioTeste extends Usuario {
   public UsuarioTeste(String id) {
     super(id, "Teste", "teste@teste.com", "999", "PESSOA", false);
   }
+
+  public UsuarioTeste(boolean ehDoador) {
+    super("12345", "Teste", "teste@teste.com", "999", "PESSOA", ehDoador);
+  }
 }
