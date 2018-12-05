@@ -131,4 +131,18 @@ public class NecessitadoController {
 
     return itemsUsuario.get(id);
   }
+
+  public Item getItem(int id) {
+    Validador validador = new Validador();
+    validador.verificaInteiroNegativo(id, "Entrada invalida: id do item nao pode ser negativo.");
+    validador.verificaNaoContemMapaDeMapa(id, this.itemsPorReceptor, "Item nao encontrado: " + id + ".");
+
+    for (Map<Integer, Item> m: this.itemsPorReceptor.values()){
+      if (m.containsKey(id)){
+        return m.get(id);
+      }
+    }
+    return null;
+
+  }
 }

@@ -1,5 +1,7 @@
 package util;
 
+import edoe.Usuario;
+
 import java.util.Map;
 import java.util.Set;
 
@@ -144,4 +146,5 @@ public class Validador {
       throw new IllegalArgumentException(this.msgGeral + mensagem);
     }
   }
+
 }

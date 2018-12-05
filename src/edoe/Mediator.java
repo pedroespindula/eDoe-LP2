@@ -99,7 +99,7 @@ public class Mediator {
   }
 
   public String realizaDoacao(int idItemNecessitado, int idItemDoado, String data) {
-    return this.doadosController.realizaDoacao(idItemDoado, idItemNecessitado, this.necessitadoController.getItens(), data);
+    return this.doadosController.realizaDoacao(idItemDoado, this.necessitadoController.getItem(idItemNecessitado), data);
   }
 
   public void finalizaSistema() {
