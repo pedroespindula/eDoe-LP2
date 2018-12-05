@@ -142,9 +142,7 @@ public abstract class ItemController {
     var validador = new Validador();
     validador.verificaInteiroNegativo(id, "Entrada invalida: id do item nao pode ser negativo.");
 
-    var item = this.usuarioItensMap.values().stream()
-      .map(Map::values)
-      .flatMap(Collection::stream)
+    var item = this.getTodosItens().stream()
       .filter(i -> i.getId() == id)
       .findFirst()
       .orElse(null);
