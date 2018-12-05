@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import edoe.testUtil.UsuarioTeste;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import edoe.Item;
+import edoe.Usuario;
 import edoe.DoadosController;
+
 
 class DoadosControllerTest {
 
@@ -158,6 +160,20 @@ class DoadosControllerTest {
     this.doados.adicionaItemParaDoacao(new UsuarioTeste(), "camisola", 1, "M,BL");
     this.doados.adicionaItemParaDoacao(new UsuarioTeste(), "camisa", 3, "M,BL");
     assertEquals(doados.pesquisaItemParaDoacaoPorDescricao("      CaM      "), "2 - camisa, tags: [M, BL], quantidade: 3 | 1 - camisola, tags: [M, BL], quantidade: 1");
+  }
+
+
+  @Test
+  void realizaDoacaoTest() {
+    Usuario user1 = new Usuario(2000, "zefa", "zefa@email.com", "9899", "c", false);
+    Item necessitado = new Item(1, "botas", 6, "limpas, bonitas", user1);
+    Usuario user2 = new Usuario(1000, "ze", "ze@email.com", "9898", "c", false);
+    this.doados.adicionaDescritor("botas");
+    this.doados.adicionaItemParaDoacao(user2, "botas", 70, "feias, sujas");
+
+    assertEquals(this.doados.realizaDoacao(1, necessitado, "05/12/2018"), "05/12/2018 - doador: ze/1000, item: botas, quantidade: 70, receptor: zefa/2000");
+    assertThrows(IllegalArgumentException.class, () -> this.doados.realizaDoacao(6, necessitado, "05/12/2018");
+    assertThrows(IllegalArgumentException.class, () -> this.doados.realizaDoacao(1, necessitado, "");
   }
 
 }

@@ -194,6 +194,14 @@ public class DoadosController {
     return null;
   }
 
+  /**
+   * realiza efetivamente uma doacao
+   * 
+   * @param idItemDoado
+   * @param itemNecessitado
+   * @param data
+   * @return
+   */
   public String realizaDoacao(int idItemDoado, Item itemNecessitado, String data) {
     Validador validador = new Validador();
     validador.verificaStringNulaOuVazia(data, "Entrada invalida: data nao pode ser vazia ou nula.");
