@@ -138,8 +138,8 @@ class DoadosControllerTest {
     this.doados.adicionaDescritor("camisa");
     this.doados.adicionaDescritor("bola de tenis");
 
-    this.doados.cadastraItem(new UsuarioTeste(), "camisa", 3, "M,BL");
-    this.doados.cadastraItem(new UsuarioTeste(), "bola de tenis", 5, "M,BL");
+    this.doados.cadastraItem(new UsuarioTeste(true), "camisa", 3, "M,BL");
+    this.doados.cadastraItem(new UsuarioTeste(true), "bola de tenis", 5, "M,BL");
 
     assertEquals(doados.listaItensParaDoacao(), "2 - bola de tenis, tags: [M, BL], quantidade: 5, doador: Teste/12345 | 1 - camisa, tags: [M, BL], quantidade: 3, doador: Teste/12345");
   }

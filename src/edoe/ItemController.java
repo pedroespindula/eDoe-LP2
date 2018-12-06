@@ -81,15 +81,15 @@ public abstract class ItemController {
   /**
    * Atualiza a quantidade e/ou tags de um item previamente cadastrado.
    *
-   * @param receptor   receptor que necessita do item
+   * @param usuario    usuario associado ao item
    * @param idItem     o id do item a ser atualizado
    * @param quantidade a nova quantidade do item (parametro ignorado se menor que 0)
    * @param tags       as novas tags do item (parametro ignorado se null ou vazio)
    * @return a representacao em String do item agora atualizado.
    */
-  public String atualizaItem(Usuario receptor, String idItem, int quantidade, String tags) {
+  public String atualizaItem(Usuario usuario, String idItem, int quantidade, String tags) {
     var id = Integer.parseInt(idItem);
-    var item = this.getItem(receptor, id);
+    var item = this.getItem(usuario, id);
 
     if (quantidade > 0) {
       item.setQuantidade(quantidade);
@@ -102,25 +102,25 @@ public abstract class ItemController {
   }
 
   /**
-   * Remove um item necessitado que pertence a um receptor.
+   * Remove um item que esta associado a um usuario.
    *
-   * @param receptor o receptor do item a ser removido
-   * @param idItem   id do item a ser removido
+   * @param usuario o usuario associado ao item a ser removido.
+   * @param idItem   id do item a ser removido.
    */
-  public void removeItem(Usuario receptor, String idItem) {
+  public void removeItem(Usuario usuario, String idItem) {
     var id = Integer.parseInt(idItem);
-    getItem(receptor, id);
+    getItem(usuario, id);
 
-    this.usuarioItensMap.get(receptor).remove(id);
+    this.usuarioItensMap.get(usuario).remove(id);
   }
 
-  public Item getItem(Usuario receptor, int id) {
+  public Item getItem(Usuario usuario, int id) {
     // Validacao
     var validador = new Validador();
     validador.verificaInteiroNegativo(id, "Entrada invalida: id do item nao pode ser negativo.");
-    validador.verificaNaoContem(receptor, this.usuarioItensMap, "O Usuario nao possui itens cadastrados.");
+    validador.verificaNaoContem(usuario, this.usuarioItensMap, "O Usuario nao possui itens cadastrados.");
 
-    var itemsUsuario = this.usuarioItensMap.get(receptor);
+    var itemsUsuario = this.usuarioItensMap.get(usuario);
     validador.verificaNaoContem(id, itemsUsuario, "Item nao encontrado: " + id + ".");
 
     return itemsUsuario.get(id);
@@ -135,5 +135,20 @@ public abstract class ItemController {
       .map(Map::values)
       .flatMap(Collection::stream)
       .collect(Collectors.toList());
+  }
+
+  public Item getItemPorId(int id) {
+    // Validacao
+    var validador = new Validador();
+    validador.verificaInteiroNegativo(id, "Entrada invalida: id do item nao pode ser negativo.");
+
+    var item = this.getTodosItens().stream()
+      .filter(i -> i.getId() == id)
+      .findFirst()
+      .orElse(null);
+
+    validador.verificaNulo(item, "Item nao encontrado: " + id + ".");
+
+    return item;
   }
 }
