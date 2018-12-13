@@ -50,7 +50,7 @@
 	No caso 4, os usuários do sistema que são receptores devem poder indicar os itens que estão precisando receber (itens necessários). Para gerenciar esses itens, a equipe criou uma segunda classe filha de ItemController, chamada NecessitadosController, cuja função é gerenciar itens necessitados por usuarios receptores. Nessa classe, foi implementado o método \textit{listaTodos()}, que tem como função listar todos os itens necessários cadastrados no sistema.
 	
 	\section{Caso de Uso 5}
-	
+	O caso 5 traz a funcionalidade mais importante deste sistema: encontrar \textit{matches} entre itens a serem doados e itens necessários. Para isso, foi criada uma nova classe: a ItemMatcher, a qual cria um item base -- que será a base de comparação -- e possui o método match que realiza a comparação entre todos os itens e retorna uma \textit{string} com a pontuação dos matches. Tal pontuação é calculada nos métodos \textit{match} e \textit{matchTags} implementados na classe Item.
 	
 	\section{Caso de Uso 6}
 
