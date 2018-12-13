@@ -1,0 +1,40 @@
+\documentclass[journal,12pt,onecolumn,draftclsnofoot,]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{indentfirst}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage[dvips]{graphicx}
+\usepackage{subfigure}
+
+\begin{document}
+	
+	\title{Relatório do Projeto eDOE \\ Laboratório de Programação 2}
+	\author{Anderson Filipe Clemente Silva \\
+			Bruno Roberto Silva de Siqueira \\
+			João Pedro Santino Espíndula \\
+			Vítor Braga Diniz}
+	
+	\maketitle
+	\newpage
+	
+	
+	\section{Design Geral}
+	
+	\section{Caso de Uso 1}
+	
+	
+	No primeiro caso, deve ser criado um CRUD (Create/criação, read/pesquisa/leitura, update/atualização e delete/remoção) de usuários, os quais podem ser doadores ou receptores de itens. Para isso, a equipe de desenvolvimento implementou duas classes: “UsuarioConroller” -- que tem como funções principais criar e administrar conjuntos de usuários -- e “Usuario” -- que é a abstração de um doador ou receptor no sistema.
+	
+	Em “UsuarioController”,  foi criado um mapa (LinkedHashMap, uma vez que a ordem de cadastro importa) de usuários, cujo identificador único é o CPF ou CNPJ e, também, um set de classes, tal que as classes são a categoria a qual um usuário pode pertencer, como igreja, ONG, sociedade, pessoa física. Além disso, foram implementados os métodos adicionaDoador() para cadastrar usuário doador, atualizaUsuario() e removeUsuario() para atualizar os atributos de um usuário qualquer e remover um usuário, respectivamente, além dos métodos de pesquisa para encontrar um usuário a partir de um parâmetro e lerReceptores() para cadastrar os receptores.
+	
+	Já “Usuario”, que é uma abstração das entidades doadoras e receptoras, possui id, nome, e-mail, telefone, categoria e uma variável indicadora se o usuário é doador ou receptor. Há, também, um conjunto de métodos get -- para informar às classes externas os valores dos atributos -- e set -- para alterar os atributos.
+			
+	\section{Caso de Uso 2}
+	O caso 2 pede para que os doadores possam inserir os itens a serem doados no sistema. Dessa forma, foram criadas a classe Item (que é a abstração de um item no sistema) e a ItemController, a qual tem como objetivo gerenciar todos os itens do sistema.
+	
+	
+	
+
+\end{document}
+
