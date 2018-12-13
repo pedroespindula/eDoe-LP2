@@ -11,7 +11,9 @@ import java.util.Objects;
  */
 public class Usuario implements Serializable{
 
-  private String id;
+
+	private static final long serialVersionUID = 1L;
+	private String id;
   private String nome;
   private String email;
   private String telefone;
@@ -152,4 +154,16 @@ public class Usuario implements Serializable{
   public String getIdentificacao() {
     return this.nome + "/" + this.id;
   }
+
+	public String getTelefone() {
+		return this.telefone;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+	
+	public String getClasse() {
+		return this.classe;
+	}
 }

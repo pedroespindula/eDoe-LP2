@@ -1,10 +1,6 @@
 package edoe;
 
-import java.util.Map;
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 import java.util.Set;
@@ -127,8 +123,10 @@ public class DoadosController extends ItemController {
       .collect(Collectors.joining(" | "));
   }
 
-	public void salvar() throws IOException {
+  @Override
+	public void salvar(){
 		Persistencia persistencia = new Persistencia();
 		persistencia.salvar(super.usuarioItensMap, "GuardaDados/ItensDoados.txt");
+		persistencia.salvar(descricoes, "GuardaDados/DescricoesDoados.txt");
 	}
 }

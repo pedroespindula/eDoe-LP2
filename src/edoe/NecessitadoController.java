@@ -1,12 +1,6 @@
 package edoe;
 
-import util.Validador;
-
-import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Controlador de itens necessitados por usuarios receptores.
@@ -40,4 +34,10 @@ public class NecessitadoController extends ItemController {
     }
     return super.getItem(receptor, id);
   }
+
+	@Override
+	public void salvar() {
+		Persistencia persistencia = new Persistencia();
+		persistencia.salvar(this.usuarioItensMap, "GuardaDados/ItensNecessitados.txt");
+	}
 }

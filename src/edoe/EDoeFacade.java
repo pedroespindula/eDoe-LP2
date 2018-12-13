@@ -3,9 +3,11 @@ package edoe;
 public class EDoeFacade {
 
   private Mediator mediator;
-
+  private Persistencia persistencia;
+  
   public EDoeFacade() {
     this.mediator = new Mediator();
+    this.persistencia = new Persistencia();
   }
 
   // US1
@@ -100,7 +102,8 @@ public class EDoeFacade {
   }
 
   public void iniciaSistema() {
-    this.mediator.iniciaSistema();
+  	this.mediator = new Mediator();
+  	this.persistencia.iniciarSistema(this.mediator);
   }
 
 }
