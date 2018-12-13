@@ -2,13 +2,14 @@ package edoe;
 
 import util.Validador;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Classe que representa um usuario que utiliza o eDoe.
  * @author Pedro Espindula - 118110035
  */
-public class Usuario {
+public class Usuario implements Serializable{
 
   private String id;
   private String nome;

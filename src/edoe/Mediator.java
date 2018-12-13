@@ -1,7 +1,6 @@
 package edoe;
 
-import java.util.Comparator;
-import java.util.stream.Collectors;
+import java.io.IOException;
 
 public class Mediator {
 
@@ -111,6 +110,10 @@ public class Mediator {
   }
 
   public void finalizaSistema() {
+  	try {
+  		this.doadosController.salvar();			
+  	} catch (IOException e) {
+		}
   }
 
   public void iniciaSistema() {

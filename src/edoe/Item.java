@@ -1,5 +1,6 @@
 package edoe;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +11,7 @@ import java.util.stream.IntStream;
  *
  * @author Vitor Diniz - 118110145
  */
-public class Item {
+public class Item implements Serializable{
   private int id;
   private String descricao;
   private int quantidade;
