@@ -3,42 +3,43 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="1224.0" y="702.0">edoe.Item</node>
+    <node x="1224.0" y="750.0">edoe.Item</node>
     <node x="0.0" y="0.0">edoe.Mediator</node>
-    <node x="0.0" y="1320.0">util.Validador</node>
-    <node x="181.5" y="702.0">edoe.ItemController</node>
-    <node x="743.0" y="702.0">edoe.Usuario</node>
+    <node x="517.0" y="1416.0">edoe.Doacao</node>
+    <node x="0.0" y="1734.0">edoe.Persistencia</node>
+    <node x="181.5" y="750.0">edoe.ItemController</node>
+    <node x="743.0" y="750.0">edoe.Usuario</node>
     <node x="517.0" y="0.0">edoe.EDoeFacade</node>
-    <node x="452.0" y="1110.5">edoe.NecessitadoController</node>
-    <node x="0.0" y="1050.0">edoe.DoadosController</node>
-    <node x="974.0" y="1320.0">edoe.ItemMatcher</node>
-    <node x="457.0" y="1320.0">edoe.UsuarioController</node>
-    <node x="1258.0" y="1320.0">Main</node>
+    <node x="452.0" y="1194.5">edoe.NecessitadoController</node>
+    <node x="0.0" y="1122.0">edoe.DoadosController</node>
+    <node x="933.0" y="1416.0">edoe.DoacaoController</node>
+    <node x="1317.0" y="1416.0">edoe.ItemMatcher</node>
+    <node x="0.0" y="1416.0">edoe.UsuarioController</node>
   </nodes>
   <notes />
   <edges>
     <edge source="edoe.DoadosController" target="edoe.ItemController">
-      <point x="0.0" y="-112.5" />
-      <point x="216.0" y="1025.0" />
-      <point x="288.5" y="1025.0" />
-      <point x="-107.0" y="149.0" />
+      <point x="0.0" y="-124.5" />
+      <point x="216.0" y="1097.0" />
+      <point x="288.5" y="1097.0" />
+      <point x="-107.0" y="161.0" />
     </edge>
     <edge source="edoe.NecessitadoController" target="edoe.ItemController">
       <point x="0.0" y="-52.0" />
-      <point x="575.0" y="1025.0" />
-      <point x="502.5" y="1025.0" />
-      <point x="107.0" y="149.0" />
+      <point x="575.0" y="1097.0" />
+      <point x="502.5" y="1097.0" />
+      <point x="107.0" y="161.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.20000000000000015" x="3744.9999999999945" y="3019.999999999996" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="702.0" y="417.5" />
   <SelectedNodes>
-    <node>Main</node>
+    <node>edoe.UsuarioController</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
-    <Category>Properties</Category>
     <Category>Methods</Category>
+    <Category>Properties</Category>
     <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
