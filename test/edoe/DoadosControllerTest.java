@@ -131,7 +131,8 @@ class DoadosControllerTest {
     this.doados.cadastraItem(new UsuarioTeste(), "camisa", 10, "M,BL");
     this.doados.cadastraItem(new UsuarioTeste(), "bola de tenis", 5, "M,BL");
 
-    assertEquals(doados.listaDescritorDeItensParaDoacao(), "5 - bola de tenis | 10 - camisa"); }
+    assertEquals(doados.listaDescritorDeItensParaDoacao(), "5 - bola de tenis | 10 - camisa");
+  }
 
   @Test
   void testaItensParaDoacaoAlguns() {

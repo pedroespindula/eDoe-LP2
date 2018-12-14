@@ -123,14 +123,14 @@ public class Mediator {
   }
 
   public void finalizaSistema() {
-  	try {
-  		this.doadosController.salvar();			
-  	} catch (IOException e) {
-		}
+    try {
+      this.doadosController.salvar();
+    } catch (IOException e) {
+    }
   }
 
   public void iniciaSistema() {
-    
+
   }
 
 }

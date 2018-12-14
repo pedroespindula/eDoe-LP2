@@ -85,12 +85,12 @@ public class EDoeFacade {
   }
 
   // US5
-  public String match (String idReceptor, int idItemNecessario) {
+  public String match(String idReceptor, int idItemNecessario) {
     return this.mediator.match(idReceptor, idItemNecessario);
   }
 
   // US6
-  public String realizaDoacao (int idItemNec, int idItemDoado, String data) {
+  public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
     return this.mediator.realizaDoacao(idItemNec, idItemDoado, data);
   }
 

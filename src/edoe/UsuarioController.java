@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 /**
  * Classe que controla os usuarios do sistema eDoe.
+ *
  * @author Pedro Espindula - 118110035
  */
 public class UsuarioController {
