@@ -1,6 +1,8 @@
 package edoe;
 
 import java.util.Map;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -124,4 +126,9 @@ public class DoadosController extends ItemController {
       .map(Item::toString)
       .collect(Collectors.joining(" | "));
   }
+
+	public void salvar() throws IOException {
+		Persistencia persistencia = new Persistencia();
+		persistencia.salvar(super.usuarioItensMap, "GuardaDados/ItensDoados.txt");
+	}
 }
