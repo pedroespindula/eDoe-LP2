@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  * Controlador de itens abstratos,
  * onde se armazena um mapa de Usuarios para outro mapa,
  * que por sua vez mapeia de Integer (id do item) para um item.
- *
+ * <p>
  * Armazena esses itens e permite sua manipulacao (CRUD).
  */
 public abstract class ItemController {
@@ -32,7 +32,7 @@ public abstract class ItemController {
    * entao somente a sua quantidade e alterada.
    * (Um item e identico a outro quando suas descricoes e tags sao iguais).
    *
-   * @param usuario   usuario associado ao item a ser cadastrado
+   * @param usuario    usuario associado ao item a ser cadastrado
    * @param descritor  descricao do item a ser cadastrado
    * @param quantidade quantidade do item
    * @param tags       tags do item
@@ -105,7 +105,7 @@ public abstract class ItemController {
    * Remove um item que esta associado a um usuario.
    *
    * @param usuario o usuario associado ao item a ser removido.
-   * @param idItem   id do item a ser removido.
+   * @param idItem  id do item a ser removido.
    */
   public void removeItem(Usuario usuario, String idItem) {
     var id = Integer.parseInt(idItem);

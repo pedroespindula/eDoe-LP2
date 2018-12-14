@@ -46,8 +46,9 @@ public class DoadosController extends ItemController {
   /**
    * Cadastra um item no sistema,
    * adicionando sua descricao a colecao de descritores caso nao esteja ja presente.
-   * @param usuario   usuario associado ao item a ser cadastrado
-   * @param descricao descricao do item
+   *
+   * @param usuario    usuario associado ao item a ser cadastrado
+   * @param descricao  descricao do item
    * @param quantidade quantidade do item
    * @param tags       tags do item
    * @return o id do item cadastrado
@@ -102,9 +103,9 @@ public class DoadosController extends ItemController {
    */
   public String listaItensParaDoacao() {
     return this.listaTodos(Comparator
-        .comparingInt(Item::getQuantidade)
-        .reversed() // Do maior para o menor
-        .thenComparing(Item::getDescricao));
+      .comparingInt(Item::getQuantidade)
+      .reversed() // Do maior para o menor
+      .thenComparing(Item::getDescricao));
   }
 
   /**
@@ -127,8 +128,8 @@ public class DoadosController extends ItemController {
       .collect(Collectors.joining(" | "));
   }
 
-	public void salvar() throws IOException {
-		Persistencia persistencia = new Persistencia();
-		persistencia.salvar(super.usuarioItensMap, "GuardaDados/ItensDoados.txt");
-	}
+  public void salvar() throws IOException {
+    Persistencia persistencia = new Persistencia();
+    persistencia.salvar(super.usuarioItensMap, "GuardaDados/ItensDoados.txt");
+  }
 }

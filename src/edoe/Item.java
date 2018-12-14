@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
  *
  * @author Vitor Diniz - 118110145
  */
-public class Item implements Serializable{
+public class Item implements Serializable {
   private int id;
   private String descricao;
   private int quantidade;
@@ -92,11 +92,12 @@ public class Item implements Serializable{
   /**
    * Calcula a pontuacao de match entre este item e outro.
    * A pontuacao e calculada da seguinte maneira:
-   *  Descricao igual: + 20 pontos
-   *    Para cada tag:
-   *      Tag igual na mesma posicao: + 10 pontos
-   *      Tag igual em posicao diferente: 5 pontos
-   *  Descricao diferente: 0 pontos (sem calculo quanto as tags).
+   * Descricao igual: + 20 pontos
+   * Para cada tag:
+   * Tag igual na mesma posicao: + 10 pontos
+   * Tag igual em posicao diferente: 5 pontos
+   * Descricao diferente: 0 pontos (sem calculo quanto as tags).
+   *
    * @param outro o item a ser comparado para match
    * @return a pontuacao de match entre os dois items
    */

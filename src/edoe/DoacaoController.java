@@ -22,9 +22,10 @@ public class DoacaoController {
    * Metodo utilizado para criar e armazenar uma doação no sitema. Ele criara essa doacao a partir de
    * dois itens (Um doado e um necessitado) e uma data. Ao ocorrer a doacao ha a alteracao da quantidade
    * do item. O metodo lancara excessoes se os objetos recebidos por ele forem vazios ou nulos.
-   * @param itemNec O item necessitado.
+   *
+   * @param itemNec   O item necessitado.
    * @param itemDoado O item doado.
-   * @param data A data que foi realizada a doacao.
+   * @param data      A data que foi realizada a doacao.
    * @return A representacao da doacao.
    */
   public String realizaDoacao(Item itemNec, Item itemDoado, String data) {
@@ -53,6 +54,7 @@ public class DoacaoController {
   /**
    * Lista todas as doacoes realizadas no sistema ordenadas por datas em ordem decrescente. Se as datas forem iguais
    * a comparacao é feita pelo descritor por ordem alfabetica.
+   *
    * @return A representacao de todas as doacoes realizadas no sistema separadas por ' | '.
    */
   public String listaDoacoes() {

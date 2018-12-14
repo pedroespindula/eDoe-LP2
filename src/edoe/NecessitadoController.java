@@ -26,6 +26,7 @@ public class NecessitadoController extends ItemController {
   /**
    * Lista todos os itens cadastrados neste sistema,
    * ordenados pelo id de cada item.
+   *
    * @return uma String contendo todos os itens no seguinte formato:
    * ex.: id1 - descrição, tags: [tag1, tag2, ...], quantidade: n, Receptor: Fulano | id2... | id3...
    */

@@ -14,11 +14,12 @@ public class Doacao {
    * Construtor que cria uma doacao a partir de uma data, um usuario doador, uma descricao
    * uma quantidade e um usuario receptor. Ele lancará erros se for criado com parametros nulos
    * ou Strings vazias. Além disso, ele verifica tambem se a quantidade é positiva.
-   * @param data A data da doacao.
-   * @param doador O doador que doou o item.
-   * @param descricao A descricao do item doado.
+   *
+   * @param data       A data da doacao.
+   * @param doador     O doador que doou o item.
+   * @param descricao  A descricao do item doado.
    * @param quantidade A quantidade do item que foi doado.
-   * @param receptor O receptor que recebeu o item.
+   * @param receptor   O receptor que recebeu o item.
    */
   public Doacao(String data, Usuario doador, String descricao, int quantidade, Usuario receptor) {
     Validador validador = new Validador();
