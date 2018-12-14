@@ -23,7 +23,7 @@
 	\newpage
 	
 	\section{Design Geral}
-	O design do projeto foi arquitetado para minimizar o acoplamento do sistema de forma que foram utilizados vários níveis de abstração. No nível mais alto, há o Mediator, que tem a função de criar, controlar e integrar os controladores de itens necessitados e doados e o controlador de usuário. No nível intermediário estão os controladores: DoadosController e NecessitadosController, ambos são classes filhas de ItemController -- pois são controladores de itens -- e UsuárioController, que é o controlador de usuários. Já no nível mais básico, temos as classes Item e Usuário, que são abstrações de um item e de uma entidade que doará ou receberá um item no sistema. Além disso, foi implementada uma classe extra chamada Validador, cuja responsabilidade é verificar se o sistema apresenta erros e lançar exceções. 
+	O design do projeto foi arquitetado para minimizar o acoplamento do sistema de forma que foram utilizados vários níveis de abstração. No nível mais alto, há o Mediator, que tem a função de criar, controlar e integrar os controladores de itens necessitados e doados e o controlador de usuário. No nível intermediário estão os controladores: DoadosController e NecessitadosController, ambos são classes filhas de ItemController -- pois são controladores de itens -- UsuarioController, que é o controlador de usuários, e doacaoController, que é o controlador das doações. Já no nível mais básico, temos as classes Item e Usuário, que são abstrações de um item e de uma entidade que doará ou receberá um item no sistema. Além disso, foi implementada uma classe extra chamada Validador, cuja responsabilidade é verificar se o sistema apresenta erros e lançar exceções. 
 	
 	\section{Caso de Uso 1}
 	No primeiro caso, deve ser criado um CRUD (\textit{Create}, \textit{Read}, \textit{Update} e \textit{Delete}) de usuários, os quais podem ser doadores ou receptores de itens. Para isso, a equipe de desenvolvimento implementou duas classes: “UsuarioConroller” -- que tem como funções principais criar e administrar conjuntos de usuários -- e “Usuario” -- que é a abstração de um doador ou receptor no sistema.
@@ -53,9 +53,11 @@
 	O caso 5 traz a funcionalidade mais importante deste sistema: encontrar \textit{matches} entre itens a serem doados e itens necessários. Para isso, foi criada uma nova classe: a ItemMatcher, a qual cria um item base -- que será a base de comparação -- e possui o método match que realiza a comparação entre todos os itens e retorna uma \textit{string} com a pontuação dos matches. Tal pontuação é calculada nos métodos \textit{match} e \textit{matchTags} implementados na classe Item.
 	
 	\section{Caso de Uso 6}
+	Conhecendo os possíveis \textit{matches} entre itens necessários e para doação, um usuário receptor pode solicitar uma doação de um item. Para isso, foi implementado um controlador de doações, o DoacaoController, que tem como responsabilidade realizar todas as doações que ocorrem no sistema e registra-as em uma lista.
 
 	
 	\section{Caso de Uso 7}	
+	
 		
 	
 	\section{Link para repositório no GitHub}
