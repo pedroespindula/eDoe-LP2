@@ -20,6 +20,8 @@ public class DoacaoController {
 
     validador.verificaStringNulaOuVazia(data, "Entrada invalida: data nao pode ser vazia ou nula.");
     validador.verificaStringsDiferentes(itemNec.getDescricao(), itemDoado.getDescricao(), "Os itens nao tem descricoes iguais.");
+    validador.verificaNulo(itemNec, "Entrada invalida: item necessitado nao pode ser nulo.");
+    validador.verificaNulo(itemDoado, "Entrada invalida: item doado nao pode ser nulo.");
 
     int qntDoacao = getQntDoacao(itemNec, itemDoado);
 
