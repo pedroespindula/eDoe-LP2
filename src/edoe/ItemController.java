@@ -151,4 +151,10 @@ public abstract class ItemController {
 
     return item;
   }
+
+  public void removeItemVazio(Item item) {
+    if (item.getQuantidade() == 0) {
+      this.usuarioItensMap.get(item.getUsuario()).remove(item.getId());
+    }
+  }
 }

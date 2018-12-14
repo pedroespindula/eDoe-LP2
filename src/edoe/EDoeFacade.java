@@ -91,7 +91,11 @@ public class EDoeFacade {
 
   // US6
   public String realizaDoacao (int idItemNec, int idItemDoado, String data) {
-    return this.mediator.realizaDoacao(idItemNec, idItemNec, data);
+    return this.mediator.realizaDoacao(idItemNec, idItemDoado, data);
+  }
+
+  public String listaDoacoes() {
+    return this.mediator.listaDoacoes();
   }
 
   // US7
