@@ -11,8 +11,12 @@ import java.util.stream.IntStream;
  *
  * @author Vitor Diniz - 118110145
  */
-public class Item implements Serializable {
-  private int id;
+public class Item implements Serializable{
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
   private String descricao;
   private int quantidade;
   private List<String> tags;
@@ -157,4 +161,8 @@ public class Item implements Serializable {
     var tipoUsuario = this.usuario.getEhDoador() ? "doador" : "Receptor";
     return this.toString() + ", " + tipoUsuario + ": " + this.getUsuarioIdentificacao();
   }
+
+	public String getTagsComoEntrada() {
+		return String.join(",", this.tags);
+	}
 }

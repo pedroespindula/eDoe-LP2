@@ -1,7 +1,5 @@
 package edoe;
 
-import java.io.IOException;
-
 public class Mediator {
 
   private UsuarioController usuarioController;
@@ -123,14 +121,8 @@ public class Mediator {
   }
 
   public void finalizaSistema() {
-    try {
-      this.doadosController.salvar();
-    } catch (IOException e) {
-    }
+  	this.doadosController.salvar();
+  	this.necessitadoController.salvar();
+  	this.usuarioController.salvar();
   }
-
-  public void iniciaSistema() {
-
-  }
-
 }

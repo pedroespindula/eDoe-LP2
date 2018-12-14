@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  *
  * @author Pedro Espindula - 118110035
  */
-public class UsuarioController {
+public class UsuarioController implements Salvavel {
 
   private Map<String, Usuario> usuarios;
   private Set<String> classes;
@@ -188,5 +188,11 @@ public class UsuarioController {
 
     return this.usuarios.get(id);
   }
+
+	@Override
+	public void salvar() {
+		Persistencia persistencia = new Persistencia();
+		persistencia.salvar(this.usuarios, "GuardaDados/Usuarios.txt");
+	}
 
 }

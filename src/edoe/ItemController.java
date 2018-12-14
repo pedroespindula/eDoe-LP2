@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * <p>
  * Armazena esses itens e permite sua manipulacao (CRUD).
  */
-public abstract class ItemController {
+public abstract class ItemController implements Salvavel{
   protected Map<Usuario, Map<Integer, Item>> usuarioItensMap;
   protected int contador;
 

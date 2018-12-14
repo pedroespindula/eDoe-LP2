@@ -10,3 +10,6 @@ out/
 # Eclipse
 .classpath
 .project
+
+#
+GuardaDados/
