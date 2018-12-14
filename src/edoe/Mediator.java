@@ -8,11 +8,13 @@ public class Mediator {
   private UsuarioController usuarioController;
   private DoadosController doadosController;
   private NecessitadoController necessitadoController;
+  private DoacaoController doacaoController;
 
   public Mediator() {
     this.usuarioController = new UsuarioController();
     this.doadosController = new DoadosController();
     this.necessitadoController = new NecessitadoController();
+    this.doacaoController = new DoacaoController();
   }
 
   public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
@@ -106,8 +108,19 @@ public class Mediator {
     return matcher.match(todosItems);
   }
 
-  public String realizaDoacao(int idItemNec, int idItemNec1, String data) {
-    return "";
+  public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
+    Item itemNec = this.necessitadoController.getItemPorId(idItemNec);
+    Item itemDoado = this.doadosController.getItemPorId(idItemDoado);
+    String result = this.doacaoController.realizaDoacao(itemNec, itemDoado, data);
+
+    this.necessitadoController.removeItemVazio(itemNec);
+    this.doadosController.removeItemVazio(itemDoado);
+
+    return result;
+  }
+
+  public String listaDoacoes() {
+    return this.doacaoController.listaDoacoes();
   }
 
   public void finalizaSistema() {
@@ -116,4 +129,5 @@ public class Mediator {
   public void iniciaSistema() {
     
   }
+
 }

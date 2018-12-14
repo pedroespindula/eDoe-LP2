@@ -144,4 +144,10 @@ public class Validador {
       throw new IllegalArgumentException(this.msgGeral + mensagem);
     }
   }
+
+  public void verificaStringsDiferentes(String string1, String string2, String mensagem) {
+    if (!string1.equals(string2)) {
+      throw new IllegalArgumentException(mensagem);
+    }
+  }
 }
